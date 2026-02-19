@@ -1,0 +1,4 @@
+# Snake AI service - Python (spec: FastAPI, WebSocket, A* heurisztika)
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+# Opcionális később: numpy, torch, stable-baselines3 (RL)

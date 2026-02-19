@@ -1,0 +1,6 @@
+{
+  "grid": { "rows": 20, "cols": 20 },
+  "tick_ms": 120,
+  "seed": 42,
+  "ai": { "strategy": "astar", "safety": true }
+}
