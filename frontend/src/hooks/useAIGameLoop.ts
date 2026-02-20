@@ -15,7 +15,8 @@ const WS_URL = import.meta.env.VITE_AI_WS_URL
 export function useAIGameLoop(
   state: GameState,
   setState: (s: GameState) => void,
-  enabled: boolean
+  enabled: boolean,
+  strategyName: string = 'astar'
 ) {
   const stateRef = useRef(state)
   stateRef.current = state
@@ -27,13 +28,13 @@ export function useAIGameLoop(
     const snapshot = getSnapshot(newState)
     let action: string
     if (connected) {
-      const wsAction = await getAction(snapshot)
+      const wsAction = await getAction(snapshot, strategyName)
       action = wsAction ?? placeholderStrategy.nextMove(snapshot)
     } else {
       action = placeholderStrategy.nextMove(snapshot)
     }
     setState(setDirection(newState, action as 'Up' | 'Right' | 'Down' | 'Left'))
-  }, [connected, getAction, setState])
+  }, [connected, getAction, setState, strategyName])
 
   useEffect(() => {
     if (!enabled || state.phase !== 'RUNNING') return

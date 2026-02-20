@@ -1,13 +1,32 @@
 # Szakdolgozat dokumentáció
 
-Ez a fájl a szakdolgozat írása és a projektdokumentáció készítése során gyűjtött jegyzetek, döntések és a **megvalósítás naplója** (amit eddig csináltunk és később automatikusan bővül).
+Ez a fájl a szakdolgozat írása és a projektdokumentáció készítése során gyűjtött jegyzetek, döntések és a **megvalósítás naplója** (amit eddig készült és később bővül). Az elavult részeket a naplóban közvetlenül frissítjük; külön „javítások” szekció nincs.
+
+---
+
+## Tartalomjegyzék
+
+1. [Dokumentum célja](#dokumentum-célja)
+2. [Kapcsolódó dokumentumok](#kapcsolódó-dokumentumok)
+3. [Szakdolgozati fejezetek (vázlat)](#szakdolgozati-fejezetek-vázlat)
+4. [Megvalósítási napló](#megvalósítási-napló)
+   - 4.1. [Dokumentáció és specifikáció](#41-dokumentáció-és-specifikáció)
+   - 4.2. [Projekt mappastruktúra (monorepo)](#42-projekt-mappastruktúra-monorepo)
+   - 4.3. [Frontend – technológiák, alapok, játéklogika](#43-frontend--technológiák-alapok-játéklogika)
+   - 4.4. [Frontend – megjelenítés és felület](#44-frontend--megjelenítés-és-felület)
+   - 4.5. [Design és light/dark mód](#45-design-és-lightdark-mód)
+   - 4.6. [ai_service – Python AI modul](#46-ai_service--python-ai-modul)
+   - 4.7. [Stratégiaválasztó és benchmark](#47-stratégiaválasztó-és-benchmark)
+   - 4.8. [Backend és auth](#48-backend-és-auth)
+   - 4.9. [Későbbi bővítések (terv)](#49-későbbi-bővítések-terv)
+5. [Jegyzetek és döntések](#jegyzetek-és-döntések)
 
 ---
 
 ## Dokumentum célja
 
 - Tervezési és megvalósítási döntések rögzítése.
-- **Megvalósítási napló:** lépésről lépésre, mi készült el és mi a terv.
+- **Megvalósítási napló:** lépésről lépésre, mi készült el és mi a terv; fontosabb részeknél technológia, módszer, fájlstruktúra, rövid kódrészletek.
 - Mérési eredmények és benchmark összefoglalók helye.
 - Szakdolgozati fejezetek vázlata (bevezetés, elmélet, megvalósítás, mérés, konklúzió).
 
@@ -15,6 +34,7 @@ Ez a fájl a szakdolgozat írása és a projektdokumentáció készítése sorá
 
 ## Kapcsolódó dokumentumok
 
+- [README.md](../README.md) (gyökér) – rövid projektleírás, követelmények, telepítés, futtatás (köztük `npm run dev:all`), linkek.
 - [György_Ákos_Szakdolgozat_Specifikáció.md](György_Ákos_Szakdolgozat_Specifikáció.md) – hivatalos specifikáció és követelmények.
 - [ai_docs/snake_mi_szakdolgozat_terv_711c4121.plan.md](ai_docs/snake_mi_szakdolgozat_terv_711c4121.plan.md) – fejlesztési terv és fájlstruktúra.
 
@@ -33,86 +53,345 @@ Ez a fájl a szakdolgozat írása és a projektdokumentáció készítése sorá
 
 ## Megvalósítási napló
 
-*A projekt lépései kronologikus sorrendben. Új bejegyzések a napló aljához kerülnek.*
+*A projekt lépései kronologikus sorrendben. Új bejegyzések a napló aljához kerülnek; elavult részek itt kerülnek frissítésre.*
 
-### 1. Dokumentáció és specifikáció
+### 4.1. Dokumentáció és specifikáció
 
-- **docs mappa létrehozva.** A specifikáció a Word (.docx) helyett olvasható Markdown formátumban készült.
-- **György_Ákos_Szakdolgozat_Specifikáció.md** (a `docs/` mappában): teljes specifikáció formázva (címek, listák, kódblokkok, FK/NFK, 7.x fejezetek). A gyökérben lévő ugyannevű fájl erre hivatkozik.
-- **szakdolgozat_dokumentacio.md** (ez a fájl): szakdolgozat vázlat, kapcsolódó docok, jegyzetek és a megvalósítási napló.
+- **docs/** mappa: a specifikáció a Word (.docx) helyett olvasható Markdown formátumban.
+- **György_Ákos_Szakdolgozat_Specifikáció.md**: teljes spec formázva (címek, listák, kódblokkok, FK/NFK, 7.x fejezetek). A gyökérben lévő ugyannevű fájl erre hivatkozik.
+- **szakdolgozat_dokumentacio.md** (ez a fájl): cél, kapcsolódó docok, szakdolgozat vázlat, napló, jegyzetek.
 
-### 2. Projekt mappastruktúra (monorepo)
+---
 
-A terv alapján létrejöttek az alábbi mappák és alapfájlok:
+### 4.2. Projekt mappastruktúra (monorepo)
+
+Egy repository, több alkomponens:
 
 | Mappa / fájl | Tartalom |
 |--------------|----------|
 | **docs/** | Specifikáció, szakdolgozat dokumentáció, ai_docs (terv). |
-| **frontend/** | React + TypeScript + Vite alkalmazás, játéklogika, UI (lásd alább). |
-| **backend/** | Node.js + Express + SQLite váz: `package.json`, `src/`, `src/db/migrations/`, `data/`. |
-| **ai_service/** | Python AI szolgáltatás váz: `requirements.txt` (FastAPI, uvicorn), `src/`. |
-| **benchmarks/** | Mérési kampány helye: `results/`, `plots/` (üres, később scriptek és grafikonok). |
+| **frontend/** | React + TypeScript + Vite, játéklogika, UI, auth (lásd 4.3–4.5). |
+| **backend/** | Node.js + Express + SQLite, auth, profil, pontszámok (4.8). |
+| **ai_service/** | Python FastAPI, WebSocket, A* és Hamilton stratégiák (4.6). |
+| **benchmarks/** | `run_benchmark.py`, `results/`, `plots/`, README (4.7). |
+| **package.json** (gyökér) | `npm run dev`, `npm run dev:backend`, `npm run dev:ai`, **`npm run dev:all`** (mind a három egyszerre). |
+| **README.md** (gyökér) | Rövid leírás, követelmények, telepítés, futtatás (köztük `dev:all`), linkek a docs-ra. |
 
-### 3. Frontend – alapok és játéklogika
+**Egyszerre indítás (dev:all):** A gyökérből egy parancs mindhárom szolgáltatást elindítja: `npm run dev:all`. A gyökérben a `concurrently` (devDependency) futtatja párhuzamosan a frontend, backend és ai_service dev scriptjeit; a konzolban a logok színezett prefixekkel (`[frontend]`, `[backend]`, `[ai]`) különülnek el. Ehhez az **ai_service** mappába egy minimális **package.json** került egyetlen `dev` scripttel: `python -m uvicorn src.main:app --reload --host 0.0.0.0 --port 8000`, így a gyökérből az `npm run dev --prefix ai_service` (ill. `npm run dev:ai`) ugyanúgy indítja az AI szolgáltatást. A gyökér **README.md** tartalmazza a szükséges információt: követelmények, telepítés, futtatás (köztük `dev:all`), portok, linkek a dokumentációra.
 
-- **Vite + React + TypeScript** projekt: `package.json`, `vite.config.ts`, `tsconfig.json`, `index.html`, `config.json.example`.
-- **Core (játéklogika, spec 7.5.1–7.5.3):**
-  - **types.ts** – `Direction`, `GridCell`, `Pos`, `GameStateSnapshot`, `GamePhase`, `Action`, `Strategy` interfész, `GameConfig`.
-  - **rng.ts** – seed-elhető PRNG (Mulberry32) a reprodukálhatósághoz (NFK5).
-  - **board.ts** – N×M rács, `isInBounds`, `getEmptyCells` (étel helyhez).
-  - **snake.ts** – kezdő 3 szegmens, középen, jobbra (spec 7.2); `getNextHead`, `isOpposite`, `moveSnake` (növekedés/farok).
-  - **food.ts** – `placeFood` (rács + üres cellák), `placeFoodSeeded` (seed-del, játékban használt).
-  - **collision.ts** – `hitWall`, `hitSelf`, `hitFood`.
-  - **score.ts** – 1 pont/étel, nehézségi szorzó (FK6).
-  - **game.ts** – állapotgép: `INIT` → `RUNNING` → `PAUSED` → `GAME_OVER`; `createGame`, `setDirection`, `startGame`, `pauseGame`, `resumeGame`, `tick`, `getSnapshot`.
-- **I/O réteg:** `io/config.ts` (localStorage config betöltés/mentés), `io/storage.ts` (eredmények listája), `api.ts` (REST váz a backend felé).
-- **Hooks:** `useGameLoop.ts` – `tick` hívása `tickMs` időközönként, ha a fázis `RUNNING`.
+---
 
-### 4. Frontend – megjelenítés és felület
+### 4.3. Frontend – technológiák, alapok, játéklogika
 
-- **View:** `view/GameCanvas.tsx` (HTML5 Canvas: rács, kígyó fej/test, étel), `view/HUD.tsx` (pont, hossz, lépésszám, sebesség, státusz).
-- **UI:** `ui/MainMenu.tsx` (Játékos mód, MI mód, Beállítások, Eredmények), `ui/Settings.tsx` (rácsméret, tick_ms, seed), `ui/Results.tsx` (mentett eredmények listája).
-- **App.tsx** – képernyőváltás (menü / beállítások / eredmények / játék); billentyűzet: nyilak vagy WASD, P = szünet, R = új játék; játék végén eredmény mentése és Főmenü / Új játék gombok.
-- **main.tsx** – React belépési pont.
-- **ai/Strategy.ts** – helykitöltő stratégia (étel felé lép), később BFS/A* vagy Hamilton (spec 7.6).
+**Technológiák:** Vite 5, React 18, TypeScript 5.6, HTML5 Canvas a játéktérhez. A játéklogika tiszta TypeScript modulokban van (spec 7.5.1), független a Reacttól, így egységtesztelhető és ugyanaz a state formátum használható az MI réteghez (snapshot).
 
-### 5. Javítások
+**Fájlstruktúra (fontosabb részek):**
 
-- **tsconfig.json** – a `noFallthroughCasesInSwitch` JSON-ban értéket kapott: `"noFallthroughCasesInSwitch": true` (build hiba elhárítva).
+```
+frontend/
+├── index.html
+├── package.json, vite.config.ts, tsconfig.json
+├── config.json.example
+├── public/
+└── src/
+    ├── main.tsx              # React belépés, ThemeProvider, AuthProvider
+    ├── App.tsx               # Képernyőváltás, játékciklus, auth/profil/eredmény
+    ├── theme.css             # Globális és téma CSS változók
+    ├── api.ts                # REST hívások (auth, profil, scores), token
+    ├── ThemeContext.tsx      # Light/dark téma
+    ├── AuthContext.tsx       # Bejelentkezés állapot (token, user, setAuth, logout)
+    ├── core/                 # Játéklogika (spec 7.5.1–7.5.3)
+    │   ├── types.ts          # Direction, Pos, GameStateSnapshot, GamePhase, Strategy, GameConfig
+    │   ├── rng.ts            # Seed-elhető PRNG (Mulberry32)
+    │   ├── board.ts          # N×M rács, isInBounds, getEmptyCells
+    │   ├── snake.ts          # Kezdő 3 szegmens, getNextHead, isOpposite, moveSnake
+    │   ├── food.ts           # placeFood, placeFoodSeeded
+    │   ├── collision.ts      # hitWall, hitSelf, hitFood
+    │   ├── score.ts          # 1 pont/étel
+    │   ├── game.ts           # Állapotgép, createGame, setDirection, startGame, pauseGame, tick, getSnapshot
+    │   └── index.ts
+    ├── ai/
+    │   └── Strategy.ts       # Helyi placeholder stratégia (étel felé)
+    ├── io/
+    │   ├── config.ts         # localStorage config (loadConfig, saveConfig)
+    │   └── storage.ts        # Eredmények listája (StoredScore, loadScores, saveScore)
+    ├── hooks/
+    │   ├── useGameLoop.ts    # Játékos mód: setInterval tick
+    │   ├── useAIGameLoop.ts  # MI mód: async tick, WebSocket vagy helyi stratégia
+    │   └── useAIWebSocket.ts # WebSocket ai_service felé, getAction(state, strategy?)
+    ├── view/
+    │   ├── GameCanvas.tsx    # Canvas: rács, kígyó, étel (téma szerinti színek)
+    │   └── HUD.tsx           # Pont, hossz, lépés, sebesség, státusz, MI (backend/helyi + stratégia)
+    └── ui/
+        ├── Header.tsx        # Cím, Bejelentkezés/Regisztráció vagy Profil/Kijelentkezés, téma
+        ├── MainMenu.tsx      # Játékos/MI, Beállítások, Eredmények, Profil (ha bejelentkezve)
+        ├── Settings.tsx      # Rácsméret, tick_ms, seed, MI stratégia (A* / Hamilton)
+        ├── Results.tsx       # Eredmények lista (Játékos / MI (A*) / MI (Hamilton))
+        ├── LoginForm.tsx     # usernameOrEmail + jelszó
+        ├── RegisterForm.tsx  # email, username, jelszó, jelszó ismétlés
+        └── Profile.tsx       # Felhasználónév/jelszó módosítás, saját eredmények (backendről)
+```
 
-### 6. Design és light/dark mód
+**Adatszerkezetek és állapotgép (spec 7.5.2–7.5.3):** A `core/types.ts` definiálja a `GameStateSnapshot`-ot (snake, direction, food, rows, cols, seed, tick, score), a `GamePhase`-t (INIT → RUNNING → PAUSED → GAME_OVER) és a `Strategy` interfészt. A `game.ts` kezeli a ticket: irány frissítése (ellentétes tiltva), fej mozgatása, ütközés, étel/növekedés, getSnapshot az MI és mentéshez.
 
-- **Téma rendszer:** CSS változók `[data-theme="dark"]` és `[data-theme="light"]` alatt (háttér, felület, szöveg, accent, stb.). A téma a `document.documentElement` `data-theme` attribútumával vált, localStorage-ban tárolva (`snake_theme`).
-- **ThemeContext:** React context a téma állapothoz, `ThemeProvider`, `useTheme()`, `toggleTheme()`. A `main.tsx` a gyökérben `ThemeProvider`-rel csomagolja az alkalmazást.
-- **Header:** minden képernyőn megjelenő fejléc („Snake – MI” cím + téma váltó gomb: Világos / Sötét).
-- **Globális stílusok (`theme.css`):** alaphelyzet, kártyák (`.card`), gombok (`.btn`, `.btn-secondary`, `.btn-block`), űrlapok (`.form-group`, input fókusz gyűrű), HUD, eredménylista, üres állapot, game over szöveg. Átmenetek a háttér/szín váltásnál.
-- **Komponensek:** MainMenu, Settings, Results a `.card` és `.btn` osztályokkal; HUD a `.hud` osztállyal; GameCanvas a téma alapján más színeket használ (sötét/világos háttér, rács, kígyó, étel). A játéktér canvas árnyékkal és kerekített sarkokkal.
-- **Elérhetőség:** téma gomb `aria-label`, fókusz stílusok az inputokon.
+Példa a típusokra és a stratégia interfészre ([frontend/src/core/types.ts](frontend/src/core/types.ts)):
 
-### 7. ai_service (Python AI modul) – spec 3, 7.5.2, 7.6.1
+```typescript
+/** Játék állapotgép (spec 7.5.2). */
+export type GamePhase = 'INIT' | 'RUNNING' | 'PAUSED' | 'GAME_OVER'
 
-- **FastAPI** alkalmazás: WebSocket (`/ws`) a valós idejű játékállapot fogadására; válasz: `{"action": "Up"|"Right"|"Down"|"Left"}`. REST: `GET /health`, `GET /strategies`, `POST /next` (egy állapothoz egy lépés, teszteléshez).
-- **Állapot:** a frontend `GameStateSnapshot` formátuma (snake, direction, food, rows, cols, seed, tick, score); `state.py` – `GameState`, `parse_state()`, irányok és delta.
-- **Stratégia interfész:** `Strategy.next_move(state) -> Direction` (spec 7.18). Implementációk: `strategies/astar.py` – A* az ételig Manhattan-heurisztikával; ha nincs biztonságos útvonal, fallback: legbiztonságosabb lokális lépés (flood fill szabadságfok) vagy farok-követés (spec 7.6.1).
-- **Futtatás:** `ai_service` mappából: `uvicorn src.main:app --reload --host 0.0.0.0 --port 8000`. Környezeti változók: `AI_STRATEGY`, `AI_SAFETY`. README a mappában.
+/** Stratégia interfész (spec 7.18). */
+export interface Strategy {
+  nextMove(state: GameStateSnapshot): Action
+}
+```
 
-### 8. Későbbi bővítések (terv)
+Példa a játék létrehozására és irány kezelésére ([frontend/src/core/game.ts](frontend/src/core/game.ts)):
 
-- Backend: Express szerver, auth, pontszámok SQLite-ban, REST API.
-- Frontend: MI mód WebSocket-kapcsolat az ai_service `/ws` végponthoz.
-- ai_service: Hamilton-kör stratégia (7.6.2); opcionális RL (DQN/PPO, Stable-Baselines3).
-- Benchmark scriptek és mérési eredmények dokumentálása (7.11, 7.15).
-- Egységtesztek a core és ai_service modulokra (NFK3, ≥70% lefedettség).
+```typescript
+export function createGame(config: Partial<GameConfig> | null): GameState {
+  const rows = config?.grid?.rows ?? DEFAULT_ROWS
+  const cols = config?.grid?.cols ?? DEFAULT_COLS
+  const tickMs = config?.tick_ms ?? DEFAULT_TICK_MS
+  const seed = config?.seed ?? Date.now()
+  setSeed(seed)
+  const { body, direction } = createSnake(rows, cols)
+  const food = placeFoodSeeded(rows, cols, body, next)
+  return { phase: 'INIT', rows, cols, snakeBody: body, direction, food, score: 0, tick: 0, seed, tickMs }
+}
+
+export function setDirection(state: GameState, newDir: Direction): GameState {
+  if (state.phase !== 'RUNNING' && state.phase !== 'INIT') return state
+  if (isOpposite(state.direction, newDir)) return state
+  return { ...state, direction: newDir }
+}
+```
+
+**I/O:** A konfig (rácsméret, tick_ms, seed, ai.strategy) és az eredmények (score, tick, length, mode, aiStrategy) a böngésző localStorage-ban is tárolódnak; bejelentkezés után a pontszámok a backendre is kerülnek (api.ts: submitScore).
+
+---
+
+### 4.4. Frontend – megjelenítés és felület
+
+- **GameCanvas:** HTML5 Canvas; a rács, a kígyó (fej kiemelve) és az étel téma szerinti színekkel (sötét/világos háttér, grid line, snake/snakeHead, food). A canvas mérete a `rows`/`cols` és a cellaméret alapján számolt.
+- **HUD:** Pont, hossz, lépésszám, sebesség (tick/s), státusz (Készül, Fut, Szünet, Vége), MI módban „MI: backend (A*)” / „MI: backend (Hamilton)” vagy „MI: helyi”.
+- **MainMenu, Settings, Results:** Kártya stílus (theme.css `.card`), gombok (`.btn`, `.btn-secondary`). Eredményeknél minden sorban látszik, hogy **Játékos** vagy **MI (A*)** / **MI (Hamilton)** (modeLabel a `StoredScore.mode` és `aiStrategy` alapján).
+- **App.tsx:** Képernyők: menu, settings, results, game, login, register, profile. Billentyűzet: nyilak/WASD, P = szünet, R = új játék. Játék vége: lokális mentés (mode + aiStrategy); ha van token, backendre is küldés (submitScoreApi).
+
+---
+
+### 4.5. Design és light/dark mód
+
+**Módszer:** CSS változók a `[data-theme="dark"]` és `[data-theme="light"]` szelektorok alatt; a téma a `document.documentElement.setAttribute('data-theme', theme)` és a localStorage (`snake_theme`) segítségével vált. React context (ThemeProvider, useTheme) tárolja a téma állapotot és a toggleTheme függvényt.
+
+**Technológiák:** Egyetlen globális `theme.css` (változók, alaphelyzet, kártya, gomb, űrlap, HUD, eredménylista). A Canvas színei témafüggőek a komponensben (COLORS.dark / COLORS.light), mert a Canvas 2D nem használhat CSS változókat közvetlenül.
+
+Példa a téma változóira és a context használatára ([frontend/src/theme.css](frontend/src/theme.css), [frontend/src/ThemeContext.tsx](frontend/src/ThemeContext.tsx)):
+
+```css
+[data-theme="dark"] {
+  --bg: #0f1419;
+  --surface: #2d3748;
+  --text: #e2e8f0;
+  --accent: #48bb78;
+  /* ... */
+}
+[data-theme="light"] {
+  --bg: #f7fafc;
+  --surface: #ffffff;
+  --text: #2d3748;
+  /* ... */
+}
+```
+
+```typescript
+export function ThemeProvider({ children }: { children: ReactNode }) {
+  const [theme, setThemeState] = useState<Theme>(getStoredTheme)
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem(STORAGE_KEY, theme)
+  }, [theme])
+  const toggleTheme = useCallback(() => setThemeState((prev) => (prev === 'dark' ? 'light' : 'dark')), [])
+  return <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>{children}</ThemeContext.Provider>
+}
+```
+
+**Header:** A téma váltó mellett: nem bejelentkezve „Bejelentkezés” és „Regisztráció”; bejelentkezve felhasználónév, „Profil”, „Kijelentkezés”.
+
+---
+
+### 4.6. ai_service – Python AI modul
+
+**Technológiák:** Python 3.10+, FastAPI, uvicorn. Nincs PyTorch/TensorFlow a heurisztikus stratégiákhoz; csak a standard könyvtár és a saját modulok.
+
+**Fájlstruktúra:**
+
+```
+ai_service/
+├── requirements.txt    # fastapi, uvicorn
+├── README.md
+├── __init__.py
+└── src/
+    ├── __init__.py
+    ├── main.py         # FastAPI app, CORS, /health, /strategies, /ws, POST /next
+    ├── state.py        # GameState, parse_state, DELTA, OPPOSITE, DIRECTIONS
+    └── strategies/
+        ├── __init__.py # STRATEGIES = { "astar": AStarStrategy, "hamilton": HamiltonianStrategy }
+        ├── base.py     # Strategy absztrakt: next_move(state) -> Direction
+        ├── astar.py    # A* Manhattan, flood fill fallback, farok-követés
+        └── hamilton.py # Spirál kör, next_on_cycle, étel felé A* levágás
+```
+
+**Állapot és stratégia:** A frontend `GameStateSnapshot` formátumát a `state.parse_state(data)` alakítja `GameState`-re (snake, direction, food, rows, cols). A WebSocket üzenetben opcionális `strategy: "astar" | "hamilton"`; ha megvan, a szerver ezt a stratégiát használja a válaszhoz.
+
+**A* (spec 7.6.1):** Manhattan heurisztika, A* útvonal a fej és az étel között (akadály: kígyó teste, farok nélkül). Ha nincs biztonságos út, fallback: farok-követés (A* a farkig) vagy legbiztonságosabb lokális lépés (flood fill szabadságfok).
+
+Példa az A* útvonalkeresés és irány számítás ([ai_service/src/strategies/astar.py](ai_service/src/strategies/astar.py)):
+
+```python
+def astar_path(start, goal, obstacles, rows, cols) -> list[tuple[int, int]] | None:
+    # ...
+    while open_set:
+        _, g, current = heapq.heappop(open_set)
+        if current == goal:
+            path = []
+            while current in came_from:
+                path.append(current)
+                current = came_from[current]
+            path.append(start)
+            path.reverse()
+            return path
+        for n in neighbors(current):
+            tent_g = g + 1
+            if n not in g_score or tent_g < g_score[n]:
+                came_from[n] = current
+                g_score[n] = tent_g
+                h = manhattan(n, goal)
+                heapq.heappush(open_set, (tent_g + h, tent_g, n))
+    return None
+```
+
+**Hamilton (spec 7.6.2):** Előre generált spirál (külső perem befelé) a rácson; cache-elt. A kígyó a `next_on_cycle(cycle, head)` szerinti következő cella felé lép; ha van étel és biztonságos odamenni, A* „levágás” az ételig.
+
+Példa a spirál építésére ([ai_service/src/strategies/hamilton.py](ai_service/src/strategies/hamilton.py)):
+
+```python
+def _build_spiral_cycle(rows: int, cols: int) -> list[tuple[int, int]]:
+    out: list[tuple[int, int]] = []
+    r0, r1 = 0, rows - 1
+    c0, c1 = 0, cols - 1
+    while r0 <= r1 and c0 <= c1:
+        for c in range(c0, c1 + 1):
+            out.append((c, r0))
+        r0 += 1
+        # jobb oszlop, alsó sor, bal oszlop... (spirál)
+        # ...
+    return out
+```
+
+**Futtatás:** `python -m uvicorn src.main:app --reload --host 0.0.0.0 --port 8000` (ai_service mappából).
+
+---
+
+### 4.7. Stratégiaválasztó és benchmark
+
+- **Beállítások (frontend):** „MI stratégia (backend)” legördülő: A* / Hamilton. Az érték a `config.ai.strategy`-ben (localStorage) tárolódik; MI módban a WebSocket payload tartalmazza a `strategy` mezőt.
+- **HUD:** MI módban: „MI: backend (A*)” vagy „MI: backend (Hamilton)”, vagy „MI: helyi” ha nincs kapcsolat.
+- **Benchmark:** `benchmarks/run_benchmark.py` – fix seed-del N futás (alap 100), A* és/vagy Hamilton. Egyszerű játékszimulátor (step: irány, ütközés, étel, növekedés); metrikák: score_mean/median, steps_mean/median, death_counts, reached_first_food (%). Kimenet: `benchmarks/results/benchmark_astar.json`, `benchmark_hamilton.json`, `benchmark_summary.json`. Futtatás: `python benchmarks/run_benchmark.py --runs 100 --strategy both`. A script az `ai_service` csomagot importálja (state, strategies).
+
+---
+
+### 4.8. Backend és auth
+
+**Technológiák:** Node.js, Express 4, TypeScript (tsx/dev, tsc/build), better-sqlite3, bcrypt (jelszó hash 10 kör), jsonwebtoken (JWT, 7 nap), cors. A backend a 3000 porton fut; a frontend alapértelmezetten a `http://localhost:3000` címet hívja (vagy `VITE_API_URL`).
+
+**Fájlstruktúra:**
+
+```
+backend/
+├── package.json, tsconfig.json
+├── README.md, .gitignore
+├── data/                 # SQLite: snake.db (gitignore)
+└── src/
+    ├── index.ts          # Express app, CORS, express.json(), route mount, listen
+    ├── db/
+    │   └── sqlite.ts     # getDb(), initSchema (users, scores), getDatabase()
+    ├── middleware/
+    │   └── auth.ts       # JWT verify, authMiddleware, signToken, JwtPayload
+    ├── routes/
+    │   ├── auth.ts       # POST /register, POST /login (bcrypt, token)
+    │   ├── profile.ts    # GET /me, PATCH /me (username), PATCH /me/password
+    │   └── scores.ts     # GET / (user scores), POST / (score, tick, length, mode, ai_strategy)
+    └── ...
+```
+
+**Adatbázis:** SQLite fájl a `backend/data/snake.db`; a séma a `sqlite.ts`-ben történő futtatáskor jön létre. Táblák: `users` (id, email UNIQUE, username UNIQUE, password_hash, created_at), `scores` (id, user_id FK, score, tick, length, mode CHECK ('player'|'ai'), ai_strategy CHECK (NULL|'astar'|'hamilton'), created_at). Indexek: scores(user_id), scores(created_at DESC).
+
+Példa a sémára és az auth middleware-re ([backend/src/db/sqlite.ts](backend/src/db/sqlite.ts), [backend/src/middleware/auth.ts](backend/src/middleware/auth.ts)):
+
+```typescript
+// sqlite.ts – initSchema
+CREATE TABLE IF NOT EXISTS users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  email TEXT UNIQUE NOT NULL,
+  username TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+);
+CREATE TABLE IF NOT EXISTS scores (
+  ...
+  mode TEXT NOT NULL CHECK (mode IN ('player', 'ai')),
+  ai_strategy TEXT NULL CHECK (ai_strategy IS NULL OR ai_strategy IN ('astar', 'hamilton')),
+  ...
+);
+```
+
+```typescript
+// auth.ts
+export function authMiddleware(req: Request, res: Response, next: NextFunction): void {
+  const authHeader = req.headers.authorization
+  if (!authHeader?.startsWith('Bearer ')) {
+    res.status(401).json({ error: 'Hiányzó vagy érvénytelen token' })
+    return
+  }
+  const token = authHeader.slice(7)
+  try {
+    const payload = jwt.verify(token, JWT_SECRET) as JwtPayload
+    ;(req as Request & { user: JwtPayload }).user = payload
+    next()
+  } catch {
+    res.status(401).json({ error: 'Érvénytelen vagy lejárt token' })
+  }
+}
+```
+
+**Regisztráció:** Email (regex ellenőrzés), felhasználónév (3–32 karakter, csak betű/szám/kötőjel/aláhúzás), jelszó min. 6 karakter, jelszó ismétlés egyezés. Dupla email vagy username esetén 400. Jelszó: `bcrypt.hashSync(password, 10)`; válasz: `{ token, user }`.
+
+**Bejelentkezés:** Body: `usernameOrEmail` + `password`. Keresés email vagy username alapján; `bcrypt.compareSync`; válasz: `{ token, user }`.
+
+**Profil:** GET /api/profile/me (Bearer): user adatok. PATCH /api/profile/me: új username (validáció, egyediség). PATCH /api/profile/me/password: currentPassword, newPassword, newPasswordConfirm (jelenlegi ellenőrzés bcrypt-pel, majd hash és update).
+
+**Eredmények:** GET /api/scores (Bearer): a bejelentkezett user összes scoreja (score, tick, length, mode, ai_strategy, created_at). POST /api/scores (Bearer): body score, tick, length, mode, ai_strategy; a user_id a JWT-ből kerül be.
+
+**Frontend:** AuthContext (token, user, setAuth, logout, loadUser); token és user localStorage-ban (snake_token, snake_user). LoginForm, RegisterForm, Profile (felhasználónév/jelszó változtatás, saját eredmények listája – minden sorban Játékos / MI (A*) / MI (Hamilton)). Eredmények menü: lokális lista, ugyanígy címkézve. Játék vége: lokális mentés + ha token, akkor submitScoreApi(score, tick, length, mode, aiStrategy).
+
+---
+
+### 4.9. Későbbi bővítések (terv)
+
+- Egységtesztek a frontend core és az ai_service modulokra (NFK3, ≥70% lefedettség).
 - CI (pl. GitHub Actions): lint, tesztek.
+- Opcionális RL (DQN/PPO, pl. Stable-Baselines3) az ai_service-ben; tanulási görbék és mérési kampány dokumentálása.
 
-*Az itt felsorolt „Későbbi bővítések” és a napló további része a fejlesztés előrehaladásával automatikusan bővülhet.*
+*A napló további bejegyzései és az elavult részek frissítései itt, a megvalósítási naplóban történnek; külön „javítások” szekció nincs.*
 
 ---
 
 ## Jegyzetek és döntések
 
 - **Monorepo:** egy repository (frontend, backend, ai_service, benchmarks), egyszerűbb verziókezelés és terv követés.
-- **Játéklogika független a UI-tól:** a `core/` modulok tiszta függvények/objektumok, később egységtesztelhetők és a Python AI szimulátor is ugyanazokat a szabályokat használhatja.
-- **Stratégia interfész:** `nextMove(state) => Action` – minden MI (A*, Hamilton, RL) ugyanazt az API-t implementálja (spec 7.18).
-- **Konfiguráció és seed:** `config.json` / localStorage, fix seed opció a reprodukálható futásokhoz (NFK5).
-- **Design:** light/dark téma CSS változókkal és React ThemeContext-tel; egységes kártya, gomb, űrlap és HUD stílusok a `theme.css`-ben.
+- **Játéklogika független a UI-tól:** a `core/` modulok tiszta függvények/objektumok; egységtesztelhetők, és a Python benchmark/ai ugyanazt a state formátumot használja.
+- **Stratégia interfész:** `nextMove(state) => Action` – minden MI (A*, Hamilton, esetleg RL) ugyanazt az API-t implementálja (spec 7.18).
+- **Konfiguráció és seed:** localStorage (config, eredmények); fix seed opció a reprodukálható futásokhoz (NFK5).
+- **Design:** light/dark téma CSS változókkal és React ThemeContext-tel; egységes kártya, gomb, űrlap, HUD a `theme.css`-ben.
+- **Auth:** JWT Bearer token; jelszó bcrypt; regisztrációhoz email + username + jelszó + ismétlés; bejelentkezéshez felhasználónév vagy email + jelszó. Eredményeknél mindig tároljuk a módot (player/ai) és az AI típust (astar/hamilton).

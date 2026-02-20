@@ -6,6 +6,7 @@ export interface StoredScore {
   length: number
   date: string
   mode: 'player' | 'ai'
+  aiStrategy?: string | null
 }
 
 export function loadScores(): StoredScore[] {
@@ -24,6 +25,15 @@ export function saveScore(entry: StoredScore): void {
   const kept = list.slice(0, 100)
   try {
     localStorage.setItem(SCORES_KEY, JSON.stringify(kept))
+  } catch {
+    // ignore
+  }
+}
+
+/** Helyi eredménylista törlése (localStorage). */
+export function clearScores(): void {
+  try {
+    localStorage.removeItem(SCORES_KEY)
   } catch {
     // ignore
   }

@@ -11,29 +11,42 @@ import {
 import { useGameLoop } from './hooks/useGameLoop'
 import { useAIGameLoop } from './hooks/useAIGameLoop'
 import { useTheme } from './ThemeContext'
+import { useAuth } from './AuthContext'
 import { loadConfig, saveConfig } from './io/config'
-import { loadScores, saveScore } from './io/storage'
+import { loadScores, saveScore, clearScores } from './io/storage'
+import { submitScore as submitScoreApi, fetchScores } from './api'
+import type { ScoreEntry } from './api'
+import type { StoredScore } from './io/storage'
 import { GameCanvas } from './view/GameCanvas'
 import { HUD } from './view/HUD'
 import { Header } from './ui/Header'
 import { MainMenu } from './ui/MainMenu'
 import { Settings } from './ui/Settings'
 import { Results } from './ui/Results'
+import { LoginForm } from './ui/LoginForm'
+import { RegisterForm } from './ui/RegisterForm'
+import { Profile } from './ui/Profile'
 
-type Screen = 'menu' | 'settings' | 'results' | 'game'
+type Screen = 'menu' | 'settings' | 'results' | 'game' | 'login' | 'register' | 'profile'
 
 function App() {
   const { theme } = useTheme()
+  const { token, setAuth } = useAuth()
   const [screen, setScreen] = useState<Screen>('menu')
   const [config, setConfig] = useState(loadConfig)
   const [gameState, setGameState] = useState<GameState>(() => createGame(config))
   const [gameMode, setGameMode] = useState<'player' | 'ai'>('player')
-  const [scores, setScores] = useState(loadScores)
+  const [scores, setScores] = useState<StoredScore[]>(loadScores)
+
+  useEffect(() => {
+    clearScores()
+  }, [])
 
   const { aiConnected } = useAIGameLoop(
     gameState,
     setGameState,
-    screen === 'game' && gameMode === 'ai'
+    screen === 'game' && gameMode === 'ai',
+    config.ai?.strategy ?? 'astar'
   )
   useGameLoop(
     gameState,
@@ -44,7 +57,8 @@ function App() {
   const startNewGame = useCallback(
     (mode: 'player' | 'ai') => {
       const seed = config.seed ?? Date.now()
-      setGameState(createGame({ ...config, seed }))
+      const newState = createGame({ ...config, seed })
+      setGameState(startGame(newState))
       setGameMode(mode)
       setScreen('game')
     },
@@ -92,29 +106,92 @@ function App() {
 
   useEffect(() => {
     if (gameState.phase === 'GAME_OVER' && screen === 'game') {
+      const aiStrategy = gameMode === 'ai' ? (config.ai?.strategy ?? null) : null
       saveScore({
         score: gameState.score,
         tick: gameState.tick,
         length: gameState.snakeBody.length,
         date: new Date().toISOString(),
         mode: gameMode,
+        aiStrategy: aiStrategy ?? undefined,
       })
       setScores(loadScores())
+      if (token) {
+        submitScoreApi(
+          gameState.score,
+          gameState.tick,
+          gameState.snakeBody.length,
+          gameMode,
+          aiStrategy
+        ).catch(() => {})
+      }
     }
-  }, [gameState.phase, screen, gameMode, gameState.score, gameState.tick, gameState.snakeBody.length])
+  }, [gameState.phase, screen, gameMode, gameState.score, gameState.tick, gameState.snakeBody.length, config.ai?.strategy, token])
 
+  const headerProps = {
+    onLoginClick: () => setScreen('login'),
+    onRegisterClick: () => setScreen('register'),
+    onProfileClick: () => setScreen('profile'),
+  }
+
+  if (screen === 'login') {
+    return (
+      <div className="app-shell">
+        <Header {...headerProps} />
+        <LoginForm onSuccess={(t, u) => { setAuth(t, u); setScreen('menu') }} onBack={() => setScreen('menu')} />
+      </div>
+    )
+  }
+  if (screen === 'register') {
+    return (
+      <div className="app-shell">
+        <Header {...headerProps} />
+        <RegisterForm onSuccess={(t, u) => { setAuth(t, u); setScreen('menu') }} onBack={() => setScreen('menu')} />
+      </div>
+    )
+  }
+  if (screen === 'profile') {
+    return (
+      <div className="app-shell">
+        <Header {...headerProps} />
+        <Profile onBack={() => setScreen('menu')} />
+      </div>
+    )
+  }
   if (screen === 'menu') {
     return (
       <div className="app-shell">
-        <Header />
+        <Header {...headerProps} />
         <MainMenu
           onStartPlayer={() => startNewGame('player')}
           onStartAI={() => startNewGame('ai')}
           onSettings={() => setScreen('settings')}
           onResults={() => {
-            setScores(loadScores())
-            setScreen('results')
+            if (token) {
+              fetchScores()
+                .then(({ scores: apiScores }) => {
+                  const mapped: StoredScore[] = apiScores.map((e: ScoreEntry) => ({
+                    score: e.score,
+                    tick: e.tick,
+                    length: e.length,
+                    mode: e.mode,
+                    aiStrategy: e.ai_strategy ?? undefined,
+                    date: e.created_at,
+                  }))
+                  setScores(mapped)
+                  setScreen('results')
+                })
+                .catch(() => {
+                  setScores([])
+                  setScreen('results')
+                })
+            } else {
+              setScores(loadScores())
+              setScreen('results')
+            }
           }}
+          onProfile={() => setScreen('profile')}
+          isLoggedIn={!!token}
         />
       </div>
     )
@@ -123,7 +200,7 @@ function App() {
   if (screen === 'settings') {
     return (
       <div className="app-shell">
-        <Header />
+        <Header {...headerProps} />
         <Settings
           config={config}
           onSave={(c) => {
@@ -139,7 +216,7 @@ function App() {
   if (screen === 'results') {
     return (
       <div className="app-shell">
-        <Header />
+        <Header {...headerProps} />
         <Results scores={scores} onBack={() => setScreen('menu')} />
       </div>
     )
@@ -147,7 +224,7 @@ function App() {
 
   return (
     <div className="app-shell">
-      <Header />
+      <Header {...headerProps} />
       <HUD
         score={gameState.score}
         length={gameState.snakeBody.length}
@@ -155,6 +232,7 @@ function App() {
         phase={gameState.phase}
         tickMs={gameState.tickMs}
         aiConnected={gameMode === 'ai' ? aiConnected : undefined}
+        aiStrategy={gameMode === 'ai' ? (config.ai?.strategy ?? 'astar') : undefined}
       />
       <GameCanvas
         rows={gameState.rows}

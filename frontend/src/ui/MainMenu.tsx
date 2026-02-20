@@ -3,9 +3,11 @@ interface MainMenuProps {
   onStartAI: () => void
   onSettings: () => void
   onResults: () => void
+  onProfile?: () => void
+  isLoggedIn?: boolean
 }
 
-export function MainMenu({ onStartPlayer, onStartAI, onSettings, onResults }: MainMenuProps) {
+export function MainMenu({ onStartPlayer, onStartAI, onSettings, onResults, onProfile, isLoggedIn }: MainMenuProps) {
   return (
     <div className="card">
       <h2 className="card-title">Snake – MI</h2>
@@ -30,6 +32,13 @@ export function MainMenu({ onStartPlayer, onStartAI, onSettings, onResults }: Ma
             Eredmények
           </button>
         </li>
+        {isLoggedIn && onProfile && (
+          <li>
+            <button type="button" className="btn btn-block btn-secondary" onClick={onProfile}>
+              Profil
+            </button>
+          </li>
+        )}
       </menu>
     </div>
   )

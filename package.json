@@ -1,0 +1,16 @@
+{
+  "name": "snake-projekt",
+  "private": true,
+  "description": "Snake + MI szakdolgozat – frontend, backend, ai_service",
+  "scripts": {
+    "dev": "npm run dev --prefix frontend",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:ai": "npm run dev --prefix ai_service",
+    "dev:all": "concurrently -n frontend,backend,ai -c blue,magenta,green \"npm run dev --prefix frontend\" \"npm run dev --prefix backend\" \"npm run dev --prefix ai_service\"",
+    "build": "npm run build --prefix frontend",
+    "preview": "npm run preview --prefix frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

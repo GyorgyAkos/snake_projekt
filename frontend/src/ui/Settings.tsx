@@ -14,11 +14,13 @@ export function Settings({ config, onSave, onBack }: SettingsProps) {
     const cols = Number((form.elements.namedItem('cols') as HTMLInputElement).value)
     const tickMs = Number((form.elements.namedItem('tick_ms') as HTMLInputElement).value)
     const seedRaw = (form.elements.namedItem('seed') as HTMLInputElement).value
+    const strategy = (form.elements.namedItem('ai_strategy') as HTMLSelectElement)?.value || 'astar'
     onSave({
       ...config,
       grid: { rows: Math.max(10, Math.min(40, rows)), cols: Math.max(10, Math.min(40, cols)) },
       tick_ms: Math.max(50, Math.min(500, tickMs)),
       seed: seedRaw === '' ? null : Number(seedRaw) || null,
+      ai: { ...config.ai, strategy: strategy === 'hamilton' ? 'hamilton' : 'astar' },
     })
     onBack()
   }
@@ -42,6 +44,13 @@ export function Settings({ config, onSave, onBack }: SettingsProps) {
         <div className="form-group">
           <label>Seed (üres = véletlen)</label>
           <input name="seed" type="text" placeholder="pl. 42" defaultValue={config.seed ?? ''} />
+        </div>
+        <div className="form-group">
+          <label>MI stratégia (backend)</label>
+          <select name="ai_strategy" defaultValue={config.ai?.strategy ?? 'astar'} style={{ maxWidth: 140, padding: '0.5rem 0.75rem', background: 'var(--bg)', color: 'var(--text)', border: '1px solid var(--border)', borderRadius: 8 }}>
+            <option value="astar">A*</option>
+            <option value="hamilton">Hamilton</option>
+          </select>
         </div>
         <div className="btn-group">
           <button type="submit" className="btn">Mentés</button>

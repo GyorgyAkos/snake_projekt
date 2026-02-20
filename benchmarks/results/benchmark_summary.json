@@ -1,0 +1,36 @@
+{
+  "astar": {
+    "strategy": "astar",
+    "runs": 100,
+    "rows": 20,
+    "cols": 20,
+    "max_steps": 5000,
+    "seed_base": 42,
+    "score_mean": 73.17,
+    "score_median": 73,
+    "steps_mean": 1214.68,
+    "steps_median": 1162,
+    "death_counts": {
+      "self": 77,
+      "wall": 23
+    },
+    "reached_first_food": 100.0
+  },
+  "hamilton": {
+    "strategy": "hamilton",
+    "runs": 100,
+    "rows": 20,
+    "cols": 20,
+    "max_steps": 5000,
+    "seed_base": 42,
+    "score_mean": 57.07,
+    "score_median": 56,
+    "steps_mean": 856.15,
+    "steps_median": 865,
+    "death_counts": {
+      "wall": 21,
+      "self": 79
+    },
+    "reached_first_food": 100.0
+  }
+}

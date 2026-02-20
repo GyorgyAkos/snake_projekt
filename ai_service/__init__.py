@@ -1,0 +1,1 @@
+# Snake AI service package

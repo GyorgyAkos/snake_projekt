@@ -9,13 +9,15 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 
 from .state import parse_state, GameState
-from .strategies import STRATEGIES, AStarStrategy
+from .strategies import STRATEGIES, AStarStrategy, HamiltonianStrategy
 
 
 def get_strategy(name: str = "astar", safety: bool = True):
     if name in STRATEGIES:
         if name == "astar":
             return AStarStrategy(safety=safety)
+        if name == "hamilton":
+            return HamiltonianStrategy()
         return STRATEGIES[name]()
     return AStarStrategy(safety=safety)
 
@@ -54,10 +56,9 @@ def list_strategies():
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
-    strategy = get_strategy(
-        name=os.environ.get("AI_STRATEGY", "astar"),
-        safety=os.environ.get("AI_SAFETY", "true").lower() == "true",
-    )
+    strategy_name = os.environ.get("AI_STRATEGY", "astar")
+    safety = os.environ.get("AI_SAFETY", "true").lower() == "true"
+    strategy = get_strategy(name=strategy_name, safety=safety)
     try:
         while True:
             raw = await websocket.receive_text()
@@ -66,6 +67,9 @@ async def websocket_endpoint(websocket: WebSocket):
             except json.JSONDecodeError:
                 await websocket.send_json({"error": "invalid json"})
                 continue
+            name = (data.get("strategy") or strategy_name).lower()
+            if name in STRATEGIES:
+                strategy = get_strategy(name=name, safety=safety)
             try:
                 state = parse_state(data)
             except (TypeError, KeyError, ValueError) as e:
@@ -87,14 +91,15 @@ async def websocket_endpoint(websocket: WebSocket):
 
 @app.post("/next")
 def next_action_endpoint(data: dict):
-    """REST alternatíva: egy állapothoz egy lépés (teszteléshez)."""
+    """REST alternatíva: egy állapothoz egy lépés (teszteléshez). strategy: astar | hamilton."""
     try:
         state = parse_state(data)
     except (TypeError, KeyError, ValueError) as e:
         return {"error": f"invalid state: {e}"}
     if not state.snake or not state.in_bounds(*state.head):
         return {"error": "invalid snake"}
-    strategy = get_strategy()
+    name = (data.get("strategy") or os.environ.get("AI_STRATEGY", "astar")).lower()
+    strategy = get_strategy(name=name if name in STRATEGIES else "astar")
     action = strategy.next_move(state)
     return {"action": action}
 

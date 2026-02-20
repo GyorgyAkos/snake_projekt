@@ -23,7 +23,7 @@ export function useAIWebSocket(wsUrl: string | undefined) {
     }
   }, [url])
 
-  const getAction = useCallback((state: GameStateSnapshot): Promise<string | null> => {
+  const getAction = useCallback((state: GameStateSnapshot, strategy?: string): Promise<string | null> => {
     const ws = wsRef.current
     if (!ws || ws.readyState !== WebSocket.OPEN) return Promise.resolve(null)
     return new Promise((resolve) => {
@@ -41,7 +41,7 @@ export function useAIWebSocket(wsUrl: string | undefined) {
         }
       }
       ws.addEventListener('message', onMessage)
-      ws.send(JSON.stringify({
+      const payload: Record<string, unknown> = {
         snake: state.snake,
         direction: state.direction,
         food: state.food,
@@ -50,7 +50,9 @@ export function useAIWebSocket(wsUrl: string | undefined) {
         seed: state.seed,
         tick: state.tick,
         score: state.score,
-      }))
+      }
+      if (strategy != null) payload.strategy = strategy
+      ws.send(JSON.stringify(payload))
     })
   }, [])
 

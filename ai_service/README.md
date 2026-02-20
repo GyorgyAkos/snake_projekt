@@ -67,12 +67,15 @@ Példa állapot (frontend kompatibilis):
 
 ## Stratégiák
 
-- **astar** (alapértelmezett): A\* az ételig Manhattan-heurisztikával; ha nincs biztonságos útvonal, legbiztonságosabb lokális lépés (flood fill szabadságfok) vagy farok-követés (spec 7.6.1).
+- **astar** (alapértelmezett): A\* az ételig Manhattan-heurisztikával; ha nincs biztonságos útvonal, legbiztonságosabb lokális lépés (flood fill) vagy farok-követés (spec 7.6.1).
+- **hamilton**: Hamilton-kör (spirál) a rácson; a kígyó a kör mentén halad, ételnél biztonságos „levágás” (spec 7.6.2).
+
+A WebSocket/REST üzenetben opcionális **strategy** mező: `"astar"` vagy `"hamilton"` (a frontend Beállításokból küldi).
 
 Környezeti változók (opcionális):
 
-- `AI_STRATEGY` – stratégia neve (jelenleg csak `astar`)
-- `AI_SAFETY` – `true` (alap) / `false` – biztonsági fallback használata
+- `AI_STRATEGY` – alapértelmezett stratégia: `astar` | `hamilton`
+- `AI_SAFETY` – `true` (alap) / `false` – biztonsági fallback (A*-nál)
 
 ## Struktúra
 
@@ -80,3 +83,4 @@ Környezeti változók (opcionális):
 - `src/state.py` – `GameState`, `parse_state()`, irányok (Up/Right/Down/Left)
 - `src/strategies/base.py` – `Strategy` absztrakt interfész: `next_move(state) -> Direction`
 - `src/strategies/astar.py` – A\* útvonal, flood fill fallback, farok-követés
+- `src/strategies/hamilton.py` – Hamilton (spirál) kör, étel felé levágás

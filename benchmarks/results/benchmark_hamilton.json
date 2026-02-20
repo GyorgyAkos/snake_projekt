@@ -1,0 +1,621 @@
+{
+  "summary": {
+    "strategy": "hamilton",
+    "runs": 100,
+    "rows": 20,
+    "cols": 20,
+    "max_steps": 5000,
+    "seed_base": 42,
+    "score_mean": 57.07,
+    "score_median": 56,
+    "steps_mean": 856.15,
+    "steps_median": 865,
+    "death_counts": {
+      "wall": 21,
+      "self": 79
+    },
+    "reached_first_food": 100.0
+  },
+  "runs": [
+    {
+      "score": 39,
+      "steps": 585,
+      "death": "wall",
+      "seed": 42
+    },
+    {
+      "score": 65,
+      "steps": 964,
+      "death": "self",
+      "seed": 43
+    },
+    {
+      "score": 65,
+      "steps": 942,
+      "death": "self",
+      "seed": 44
+    },
+    {
+      "score": 59,
+      "steps": 951,
+      "death": "self",
+      "seed": 45
+    },
+    {
+      "score": 60,
+      "steps": 909,
+      "death": "self",
+      "seed": 46
+    },
+    {
+      "score": 57,
+      "steps": 871,
+      "death": "wall",
+      "seed": 47
+    },
+    {
+      "score": 57,
+      "steps": 920,
+      "death": "self",
+      "seed": 48
+    },
+    {
+      "score": 70,
+      "steps": 1164,
+      "death": "self",
+      "seed": 49
+    },
+    {
+      "score": 46,
+      "steps": 630,
+      "death": "self",
+      "seed": 50
+    },
+    {
+      "score": 57,
+      "steps": 832,
+      "death": "self",
+      "seed": 51
+    },
+    {
+      "score": 63,
+      "steps": 978,
+      "death": "self",
+      "seed": 52
+    },
+    {
+      "score": 60,
+      "steps": 881,
+      "death": "self",
+      "seed": 53
+    },
+    {
+      "score": 65,
+      "steps": 900,
+      "death": "wall",
+      "seed": 54
+    },
+    {
+      "score": 76,
+      "steps": 1238,
+      "death": "self",
+      "seed": 55
+    },
+    {
+      "score": 59,
+      "steps": 973,
+      "death": "self",
+      "seed": 56
+    },
+    {
+      "score": 66,
+      "steps": 985,
+      "death": "self",
+      "seed": 57
+    },
+    {
+      "score": 49,
+      "steps": 658,
+      "death": "wall",
+      "seed": 58
+    },
+    {
+      "score": 46,
+      "steps": 708,
+      "death": "self",
+      "seed": 59
+    },
+    {
+      "score": 69,
+      "steps": 1033,
+      "death": "self",
+      "seed": 60
+    },
+    {
+      "score": 47,
+      "steps": 679,
+      "death": "self",
+      "seed": 61
+    },
+    {
+      "score": 59,
+      "steps": 864,
+      "death": "self",
+      "seed": 62
+    },
+    {
+      "score": 49,
+      "steps": 745,
+      "death": "self",
+      "seed": 63
+    },
+    {
+      "score": 63,
+      "steps": 1119,
+      "death": "self",
+      "seed": 64
+    },
+    {
+      "score": 37,
+      "steps": 448,
+      "death": "wall",
+      "seed": 65
+    },
+    {
+      "score": 53,
+      "steps": 848,
+      "death": "self",
+      "seed": 66
+    },
+    {
+      "score": 79,
+      "steps": 1389,
+      "death": "self",
+      "seed": 67
+    },
+    {
+      "score": 44,
+      "steps": 630,
+      "death": "wall",
+      "seed": 68
+    },
+    {
+      "score": 77,
+      "steps": 1140,
+      "death": "self",
+      "seed": 69
+    },
+    {
+      "score": 70,
+      "steps": 1002,
+      "death": "self",
+      "seed": 70
+    },
+    {
+      "score": 77,
+      "steps": 1148,
+      "death": "self",
+      "seed": 71
+    },
+    {
+      "score": 78,
+      "steps": 1236,
+      "death": "self",
+      "seed": 72
+    },
+    {
+      "score": 39,
+      "steps": 537,
+      "death": "self",
+      "seed": 73
+    },
+    {
+      "score": 68,
+      "steps": 914,
+      "death": "wall",
+      "seed": 74
+    },
+    {
+      "score": 48,
+      "steps": 665,
+      "death": "self",
+      "seed": 75
+    },
+    {
+      "score": 63,
+      "steps": 937,
+      "death": "self",
+      "seed": 76
+    },
+    {
+      "score": 36,
+      "steps": 450,
+      "death": "self",
+      "seed": 77
+    },
+    {
+      "score": 39,
+      "steps": 642,
+      "death": "self",
+      "seed": 78
+    },
+    {
+      "score": 55,
+      "steps": 792,
+      "death": "self",
+      "seed": 79
+    },
+    {
+      "score": 37,
+      "steps": 463,
+      "death": "self",
+      "seed": 80
+    },
+    {
+      "score": 59,
+      "steps": 803,
+      "death": "self",
+      "seed": 81
+    },
+    {
+      "score": 50,
+      "steps": 612,
+      "death": "self",
+      "seed": 82
+    },
+    {
+      "score": 56,
+      "steps": 799,
+      "death": "wall",
+      "seed": 83
+    },
+    {
+      "score": 53,
+      "steps": 819,
+      "death": "self",
+      "seed": 84
+    },
+    {
+      "score": 72,
+      "steps": 977,
+      "death": "self",
+      "seed": 85
+    },
+    {
+      "score": 21,
+      "steps": 364,
+      "death": "wall",
+      "seed": 86
+    },
+    {
+      "score": 55,
+      "steps": 914,
+      "death": "self",
+      "seed": 87
+    },
+    {
+      "score": 56,
+      "steps": 865,
+      "death": "self",
+      "seed": 88
+    },
+    {
+      "score": 69,
+      "steps": 1093,
+      "death": "self",
+      "seed": 89
+    },
+    {
+      "score": 48,
+      "steps": 693,
+      "death": "wall",
+      "seed": 90
+    },
+    {
+      "score": 53,
+      "steps": 740,
+      "death": "self",
+      "seed": 91
+    },
+    {
+      "score": 56,
+      "steps": 829,
+      "death": "wall",
+      "seed": 92
+    },
+    {
+      "score": 49,
+      "steps": 713,
+      "death": "self",
+      "seed": 93
+    },
+    {
+      "score": 76,
+      "steps": 1167,
+      "death": "self",
+      "seed": 94
+    },
+    {
+      "score": 56,
+      "steps": 876,
+      "death": "wall",
+      "seed": 95
+    },
+    {
+      "score": 39,
+      "steps": 521,
+      "death": "self",
+      "seed": 96
+    },
+    {
+      "score": 76,
+      "steps": 1223,
+      "death": "self",
+      "seed": 97
+    },
+    {
+      "score": 67,
+      "steps": 1057,
+      "death": "self",
+      "seed": 98
+    },
+    {
+      "score": 49,
+      "steps": 702,
+      "death": "self",
+      "seed": 99
+    },
+    {
+      "score": 54,
+      "steps": 779,
+      "death": "wall",
+      "seed": 100
+    },
+    {
+      "score": 43,
+      "steps": 561,
+      "death": "wall",
+      "seed": 101
+    },
+    {
+      "score": 69,
+      "steps": 1128,
+      "death": "wall",
+      "seed": 102
+    },
+    {
+      "score": 81,
+      "steps": 1324,
+      "death": "self",
+      "seed": 103
+    },
+    {
+      "score": 60,
+      "steps": 927,
+      "death": "wall",
+      "seed": 104
+    },
+    {
+      "score": 70,
+      "steps": 1083,
+      "death": "self",
+      "seed": 105
+    },
+    {
+      "score": 56,
+      "steps": 702,
+      "death": "self",
+      "seed": 106
+    },
+    {
+      "score": 66,
+      "steps": 1067,
+      "death": "self",
+      "seed": 107
+    },
+    {
+      "score": 33,
+      "steps": 422,
+      "death": "wall",
+      "seed": 108
+    },
+    {
+      "score": 42,
+      "steps": 621,
+      "death": "self",
+      "seed": 109
+    },
+    {
+      "score": 57,
+      "steps": 752,
+      "death": "self",
+      "seed": 110
+    },
+    {
+      "score": 79,
+      "steps": 1264,
+      "death": "self",
+      "seed": 111
+    },
+    {
+      "score": 54,
+      "steps": 854,
+      "death": "self",
+      "seed": 112
+    },
+    {
+      "score": 49,
+      "steps": 852,
+      "death": "self",
+      "seed": 113
+    },
+    {
+      "score": 50,
+      "steps": 660,
+      "death": "self",
+      "seed": 114
+    },
+    {
+      "score": 70,
+      "steps": 1179,
+      "death": "self",
+      "seed": 115
+    },
+    {
+      "score": 89,
+      "steps": 1437,
+      "death": "self",
+      "seed": 116
+    },
+    {
+      "score": 53,
+      "steps": 787,
+      "death": "self",
+      "seed": 117
+    },
+    {
+      "score": 37,
+      "steps": 500,
+      "death": "self",
+      "seed": 118
+    },
+    {
+      "score": 42,
+      "steps": 615,
+      "death": "self",
+      "seed": 119
+    },
+    {
+      "score": 43,
+      "steps": 545,
+      "death": "self",
+      "seed": 120
+    },
+    {
+      "score": 55,
+      "steps": 736,
+      "death": "self",
+      "seed": 121
+    },
+    {
+      "score": 69,
+      "steps": 1022,
+      "death": "wall",
+      "seed": 122
+    },
+    {
+      "score": 50,
+      "steps": 628,
+      "death": "self",
+      "seed": 123
+    },
+    {
+      "score": 60,
+      "steps": 865,
+      "death": "self",
+      "seed": 124
+    },
+    {
+      "score": 94,
+      "steps": 1457,
+      "death": "self",
+      "seed": 125
+    },
+    {
+      "score": 56,
+      "steps": 910,
+      "death": "self",
+      "seed": 126
+    },
+    {
+      "score": 56,
+      "steps": 834,
+      "death": "self",
+      "seed": 127
+    },
+    {
+      "score": 60,
+      "steps": 908,
+      "death": "self",
+      "seed": 128
+    },
+    {
+      "score": 54,
+      "steps": 798,
+      "death": "self",
+      "seed": 129
+    },
+    {
+      "score": 52,
+      "steps": 747,
+      "death": "self",
+      "seed": 130
+    },
+    {
+      "score": 59,
+      "steps": 928,
+      "death": "self",
+      "seed": 131
+    },
+    {
+      "score": 42,
+      "steps": 566,
+      "death": "wall",
+      "seed": 132
+    },
+    {
+      "score": 75,
+      "steps": 1202,
+      "death": "self",
+      "seed": 133
+    },
+    {
+      "score": 35,
+      "steps": 480,
+      "death": "wall",
+      "seed": 134
+    },
+    {
+      "score": 64,
+      "steps": 1014,
+      "death": "self",
+      "seed": 135
+    },
+    {
+      "score": 31,
+      "steps": 396,
+      "death": "self",
+      "seed": 136
+    },
+    {
+      "score": 40,
+      "steps": 560,
+      "death": "self",
+      "seed": 137
+    },
+    {
+      "score": 53,
+      "steps": 879,
+      "death": "wall",
+      "seed": 138
+    },
+    {
+      "score": 63,
+      "steps": 954,
+      "death": "self",
+      "seed": 139
+    },
+    {
+      "score": 73,
+      "steps": 1197,
+      "death": "self",
+      "seed": 140
+    },
+    {
+      "score": 63,
+      "steps": 938,
+      "death": "self",
+      "seed": 141
+    }
+  ]
+}

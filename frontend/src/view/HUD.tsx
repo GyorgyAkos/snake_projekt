@@ -6,6 +6,8 @@ interface HUDProps {
   tickMs: number
   /** MI mód: true = backend (ai_service) csatlakozva, false = helyi stratégia */
   aiConnected?: boolean
+  /** MI stratégia neve (pl. astar, hamilton) – csak MI módban */
+  aiStrategy?: string
 }
 
 const phaseLabel: Record<string, string> = {
@@ -15,7 +17,12 @@ const phaseLabel: Record<string, string> = {
   GAME_OVER: 'Vége',
 }
 
-export function HUD({ score, length, tick, phase, tickMs, aiConnected }: HUDProps) {
+const strategyLabel: Record<string, string> = {
+  astar: 'A*',
+  hamilton: 'Hamilton',
+}
+
+export function HUD({ score, length, tick, phase, tickMs, aiConnected, aiStrategy }: HUDProps) {
   return (
     <div className="hud">
       <span>Pont: <strong>{score}</strong></span>
@@ -25,7 +32,7 @@ export function HUD({ score, length, tick, phase, tickMs, aiConnected }: HUDProp
       <span>Státusz: <strong>{phaseLabel[phase] ?? phase}</strong></span>
       {aiConnected !== undefined && (
         <span title={aiConnected ? 'ai_service WebSocket' : 'Helyi stratégia'}>
-          MI: <strong>{aiConnected ? 'backend' : 'helyi'}</strong>
+          MI: <strong>{aiConnected ? `backend (${strategyLabel[aiStrategy ?? 'astar'] ?? aiStrategy})` : 'helyi'}</strong>
         </span>
       )}
     </div>

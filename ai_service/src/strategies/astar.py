@@ -6,7 +6,7 @@ Ha van biztonságos útvonal az ételig, azt követjük; különben legbiztonsá
 import heapq
 from collections import deque
 
-from ..state import GameState, Direction, DELTA, OPPOSITE
+from ..state import GameState, Direction, DIRECTIONS, DELTA, OPPOSITE
 from .base import Strategy
 
 
