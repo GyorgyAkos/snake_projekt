@@ -36,7 +36,7 @@ router.post('/', authMiddleware, (req: Request, res: Response) => {
     return
   }
   const modeVal = mode === 'ai' ? 'ai' : 'player'
-  const aiStrategyVal = (modeVal === 'ai' && (ai_strategy === 'astar' || ai_strategy === 'hamilton')) ? ai_strategy : null
+  const aiStrategyVal = (modeVal === 'ai' && typeof ai_strategy === 'string' && ai_strategy.trim()) ? ai_strategy.trim() : null
   const db = getDatabase()
   db.prepare(
     'INSERT INTO scores (user_id, score, tick, length, mode, ai_strategy) VALUES (?, ?, ?, ?, ?, ?)'

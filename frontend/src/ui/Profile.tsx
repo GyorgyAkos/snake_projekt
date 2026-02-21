@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react'
 import { useAuth } from '../AuthContext'
 import { fetchScores, updateUsername, updatePassword } from '../api'
 import type { ScoreEntry } from '../api'
+import { getStrategyName } from '../ai/strategies'
 
 const modeLabel = (mode: string, aiStrategy: string | null) => {
   if (mode === 'player') return 'Játékos'
-  if (mode === 'ai' && aiStrategy) return `MI (${aiStrategy === 'hamilton' ? 'Hamilton' : 'A*'})`
+  if (mode === 'ai' && aiStrategy) return `MI (${getStrategyName(aiStrategy)})`
   return 'MI'
 }
 

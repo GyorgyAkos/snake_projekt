@@ -111,7 +111,8 @@ frontend/
     │   ├── game.ts           # Állapotgép, createGame, setDirection, startGame, pauseGame, tick, getSnapshot
     │   └── index.ts
     ├── ai/
-    │   └── Strategy.ts       # Helyi placeholder stratégia (étel felé)
+    │   ├── Strategy.ts       # Helyi placeholder stratégia (étel felé)
+    │   └── strategies.ts    # AI_STRATEGIES lista (id, name, description), getStrategyName()
     ├── io/
     │   ├── config.ts         # localStorage config (loadConfig, saveConfig)
     │   └── storage.ts        # Eredmények listája (StoredScore, loadScores, saveScore)
@@ -174,8 +175,8 @@ export function setDirection(state: GameState, newDir: Direction): GameState {
 ### 4.4. Frontend – megjelenítés és felület
 
 - **GameCanvas:** HTML5 Canvas; a rács, a kígyó (fej kiemelve) és az étel téma szerinti színekkel (sötét/világos háttér, grid line, snake/snakeHead, food). A canvas mérete a `rows`/`cols` és a cellaméret alapján számolt.
-- **HUD:** Pont, hossz, lépésszám, sebesség (tick/s), státusz (Készül, Fut, Szünet, Vége), MI módban „MI: backend (A*)” / „MI: backend (Hamilton)” vagy „MI: helyi”.
-- **MainMenu, Settings, Results:** Kártya stílus (theme.css `.card`), gombok (`.btn`, `.btn-secondary`). Eredményeknél minden sorban látszik, hogy **Játékos** vagy **MI (A*)** / **MI (Hamilton)** (modeLabel a `StoredScore.mode` és `aiStrategy` alapján).
+- **HUD:** Pont, hossz, lépésszám, sebesség (tick/s), státusz (Készül, Fut, Szünet, Vége), MI módban „MI: backend (&lt;stratégia neve&gt;)” vagy „MI: helyi”.
+- **MainMenu, Settings, Results:** Kártya stílus (theme.css `.card`), gombok (`.btn`, `.btn-secondary`). **Beállítások:** külön „MI stratégia (backend)” szekció: mind a 7 stratégia választható (A*, Hamilton spirál, BFS, Greedy, Farok-követés, Hamilton zigzag, Előretekintés), mindegyiknél rövid, átlagfelhasználónak érthető leírás. Eredményeknél minden sorban látszik, hogy **Játékos** vagy **MI (&lt;stratégia neve&gt;)** (modeLabel a `StoredScore.mode` és `aiStrategy` alapján; `getStrategyName()` a frontend `ai/strategies.ts`-ből).
 - **App.tsx:** Képernyők: menu, settings, results, game, login, register, profile. Billentyűzet: nyilak/WASD, P = szünet, R = új játék. Játék vége: lokális mentés (mode + aiStrategy); ha van token, backendre is küldés (submitScoreApi).
 
 ---
@@ -236,13 +237,18 @@ ai_service/
     ├── main.py         # FastAPI app, CORS, /health, /strategies, /ws, POST /next
     ├── state.py        # GameState, parse_state, DELTA, OPPOSITE, DIRECTIONS
     └── strategies/
-        ├── __init__.py # STRATEGIES = { "astar": AStarStrategy, "hamilton": HamiltonianStrategy }
-        ├── base.py     # Strategy absztrakt: next_move(state) -> Direction
-        ├── astar.py    # A* Manhattan, flood fill fallback, farok-követés
-        └── hamilton.py # Spirál kör, next_on_cycle, étel felé A* levágás
+        ├── __init__.py   # STRATEGIES: astar, hamilton, bfs, greedy, follow_tail, hamilton_zigzag, lookahead
+        ├── base.py      # Strategy absztrakt: next_move(state) -> Direction
+        ├── astar.py     # A* Manhattan, flood fill fallback, farok-követés
+        ├── hamilton.py  # Spirál kör, next_on_cycle, étel felé A* levágás
+        ├── bfs.py       # BFS az ételig, ugyanaz a fallback mint A*
+        ├── greedy.py    # Greedy „biztonság első”: mindig legbiztonságosabb lépés (flood fill)
+        ├── follow_tail.py      # Ételig A*, különben farok felé
+        ├── hamilton_zigzag.py  # Hamilton zigzag (sávos) kör, étel felé A* levágás
+        └── lookahead.py  # 1 lépés előretekintés: max flood fill, döntetlenben étel felé
 ```
 
-**Állapot és stratégia:** A frontend `GameStateSnapshot` formátumát a `state.parse_state(data)` alakítja `GameState`-re (snake, direction, food, rows, cols). A WebSocket üzenetben opcionális `strategy: "astar" | "hamilton"`; ha megvan, a szerver ezt a stratégiát használja a válaszhoz.
+**Állapot és stratégia:** A frontend `GameStateSnapshot` formátumát a `state.parse_state(data)` alakítja `GameState`-re (snake, direction, food, rows, cols). A WebSocket üzenetben opcionális `strategy` (pl. `"astar"`, `"hamilton"`, `"bfs"`, `"greedy"`, `"follow_tail"`, `"hamilton_zigzag"`, `"lookahead"`); ha megvan, a szerver ezt a stratégiát használja a válaszhoz.
 
 **A* (spec 7.6.1):** Manhattan heurisztika, A* útvonal a fej és az étel között (akadály: kígyó teste, farok nélkül). Ha nincs biztonságos út, fallback: farok-követés (A* a farkig) vagy legbiztonságosabb lokális lépés (flood fill szabadságfok).
 
@@ -295,8 +301,8 @@ def _build_spiral_cycle(rows: int, cols: int) -> list[tuple[int, int]]:
 
 ### 4.7. Stratégiaválasztó és benchmark
 
-- **Beállítások (frontend):** „MI stratégia (backend)” legördülő: A* / Hamilton. Az érték a `config.ai.strategy`-ben (localStorage) tárolódik; MI módban a WebSocket payload tartalmazza a `strategy` mezőt.
-- **HUD:** MI módban: „MI: backend (A*)” vagy „MI: backend (Hamilton)”, vagy „MI: helyi” ha nincs kapcsolat.
+- **Beállítások (frontend):** „MI stratégia (backend)” szekció: 7 stratégia választható (A*, Hamilton spirál, BFS, Greedy, Farok-követés, Hamilton zigzag, Előretekintés), mindegyiknél rövid, átlagfelhasználónak értelmezhető leírás. Az érték a `config.ai.strategy`-ben (localStorage) tárolódik; MI módban a WebSocket payload tartalmazza a `strategy` mezőt.
+- **HUD:** MI módban: „MI: backend (&lt;stratégia neve&gt;)” vagy „MI: helyi” ha nincs kapcsolat. A Beállításokban a 7 stratégia közül választható, mindegyiknél rövid leírás látható.
 - **Benchmark:** `benchmarks/run_benchmark.py` – fix seed-del N futás (alap 100), A* és/vagy Hamilton. Egyszerű játékszimulátor (step: irány, ütközés, étel, növekedés); metrikák: score_mean/median, steps_mean/median, death_counts, reached_first_food (%). Kimenet: `benchmarks/results/benchmark_astar.json`, `benchmark_hamilton.json`, `benchmark_summary.json`. Futtatás: `python benchmarks/run_benchmark.py --runs 100 --strategy both`. A script az `ai_service` csomagot importálja (state, strategies).
 
 ---
@@ -325,7 +331,7 @@ backend/
     └── ...
 ```
 
-**Adatbázis:** SQLite fájl a `backend/data/snake.db`; a séma a `sqlite.ts`-ben történő futtatáskor jön létre. Táblák: `users` (id, email UNIQUE, username UNIQUE, password_hash, created_at), `scores` (id, user_id FK, score, tick, length, mode CHECK ('player'|'ai'), ai_strategy CHECK (NULL|'astar'|'hamilton'), created_at). Indexek: scores(user_id), scores(created_at DESC).
+**Adatbázis:** SQLite fájl a `backend/data/snake.db`; a séma a `sqlite.ts`-ben történő futtatáskor jön létre. Táblák: `users` (id, email UNIQUE, username UNIQUE, password_hash, created_at), `scores` (id, user_id FK, score, tick, length, mode CHECK ('player'|'ai'), ai_strategy TEXT NULL – tetszőleges stratégia azonosító, created_at). Schema_version tábla és migráció (2): régi sémából ai_strategy CHECK eltávolítva, hogy minden új stratégiát tárolni lehessen. Indexek: scores(user_id), scores(created_at DESC).
 
 Példa a sémára és az auth middleware-re ([backend/src/db/sqlite.ts](backend/src/db/sqlite.ts), [backend/src/middleware/auth.ts](backend/src/middleware/auth.ts)):
 
@@ -341,7 +347,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS scores (
   ...
   mode TEXT NOT NULL CHECK (mode IN ('player', 'ai')),
-  ai_strategy TEXT NULL CHECK (ai_strategy IS NULL OR ai_strategy IN ('astar', 'hamilton')),
+  ai_strategy TEXT NULL  /* tetszőleges stratégia id (astar, hamilton, bfs, greedy, follow_tail, hamilton_zigzag, lookahead); schema_version 2 migráció */
   ...
 );
 ```
@@ -371,7 +377,7 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction):
 
 **Profil:** GET /api/profile/me (Bearer): user adatok. PATCH /api/profile/me: új username (validáció, egyediség). PATCH /api/profile/me/password: currentPassword, newPassword, newPasswordConfirm (jelenlegi ellenőrzés bcrypt-pel, majd hash és update).
 
-**Eredmények:** GET /api/scores (Bearer): a bejelentkezett user összes scoreja (score, tick, length, mode, ai_strategy, created_at). POST /api/scores (Bearer): body score, tick, length, mode, ai_strategy; a user_id a JWT-ből kerül be.
+**Eredmények:** GET /api/scores (Bearer): a bejelentkezett user összes scoreja (score, tick, length, mode, ai_strategy, created_at). POST /api/scores (Bearer): body score, tick, length, mode, ai_strategy (tetszőleges stratégia azonosító, pl. astar, hamilton, bfs, greedy, follow_tail, hamilton_zigzag, lookahead); a user_id a JWT-ből kerül be. A tárolt eredmények mindegyikénél látszik, milyen stratégiával lett elérve (ai_strategy mező; a frontend getStrategyName() alapján jeleníti meg).
 
 **Frontend:** AuthContext (token, user, setAuth, logout, loadUser); token és user localStorage-ban (snake_token, snake_user). LoginForm, RegisterForm, Profile (felhasználónév/jelszó változtatás, saját eredmények listája – minden sorban Játékos / MI (A*) / MI (Hamilton)). Eredmények menü: lokális lista, ugyanígy címkézve. Játék vége: lokális mentés + ha token, akkor submitScoreApi(score, tick, length, mode, aiStrategy).
 

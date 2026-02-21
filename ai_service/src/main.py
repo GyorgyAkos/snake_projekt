@@ -9,15 +9,13 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 
 from .state import parse_state, GameState
-from .strategies import STRATEGIES, AStarStrategy, HamiltonianStrategy
+from .strategies import STRATEGIES, AStarStrategy
 
 
 def get_strategy(name: str = "astar", safety: bool = True):
     if name in STRATEGIES:
         if name == "astar":
             return AStarStrategy(safety=safety)
-        if name == "hamilton":
-            return HamiltonianStrategy()
         return STRATEGIES[name]()
     return AStarStrategy(safety=safety)
 

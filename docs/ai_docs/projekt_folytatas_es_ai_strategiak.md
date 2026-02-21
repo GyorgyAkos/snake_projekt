@@ -2,6 +2,8 @@
 
 Ez a dokumentum két témakört foglal össze: (1) a projekt további megvalósítási lépései és érdemes bővítései, (2) további AI stratégiák és algoritmusok, amikkel a rendszer kiegészíthető.
 
+**Megvalósítva (2025):** A 2. szakaszban felsorolt heurisztikus stratégiák közül az alábbiak bekerültek az alkalmazásba: **A\*** (már korábban), **Hamilton spirál**, **BFS**, **Greedy (biztonság első)**, **Farok-követés**, **Hamilton zigzag**, **Előretekintés (1 lépés)**. A Beállításokban az MI mód alatt külön „MI stratégia (backend)” szekcióban választható mind a 7 stratégia; mindegyiknél rövid, átlagfelhasználónak értelmezhető leírás jelenik meg. A backend minden mentett eredménynél tárolja a stratégiát (`ai_strategy`); az Eredmények és a Profil képernyőkön minden sorban látszik, milyen stratégiával lett az adott eredmény elérve.
+
 ---
 
 ## 1. Projekt folytatása – mit érdemes bővíteni?

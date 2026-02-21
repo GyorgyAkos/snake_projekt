@@ -1,9 +1,10 @@
 import { useAuth } from '../AuthContext'
 import type { StoredScore } from '../io/storage'
+import { getStrategyName } from '../ai/strategies'
 
 function modeLabel(mode: string, aiStrategy?: string | null): string {
   if (mode === 'player') return 'Játékos'
-  if (mode === 'ai' && aiStrategy) return aiStrategy === 'hamilton' ? 'MI (Hamilton)' : 'MI (A*)'
+  if (mode === 'ai' && aiStrategy) return `MI (${getStrategyName(aiStrategy)})`
   return 'MI'
 }
 

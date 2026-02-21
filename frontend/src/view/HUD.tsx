@@ -1,3 +1,5 @@
+import { getStrategyName } from '../ai/strategies'
+
 interface HUDProps {
   score: number
   length: number
@@ -17,11 +19,6 @@ const phaseLabel: Record<string, string> = {
   GAME_OVER: 'Vége',
 }
 
-const strategyLabel: Record<string, string> = {
-  astar: 'A*',
-  hamilton: 'Hamilton',
-}
-
 export function HUD({ score, length, tick, phase, tickMs, aiConnected, aiStrategy }: HUDProps) {
   return (
     <div className="hud">
@@ -32,7 +29,7 @@ export function HUD({ score, length, tick, phase, tickMs, aiConnected, aiStrateg
       <span>Státusz: <strong>{phaseLabel[phase] ?? phase}</strong></span>
       {aiConnected !== undefined && (
         <span title={aiConnected ? 'ai_service WebSocket' : 'Helyi stratégia'}>
-          MI: <strong>{aiConnected ? `backend (${strategyLabel[aiStrategy ?? 'astar'] ?? aiStrategy})` : 'helyi'}</strong>
+          MI: <strong>{aiConnected ? `backend (${getStrategyName(aiStrategy)})` : 'helyi'}</strong>
         </span>
       )}
     </div>
