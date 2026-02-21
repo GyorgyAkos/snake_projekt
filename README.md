@@ -72,6 +72,12 @@ A konzolban színezett prefixekkel jelennek meg a logok: `[frontend]`, `[backend
 - **Frontend build:** `npm run build`  
 - **Frontend preview (production build):** `npm run preview`  
 
+### „Nem biztonságos” / HTTPS figyelmeztetés (piros sáv)
+
+A böngésző a **http://** (pl. http://localhost:5173) alatt figyelmeztethet: „This page is not loaded over HTTPS. Your connection may not be secure.” Ez a böngésző saját üzenete, nem az alkalmazásból jön. **Helyi fejlesztésnél nyugodtan figyelmen kívül hagyható**; a forgalom csak a saját gépeden fut. Éles környezetben a frontendot HTTPS-en (TLS) érdemes kiszolgálni, ekkor a figyelmeztetés nem jelenik meg.
+
+Ha szeretnéd helyi HTTPS-t (opcionális): a frontend mappában `npm install @vitejs/plugin-basic-ssl@1.2.0 --save-dev`, majd a `vite.config.ts`-ben add hozzá a `basicSsl()` plugint, és a dev szerver **https://localhost:5173** címen indul (egyszer el kell fogadni a böngészőben a önaláírt tanúsítványt).
+
 ## Dokumentáció
 
 - **Specifikáció és napló:** [docs/szakdolgozat_dokumentacio.md](docs/szakdolgozat_dokumentacio.md)  

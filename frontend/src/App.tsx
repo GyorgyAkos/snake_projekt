@@ -95,6 +95,10 @@ function App() {
         e.preventDefault()
         startNewGame(gameMode)
       }
+      if (e.key === 'Enter' && gameState.phase === 'INIT') {
+        e.preventDefault()
+        setGameState((s) => startGame(s))
+      }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
