@@ -58,7 +58,7 @@ function App() {
     (mode: 'player' | 'ai') => {
       const seed = config.seed ?? Date.now()
       const newState = createGame({ ...config, seed })
-      setGameState(startGame(newState))
+      setGameState(newState)
       setGameMode(mode)
       setScreen('game')
     },
@@ -67,8 +67,14 @@ function App() {
 
   useEffect(() => {
     if (screen !== 'game') return
-    if (gameState.phase === 'RUNNING' && gameMode === 'player') {
-      const onKey = (e: KeyboardEvent) => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'p' || e.key === 'P') {
+        if (gameState.phase === 'RUNNING' || gameState.phase === 'PAUSED') {
+          e.preventDefault()
+          setGameState((s) => (s.phase === 'RUNNING' ? pauseGame(s) : resumeGame(s)))
+        }
+      }
+      if (gameMode === 'player' && (gameState.phase === 'RUNNING' || gameState.phase === 'INIT')) {
         const map: Record<string, Direction> = {
           ArrowUp: 'Up',
           ArrowDown: 'Down',
@@ -84,25 +90,15 @@ function App() {
           e.preventDefault()
           setGameState((s) => setDirection(s, dir))
         }
-        if (e.key === 'p' || e.key === 'P') {
-          e.preventDefault()
-          setGameState((s) => (s.phase === 'RUNNING' ? pauseGame(s) : resumeGame(s)))
-        }
-        if (e.key === 'r' || e.key === 'R') {
-          e.preventDefault()
-          startNewGame(gameMode)
-        }
       }
-      window.addEventListener('keydown', onKey)
-      return () => window.removeEventListener('keydown', onKey)
+      if (e.key === 'r' || e.key === 'R') {
+        e.preventDefault()
+        startNewGame(gameMode)
+      }
     }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
   }, [screen, gameState.phase, gameMode, startNewGame])
-
-  useEffect(() => {
-    if (screen === 'game') {
-      setGameState((s) => startGame(s))
-    }
-  }, [screen])
 
   useEffect(() => {
     if (gameState.phase === 'GAME_OVER' && screen === 'game') {
@@ -234,14 +230,23 @@ function App() {
         aiConnected={gameMode === 'ai' ? aiConnected : undefined}
         aiStrategy={gameMode === 'ai' ? (config.ai?.strategy ?? 'astar') : undefined}
       />
-      <GameCanvas
-        rows={gameState.rows}
-        cols={gameState.cols}
-        snakeBody={gameState.snakeBody}
-        food={gameState.food}
-        phase={gameState.phase}
-        theme={theme}
-      />
+      <div className="game-area-wrap">
+        {gameState.phase === 'INIT' && (
+          <div className="game-start-overlay">
+            <button type="button" className="btn game-start-btn" onClick={() => setGameState((s) => startGame(s))}>
+              Start
+            </button>
+          </div>
+        )}
+        <GameCanvas
+          rows={gameState.rows}
+          cols={gameState.cols}
+          snakeBody={gameState.snakeBody}
+          food={gameState.food}
+          phase={gameState.phase}
+          theme={theme}
+        />
+      </div>
       <div className="game-actions">
         {gameState.phase === 'GAME_OVER' && (
           <p className="game-over-msg">
@@ -252,6 +257,16 @@ function App() {
           <button type="button" className="btn btn-secondary" onClick={() => setScreen('menu')}>
             Főmenü
           </button>
+          {gameState.phase === 'RUNNING' && (
+            <button type="button" className="btn btn-secondary" onClick={() => setGameState((s) => pauseGame(s))}>
+              Pause (P)
+            </button>
+          )}
+          {gameState.phase === 'PAUSED' && (
+            <button type="button" className="btn" onClick={() => setGameState((s) => resumeGame(s))}>
+              Folytatás (P)
+            </button>
+          )}
           <button type="button" className="btn" onClick={() => startNewGame(gameMode)}>
             Új játék (R)
           </button>
