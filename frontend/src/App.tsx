@@ -65,6 +65,15 @@ function App() {
     [config]
   )
 
+  const startGameWithConfig = useCallback((c: typeof config, mode: 'player' | 'ai') => {
+    setConfig(c)
+    saveConfig(c)
+    const seed = c.seed ?? Date.now()
+    setGameState(createGame({ ...c, seed }))
+    setGameMode(mode)
+    setScreen('game')
+  }, [])
+
   useEffect(() => {
     if (screen !== 'game') return
     const onKey = (e: KeyboardEvent) => {
@@ -163,9 +172,9 @@ function App() {
       <div className="app-shell">
         <Header {...headerProps} />
         <MainMenu
-          onStartPlayer={() => startNewGame('player')}
-          onStartAI={() => startNewGame('ai')}
-          onSettings={() => setScreen('settings')}
+          config={config}
+          onStartGame={(c, mode) => startGameWithConfig(c, mode)}
+          onOpenSettings={() => setScreen('settings')}
           onResults={() => {
             if (token) {
               fetchScores()
@@ -203,10 +212,9 @@ function App() {
         <Header {...headerProps} />
         <Settings
           config={config}
-          onSave={(c) => {
-            setConfig(c)
-            saveConfig(c)
-          }}
+          onSave={(c) => { setConfig(c); saveConfig(c) }}
+          onStartPlayer={(c) => startGameWithConfig(c, 'player')}
+          onStartAI={(c) => startGameWithConfig(c, 'ai')}
           onBack={() => setScreen('menu')}
         />
       </div>

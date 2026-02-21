@@ -186,6 +186,74 @@ body {
   flex: 1;
 }
 
+/* --- Menu tabs (főoldal beállítási fülek) --- */
+.menu-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.menu-tabs .btn {
+  flex: 1;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: -1px;
+}
+
+.menu-tabs .btn:not(.active) {
+  background: var(--bg-subtle);
+  border-color: transparent;
+  color: var(--text-muted);
+}
+
+.menu-tabs .btn.active,
+.menu-tabs .btn[aria-selected="true"] {
+  border-bottom-color: var(--surface);
+  background: var(--surface);
+}
+
+.tab-panel {
+  padding: 0;
+}
+
+/* --- Főmenü: játékos / MI választó --- */
+.mode-switch {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.mode-option {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.mode-option:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.mode-option input {
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.mode-option:has(input:checked) {
+  background: var(--surface);
+  border-color: var(--accent);
+  color: var(--text);
+}
+
 /* --- Forms --- */
 .form-group {
   display: flex;
