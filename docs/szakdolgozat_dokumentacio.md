@@ -19,6 +19,7 @@ Ez a fájl a szakdolgozat írása és a projektdokumentáció készítése sorá
    - 4.7. [Stratégiaválasztó és benchmark](#47-stratégiaválasztó-és-benchmark)
    - 4.8. [Backend és auth](#48-backend-és-auth)
    - 4.9. [Későbbi bővítések (terv)](#49-későbbi-bővítések-terv)
+   - 4.10. [Új AI stratégiák (docs/ai_docs alapján)](#410-új-ai-stratégiák-docsai_docs-alapján)
 5. [Jegyzetek és döntések](#jegyzetek-és-döntések)
 
 ---
@@ -176,7 +177,7 @@ export function setDirection(state: GameState, newDir: Direction): GameState {
 
 - **GameCanvas:** HTML5 Canvas; a rács, a kígyó (fej kiemelve) és az étel téma szerinti színekkel (sötét/világos háttér, grid line, snake/snakeHead, food). A canvas mérete a `rows`/`cols` és a cellaméret alapján számolt.
 - **HUD:** Pont, hossz, lépésszám, sebesség (tick/s), státusz (Készül, Fut, Szünet, Vége), MI módban „MI: backend (&lt;stratégia neve&gt;)” vagy „MI: helyi”.
-- **MainMenu, Settings, Results:** Kártya stílus (theme.css `.card`), gombok (`.btn`, `.btn-secondary`). **Beállítások:** külön „MI stratégia (backend)” szekció: mind a 7 stratégia választható (A*, Hamilton spirál, BFS, Greedy, Farok-követés, Hamilton zigzag, Előretekintés), mindegyiknél rövid, átlagfelhasználónak érthető leírás. Eredményeknél minden sorban látszik, hogy **Játékos** vagy **MI (&lt;stratégia neve&gt;)** (modeLabel a `StoredScore.mode` és `aiStrategy` alapján; `getStrategyName()` a frontend `ai/strategies.ts`-ből).
+- **MainMenu, Settings, Results:** Kártya stílus (theme.css `.card`), gombok (`.btn`, `.btn-secondary`). **Beállítások:** külön „MI stratégia (backend)” szekció: 14 stratégia választható (A*, Hamilton spirál, BFS, Greedy, Farok-követés, Hamilton zigzag, Előretekintés 1/3/5 lépés, Minimax, Hamilton rövid ciklusok, Maximal safety, DQN/PPO/Neuroevolution placeholder), mindegyiknél rövid leírás. Eredményeknél minden sorban látszik, hogy **Játékos** vagy **MI (&lt;stratégia neve&gt;)** (modeLabel a `StoredScore.mode` és `aiStrategy` alapján; `getStrategyName()` a frontend `ai/strategies.ts`-ből).
 - **App.tsx:** Képernyők: menu, settings, results, game, login, register, profile. Billentyűzet: nyilak/WASD, P = szünet, R = új játék. Játék vége: lokális mentés (mode + aiStrategy); ha van token, backendre is küldés (submitScoreApi).
 
 ---
@@ -237,18 +238,23 @@ ai_service/
     ├── main.py         # FastAPI app, CORS, /health, /strategies, /ws, POST /next
     ├── state.py        # GameState, parse_state, DELTA, OPPOSITE, DIRECTIONS
     └── strategies/
-        ├── __init__.py   # STRATEGIES: astar, hamilton, bfs, greedy, follow_tail, hamilton_zigzag, lookahead
-        ├── base.py      # Strategy absztrakt: next_move(state) -> Direction
-        ├── astar.py     # A* Manhattan, flood fill fallback, farok-követés
-        ├── hamilton.py  # Spirál kör, next_on_cycle, étel felé A* levágás
-        ├── bfs.py       # BFS az ételig, ugyanaz a fallback mint A*
-        ├── greedy.py    # Greedy „biztonság első”: mindig legbiztonságosabb lépés (flood fill)
-        ├── follow_tail.py      # Ételig A*, különben farok felé
-        ├── hamilton_zigzag.py  # Hamilton zigzag (sávos) kör, étel felé A* levágás
-        └── lookahead.py  # 1 lépés előretekintés: max flood fill, döntetlenben étel felé
+        ├── __init__.py   # STRATEGIES: astar, hamilton, bfs, greedy, follow_tail, hamilton_zigzag, lookahead, minimax, max_safety, lookahead_3, lookahead_5, hamilton_short_cycles, dqn, ppo, neuroevolution
+        ├── base.py       # Strategy absztrakt: next_move(state) -> Direction
+        ├── astar.py      # A* Manhattan, flood fill fallback, farok-követés
+        ├── hamilton.py   # Spirál kör, next_on_cycle, étel felé A* levágás
+        ├── bfs.py        # BFS az ételig, ugyanaz a fallback mint A*
+        ├── greedy.py     # Greedy „biztonság első”: mindig legbiztonságosabb lépés (flood fill)
+        ├── follow_tail.py       # Ételig A*, különben farok felé
+        ├── hamilton_zigzag.py   # Hamilton zigzag (sávos) kör, étel felé A* levágás
+        ├── lookahead.py   # 1 lépés előretekintés: max flood fill, döntetlenben étel felé
+        ├── minimax.py    # Minimax rövid horizont (1–2 lépés), értékelés: szabadságfok + étel távolság
+        ├── max_safety.py  # Maximal safety: csak olyan lépés, ahol marad út fej–farok között
+        ├── lookahead_n.py # N lépés előretekintés (N=3,5), greedy aláírányokkal szimulálva
+        ├── hamilton_short_cycles.py  # 2×2 blokkok, kis körök, étel felé blokk váltás
+        └── rl_stubs.py   # DQN, PPO, Neuroevolution placeholderek (Greedy fallback)
 ```
 
-**Állapot és stratégia:** A frontend `GameStateSnapshot` formátumát a `state.parse_state(data)` alakítja `GameState`-re (snake, direction, food, rows, cols). A WebSocket üzenetben opcionális `strategy` (pl. `"astar"`, `"hamilton"`, `"bfs"`, `"greedy"`, `"follow_tail"`, `"hamilton_zigzag"`, `"lookahead"`); ha megvan, a szerver ezt a stratégiát használja a válaszhoz.
+**Állapot és stratégia:** A frontend `GameStateSnapshot` formátumát a `state.parse_state(data)` alakítja `GameState`-re (snake, direction, food, rows, cols). A `state.simulate_step(state, direction)` egy lépést szimulál (minimax, lookahead_n használja). A WebSocket üzenetben opcionális `strategy`: `astar`, `hamilton`, `bfs`, `greedy`, `follow_tail`, `hamilton_zigzag`, `lookahead`, `minimax`, `max_safety`, `lookahead_3`, `lookahead_5`, `hamilton_short_cycles`, `dqn`, `ppo`, `neuroevolution`; ha megvan, a szerver ezt a stratégiát használja a válaszhoz.
 
 **A* (spec 7.6.1):** Manhattan heurisztika, A* útvonal a fej és az étel között (akadály: kígyó teste, farok nélkül). Ha nincs biztonságos út, fallback: farok-követés (A* a farkig) vagy legbiztonságosabb lokális lépés (flood fill szabadságfok).
 
@@ -301,8 +307,8 @@ def _build_spiral_cycle(rows: int, cols: int) -> list[tuple[int, int]]:
 
 ### 4.7. Stratégiaválasztó és benchmark
 
-- **Beállítások (frontend):** „MI stratégia (backend)” szekció: 7 stratégia választható (A*, Hamilton spirál, BFS, Greedy, Farok-követés, Hamilton zigzag, Előretekintés), mindegyiknél rövid, átlagfelhasználónak értelmezhető leírás. Az érték a `config.ai.strategy`-ben (localStorage) tárolódik; MI módban a WebSocket payload tartalmazza a `strategy` mezőt.
-- **HUD:** MI módban: „MI: backend (&lt;stratégia neve&gt;)” vagy „MI: helyi” ha nincs kapcsolat. A Beállításokban a 7 stratégia közül választható, mindegyiknél rövid leírás látható.
+- **Beállítások (frontend):** „MI stratégia (backend)” szekció: 14 stratégia választható (A*, Hamilton spirál, BFS, Greedy, Farok-követés, Hamilton zigzag, Előretekintés 1 lépés, Minimax rövid horizont, Hamilton rövid ciklusok, Maximal safety, Előretekintés 3/5 lépés, DQN/PPO/Neuroevolution placeholder), mindegyiknél rövid, átlagfelhasználónak értelmezhető leírás. Az érték a `config.ai.strategy`-ben (localStorage) tárolódik; MI módban a WebSocket payload tartalmazza a `strategy` mezőt.
+- **HUD:** MI módban: „MI: backend (&lt;stratégia neve&gt;)” vagy „MI: helyi” ha nincs kapcsolat.
 - **Benchmark:** `benchmarks/run_benchmark.py` – fix seed-del N futás (alap 100), A* és/vagy Hamilton. Egyszerű játékszimulátor (step: irány, ütközés, étel, növekedés); metrikák: score_mean/median, steps_mean/median, death_counts, reached_first_food (%). Kimenet: `benchmarks/results/benchmark_astar.json`, `benchmark_hamilton.json`, `benchmark_summary.json`. Futtatás: `python benchmarks/run_benchmark.py --runs 100 --strategy both`. A script az `ai_service` csomagot importálja (state, strategies).
 
 ---
@@ -388,6 +394,18 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction):
 - Egységtesztek a frontend core és az ai_service modulokra (NFK3, ≥70% lefedettség).
 - CI (pl. GitHub Actions): lint, tesztek.
 - Opcionális RL (DQN/PPO, pl. Stable-Baselines3) az ai_service-ben; tanulási görbék és mérési kampány dokumentálása.
+
+### 4.10. Új AI stratégiák (docs/ai_docs alapján)
+
+A docs/ai_docs-ban felsorolt, korábban még nem megvalósított stratégiák bekerültek az ai_service-be és a frontend választóba:
+
+- **Minimax (rövid horizont):** 1–2 lépés előre, állapot értékelés (szabadságfok, étel távolság), maximin választás (`minimax.py`, `state.simulate_step`).
+- **Hamilton rövid ciklusok:** 2×2 blokkok, minden blokkban 4 cellás kör; étel felé A* levágás, különben blokk ciklus (`hamilton_short_cycles.py`).
+- **Maximal safety:** Csak olyan lépés, ami után van út fej–farok között; köztük max flood fill (`max_safety.py`).
+- **Look-ahead N lépés (N=3, 5):** N lépés szimulálása greedy aláírányokkal, legjobb kezdő irány (`lookahead_n.py`, `lookahead_3`, `lookahead_5`).
+- **DQN, PPO, Neuroevolution (placeholder):** RL/NEAT placeholderek; jelenleg Greedy fallback, leírás szerint tanulás után a modell döntene (`rl_stubs.py`).
+
+A backend STRATEGIES map és a frontend AI_STRATEGIES lista bővítve; a tárolt eredményeknél továbbra minden stratégiával elérhető az ai_strategy mező.
 
 *A napló további bejegyzései és az elavult részek frissítései itt, a megvalósítási naplóban történnek; külön „javítások” szekció nincs.*
 

@@ -32,8 +32,48 @@ export const AI_STRATEGIES = [
   },
   {
     id: 'lookahead',
-    name: 'Előretekintés',
+    name: 'Előretekintés (1 lépés)',
     description: 'Minden lehetséges lépést egy előre megnéz: azt választja, ahol a legtöbb szabad hely marad, és ha egyenlő, az ételhez közelebb kerül.',
+  },
+  {
+    id: 'minimax',
+    name: 'Minimax (rövid horizont)',
+    description: '1–2 lépésre előre gondolkodik: értékeli az állapotot (étel közel, szabad hely), és a maximin szerint választ (legjobb első lépés a legrosszabb második lépés ellenére).',
+  },
+  {
+    id: 'hamilton_short_cycles',
+    name: 'Hamilton (rövid ciklusok)',
+    description: 'A pályát 2×2 blokkokra bontja; minden blokkban egy kis kör. A kígyó a blokk ciklusát követi, étel felé a szomszédos blokk irányába vált, ha biztonságos.',
+  },
+  {
+    id: 'max_safety',
+    name: 'Maximal safety',
+    description: 'Csak olyan lépést tesz, ami után még van út a fej és a farok között; ezek közül a legtöbb szabad cellát adó irányt választja. Nagyon óvatos.',
+  },
+  {
+    id: 'lookahead_3',
+    name: 'Előretekintés (3 lépés)',
+    description: '3 lépést szimulál minden irányból (greedy aláírányokkal), és a legjobb értékelésű kezdő irányt választja. Mélyebb keresés mint az 1 lépéses.',
+  },
+  {
+    id: 'lookahead_5',
+    name: 'Előretekintés (5 lépés)',
+    description: '5 lépést szimulál minden irányból; jobb minőség, de lassabb. Idő és minőség közti trade-off.',
+  },
+  {
+    id: 'dqn',
+    name: 'DQN (placeholder)',
+    description: 'Q-learning / Deep Q-Network: tanulás után a neurális háló a Q értékek alapján döntene. Jelenleg Greedy fallback (biztonság első).',
+  },
+  {
+    id: 'ppo',
+    name: 'PPO / A2C (placeholder)',
+    description: 'Policy gradient (pl. Stable-Baselines3): tanulás után a policy háló közvetlenül adna akciót. Jelenleg Greedy fallback.',
+  },
+  {
+    id: 'neuroevolution',
+    name: 'Neuroevolution / NEAT (placeholder)',
+    description: 'Evolúció a súlyokra (pl. NEAT): tanulás után az evolvált háló döntene. Jelenleg Greedy fallback.',
   },
 ] as const
 

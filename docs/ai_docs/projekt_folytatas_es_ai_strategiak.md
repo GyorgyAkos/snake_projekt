@@ -2,7 +2,7 @@
 
 Ez a dokumentum két témakört foglal össze: (1) a projekt további megvalósítási lépései és érdemes bővítései, (2) további AI stratégiák és algoritmusok, amikkel a rendszer kiegészíthető.
 
-**Megvalósítva (2025):** A 2. szakaszban felsorolt heurisztikus stratégiák közül az alábbiak bekerültek az alkalmazásba: **A\*** (már korábban), **Hamilton spirál**, **BFS**, **Greedy (biztonság első)**, **Farok-követés**, **Hamilton zigzag**, **Előretekintés (1 lépés)**. A Beállításokban az MI mód alatt külön „MI stratégia (backend)” szekcióban választható mind a 7 stratégia; mindegyiknél rövid, átlagfelhasználónak értelmezhető leírás jelenik meg. A backend minden mentett eredménynél tárolja a stratégiát (`ai_strategy`); az Eredmények és a Profil képernyőkön minden sorban látszik, milyen stratégiával lett az adott eredmény elérve.
+**Megvalósítva (2025):** A 2. szakaszban felsorolt heurisztikus stratégiák közül az alábbiak bekerültek az alkalmazásba: **A\***, **Hamilton spirál**, **BFS**, **Greedy (biztonság első)**, **Farok-követés**, **Hamilton zigzag**, **Előretekintés (1 lépés)**. Később bővítve: **Minimax (rövid horizont)**, **Hamilton rövid ciklusok**, **Maximal safety**, **Előretekintés (3 és 5 lépés)**, valamint **DQN**, **PPO**, **Neuroevolution** placeholder stratégiák (Greedy fallback, tanulás után modell használható). A Beállításokban az MI mód alatt 14 stratégia választható; mindegyiknél rövid leírás jelenik meg. A backend minden mentett eredménynél tárolja a stratégiát (`ai_strategy`); az Eredmények és a Profil képernyőkön minden sorban látszik, milyen stratégiával lett az adott eredmény elérve.
 
 ---
 

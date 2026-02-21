@@ -55,6 +55,41 @@ class GameState:
         return set(self.snake)
 
 
+def simulate_step(state: GameState, direction: Direction) -> GameState | None:
+    """
+    Egy lépés szimulálása: új fej irány szerint, farok követi (vagy nő, ha ételt ettünk).
+    Vissza: új GameState, vagy None ha a lépés halálos (fal/önütközés).
+    """
+    head = state.head
+    snake = state.snake
+    food = state.food
+    rows, cols = state.rows, state.cols
+    dx, dy = DELTA[direction]
+    nx, ny = head[0] + dx, head[1] + dy
+    if not (0 <= nx < cols and 0 <= ny < rows):
+        return None
+    body_no_tail = set(snake[:-1]) if len(snake) > 1 else set()
+    if (nx, ny) in body_no_tail:
+        return None
+    new_head = (nx, ny)
+    ate = food is not None and new_head == food
+    if ate:
+        new_snake = [new_head] + snake
+    else:
+        new_snake = [new_head] + snake[:-1]
+    new_food = None if ate else food
+    return GameState(
+        snake=new_snake,
+        direction=direction,
+        food=new_food,
+        rows=rows,
+        cols=cols,
+        seed=state.seed,
+        tick=state.tick + 1,
+        score=state.score + (1 if ate else 0),
+    )
+
+
 def parse_state(data: dict) -> GameState:
     """WebSocket/REST JSON -> GameState."""
     snake_raw = data.get("snake", [])
