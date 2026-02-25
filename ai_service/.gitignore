@@ -1,0 +1,7 @@
+# Betanított modellek – ne verziózzuk (nagy fájlok)
+models/*.pt
+models/*.pth
+models/*.zip
+models/*.pkl
+__pycache__/
+*.pyc

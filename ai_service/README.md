@@ -77,10 +77,23 @@ Környezeti változók (opcionális):
 - `AI_STRATEGY` – alapértelmezett stratégia: `astar` | `hamilton`
 - `AI_SAFETY` – `true` (alap) / `false` – biztonsági fallback (A*-nál)
 
+## RL környezet és DQN (tanítás)
+
+- **Környezet (Gym-szerű):** `src/env/snake_env.py` – `SnakeEnv`: `reset(seed)`, `step(action)` → (observation, reward, done, info). Jellemző alapú megfigyelés (12 float), akció 0–3 (Up, Right, Down, Left).
+- **DQN tanítás:** `pip install -r requirements.txt` (torch, numpy), majd az **ai_service** mappából:
+  ```bash
+  python training/train_dqn.py --episodes 3000
+  ```
+  Mentés: `models/dqn_snake.pt` + `models/dqn_snake_config.json`. Ha ezek léteznek, a **dqn** stratégia a betanított modellt használja; különben Greedy fallback.
+- **Környezet teszt:** `python -m src.env.snake_env` (ai_service mappából, PYTHONPATH legyen a mappa útvonala).
+
 ## Struktúra
 
 - `src/main.py` – FastAPI app, WebSocket, REST /health, /strategies, POST /next
 - `src/state.py` – `GameState`, `parse_state()`, irányok (Up/Right/Down/Left)
+- `src/env/snake_env.py` – SnakeEnv (reset, step, observation, reward)
 - `src/strategies/base.py` – `Strategy` absztrakt interfész: `next_move(state) -> Direction`
 - `src/strategies/astar.py` – A\* útvonal, flood fill fallback, farok-követés
 - `src/strategies/hamilton.py` – Hamilton (spirál) kör, étel felé levágás
+- `src/strategies/dqn.py` – DQN inference (betanított modell vagy Greedy fallback)
+- `training/train_dqn.py` – DQN tanítási script

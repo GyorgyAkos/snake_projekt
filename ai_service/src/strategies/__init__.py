@@ -10,7 +10,8 @@ from .minimax import MinimaxStrategy
 from .max_safety import MaxSafetyStrategy
 from .lookahead_n import LookAheadNStrategy
 from .hamilton_short_cycles import HamiltonShortCyclesStrategy
-from .rl_stubs import DQNStrategy, PPOStrategy, NeuroevolutionStrategy
+from .dqn import DQNStrategy
+from .rl_stubs import PPOStrategy, NeuroevolutionStrategy
 
 __all__ = [
     "Strategy",

@@ -1,4 +1,7 @@
 # Snake AI service - Python (spec: FastAPI, WebSocket, A* heurisztika)
 fastapi>=0.115.0
 uvicorn[standard]>=0.32.0
-# Opcionális később: numpy, torch, stable-baselines3 (RL)
+# DQN tanítás és inference (környezet + train_dqn.py)
+torch>=2.0.0
+numpy>=1.24.0
+# Később: stable-baselines3 (PPO), neat-python (NEAT)
