@@ -4,4 +4,7 @@ uvicorn[standard]>=0.32.0
 # DQN tanítás és inference (környezet + train_dqn.py)
 torch>=2.0.0
 numpy>=1.24.0
-# Később: stable-baselines3 (PPO), neat-python (NEAT)
+# PPO (Stable-Baselines3) tanítás
+stable-baselines3>=2.0.0
+gym>=0.26.0
+# Később: neat-python (NEAT)

@@ -11,7 +11,8 @@ from .max_safety import MaxSafetyStrategy
 from .lookahead_n import LookAheadNStrategy
 from .hamilton_short_cycles import HamiltonShortCyclesStrategy
 from .dqn import DQNStrategy
-from .rl_stubs import PPOStrategy, NeuroevolutionStrategy
+from .ppo import PPOStrategy
+from .rl_stubs import NeuroevolutionStrategy
 
 __all__ = [
     "Strategy",

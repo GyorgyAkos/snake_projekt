@@ -87,7 +87,8 @@ class SnakeEnv:
 
     def __init__(self, rows: int = 20, cols: int = 20, reward_food: float = 1.0, reward_death: float = -10.0,
                  reward_step_toward: float = 0.03, reward_step_away: float = -0.03,
-                 reward_survival: float = 0.02):
+                 reward_survival: float = 0.02, reward_starvation: float = -0.5,
+                 max_steps_per_episode: int | None = None):
         self.rows = rows
         self.cols = cols
         self.reward_food = reward_food
@@ -95,6 +96,8 @@ class SnakeEnv:
         self.reward_step_toward = reward_step_toward
         self.reward_step_away = reward_step_away
         self.reward_survival = reward_survival
+        self.reward_starvation = reward_starvation
+        self.max_steps_per_episode = max_steps_per_episode
         self._state: GameState | None = None
         self._rng: random.Random = random.Random()
         self._step_count = 0
@@ -188,6 +191,9 @@ class SnakeEnv:
         self._step_count += 1
         obs = state_to_observation(self._state)
         done = False
+        if self.max_steps_per_episode is not None and self._step_count >= self.max_steps_per_episode:
+            done = True
+            reward += self.reward_starvation
         info = {"score": new_state.score, "tick": new_state.tick}
         return obs, reward, done, info
 
