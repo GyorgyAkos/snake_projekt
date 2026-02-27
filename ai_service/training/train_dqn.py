@@ -7,6 +7,8 @@ import argparse
 import json
 import os
 import sys
+import shutil
+from datetime import datetime
 
 # Az ai_service mappa legyen a path-on, hogy a src csomag relatív importjai működjenek
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -114,6 +116,22 @@ def train(
 
     os.makedirs(model_dir, exist_ok=True)
     config_path = os.path.join(model_dir, "dqn_snake_config.json")
+    best_path = os.path.join(model_dir, "dqn_snake_best.pt")
+    last_path = os.path.join(model_dir, "dqn_snake_last.pt")
+    # Backward compatible: keep writing best to dqn_snake.pt too (used by strategy)
+    compat_best_path = os.path.join(model_dir, "dqn_snake.pt")
+    best_meta_path = os.path.join(model_dir, "dqn_snake_best_meta.json")
+
+    # Korábbi globális best_mean_reward betöltése (ha van)
+    if os.path.isfile(best_meta_path):
+        try:
+            with open(best_meta_path) as f:
+                meta = json.load(f)
+            prev_best = float(meta.get("best_mean_reward", float("-inf")))
+            best_mean_reward = max(best_mean_reward, prev_best)
+            print(f"Loaded previous best_mean_reward={best_mean_reward:.2f} from {best_meta_path}")
+        except Exception:
+            pass
 
     for episode in range(episodes):
         obs, _ = env.reset(seed=seed if seed is not None else episode)
@@ -175,22 +193,80 @@ def train(
 
         if mean_100 > best_mean_reward:
             best_mean_reward = mean_100
-            path = os.path.join(model_dir, "dqn_snake.pt")
-            torch.save(policy_net.state_dict(), path)
+            torch.save(policy_net.state_dict(), best_path)
+            torch.save(policy_net.state_dict(), compat_best_path)
             with open(config_path, "w") as f:
                 json.dump({"obs_dim": obs_dim, "n_actions": n_actions, "hidden": [128, 128]}, f, indent=2)
-            if episode % 500 == 0 and episode > 0:
-                print(f"  -> saved {path} (best mean100 {best_mean_reward:.2f})")
+            with open(best_meta_path, "w") as f:
+                json.dump({"best_mean_reward": best_mean_reward}, f, indent=2)
+            print(f"  -> saved {best_path} (best mean100 {best_mean_reward:.2f})")
 
         if save_every and (episode + 1) % save_every == 0:
-            path = os.path.join(model_dir, "dqn_snake.pt")
-            torch.save(policy_net.state_dict(), path)
+            torch.save(policy_net.state_dict(), last_path)
             with open(config_path, "w") as f:
                 json.dump({"obs_dim": obs_dim, "n_actions": n_actions, "hidden": [128, 128]}, f, indent=2)
-            print(f"  -> checkpoint {path}")
+            print(f"  -> checkpoint {last_path}")
 
+    # Always save the final weights too (as last)
+    torch.save(policy_net.state_dict(), last_path)
     print(f"Done. Best mean100 reward: {best_mean_reward:.2f}")
     return policy_net
+
+
+def evaluate(env: SnakeEnv, policy_net: DQN, episodes: int = 50, seed: int = 123) -> dict[str, float]:
+    """Deterministic (epsilon=0) evaluation with invalid-action masking."""
+    device = next(policy_net.parameters()).device
+    rewards: list[float] = []
+    scores: list[int] = []
+    steps: list[int] = []
+    policy_net.eval()
+    for i in range(episodes):
+        obs, _ = env.reset(seed=seed + i)
+        obs_arr = np.array(obs, dtype=np.float32)
+        done = False
+        ep_reward = 0.0
+        while not done:
+            invalid_action = opposite_action_index(env.current_direction_index())
+            with torch.no_grad():
+                t = torch.from_numpy(obs_arr).unsqueeze(0).to(device)
+                q = policy_net(t).clone()
+                q[0, invalid_action] = -1e9
+                action = int(q.argmax(dim=1).item())
+            next_obs, reward, done, info = env.step(action)
+            obs_arr = np.array(next_obs, dtype=np.float32)
+            ep_reward += float(reward)
+        rewards.append(ep_reward)
+        scores.append(int(info.get("score", 0)))
+        steps.append(int(info.get("tick", 0)))
+    out = {
+        "eval_mean_reward": float(np.mean(rewards)),
+        "eval_mean_score": float(np.mean(scores)),
+        "eval_mean_steps": float(np.mean(steps)),
+    }
+    return out
+
+
+def backup_existing_models(model_dir: str) -> str | None:
+    """
+    Backupolja a meglévő modelleket/configot, mielőtt az új futás felülírná őket.
+    Visszaadja a backup mappa útvonalát (vagy None, ha nem volt mit menteni).
+    """
+    os.makedirs(model_dir, exist_ok=True)
+    candidates = [
+        "dqn_snake.pt",
+        "dqn_snake_best.pt",
+        "dqn_snake_last.pt",
+        "dqn_snake_config.json",
+    ]
+    existing = [f for f in candidates if os.path.isfile(os.path.join(model_dir, f))]
+    if not existing:
+        return None
+    ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    backup_dir = os.path.join(model_dir, "backups", ts)
+    os.makedirs(backup_dir, exist_ok=True)
+    for f in existing:
+        shutil.copy2(os.path.join(model_dir, f), os.path.join(backup_dir, f))
+    return backup_dir
 
 
 def main():
@@ -201,22 +277,30 @@ def main():
     p.add_argument("--seed", type=int, default=42, help="Random seed")
     p.add_argument("--model-dir", type=str, default="models", help="Directory for model and config")
     p.add_argument("--curriculum", action="store_true", help="Curriculum: first 12x12 (10k ep), then 20x20 (15k ep)")
+    p.add_argument("--eval-episodes", type=int, default=50, help="Run deterministic evaluation after training")
     args = p.parse_args()
+
+    backup_dir = backup_existing_models(args.model_dir)
+    if backup_dir:
+        print(f"Backed up existing models to: {backup_dir}")
 
     if args.curriculum:
         model_path = os.path.join(args.model_dir, "dqn_snake.pt")
         print("=== Stage 1: 12x12, 10000 episodes ===")
         env_small = SnakeEnv(rows=12, cols=12)
-        train(
+        model1 = train(
             env_small,
             episodes=10000,
             seed=args.seed,
             model_dir=args.model_dir,
             save_every=1000,
         )
+        if args.eval_episodes > 0:
+            res = evaluate(SnakeEnv(rows=12, cols=12), model1, episodes=args.eval_episodes, seed=args.seed + 10_000)
+            print(f"Eval Stage 1 (12x12): mean_reward={res['eval_mean_reward']:.2f}, mean_score={res['eval_mean_score']:.2f}, mean_steps={res['eval_mean_steps']:.1f}")
         print("=== Stage 2: 20x20, 15000 episodes (loading from stage 1) ===")
         env_full = SnakeEnv(rows=20, cols=20)
-        train(
+        model2 = train(
             env_full,
             episodes=15000,
             seed=args.seed + 1,
@@ -225,14 +309,20 @@ def main():
             lr=5e-4,
             save_every=1000,
         )
+        if args.eval_episodes > 0:
+            res = evaluate(SnakeEnv(rows=20, cols=20), model2, episodes=args.eval_episodes, seed=args.seed + 20_000)
+            print(f"Eval Stage 2 (20x20): mean_reward={res['eval_mean_reward']:.2f}, mean_score={res['eval_mean_score']:.2f}, mean_steps={res['eval_mean_steps']:.1f}")
     else:
         env = SnakeEnv(rows=args.rows, cols=args.cols)
-        train(
+        model = train(
             env,
             episodes=args.episodes,
             seed=args.seed,
             model_dir=args.model_dir,
         )
+        if args.eval_episodes > 0:
+            res = evaluate(SnakeEnv(rows=args.rows, cols=args.cols), model, episodes=args.eval_episodes, seed=args.seed + 30_000)
+            print(f"Eval: mean_reward={res['eval_mean_reward']:.2f}, mean_score={res['eval_mean_score']:.2f}, mean_steps={res['eval_mean_steps']:.1f}")
 
 
 if __name__ == "__main__":

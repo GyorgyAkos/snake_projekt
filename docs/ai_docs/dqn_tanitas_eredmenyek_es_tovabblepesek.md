@@ -10,6 +10,8 @@ python training/train_dqn.py --curriculum
 
 Alternatíva, csak 20×20-on, 25 000 epizód: `python training/train_dqn.py --episodes 25000`. Részletek: **5. Futtatási parancs** szekció.
 
+Megjegyzés: a script most már **külön menti a legjobb** modellt (`models/dqn_snake_best.pt`) és a **legutolsó** modellt (`models/dqn_snake_last.pt`), így egy rosszabb későbbi checkpoint **nem írja felül** a legjobbat.
+
 ---
 
 ## 1. Korábbi futtatások (referencia)
@@ -48,7 +50,7 @@ Alternatíva, csak 20×20-on, 25 000 epizód: `python training/train_dqn.py --ep
 | Fázis | Paraméterek | Eredmény (legjobb mean100) | Megjegyzés |
 |-------|-------------|----------------------------|------------|
 | **Stage 1** (12×12) | `python training/train_dqn.py --curriculum` (első fázis: 12×12, 10 000 epizód) | **-4.54** | Jelentős javulás a korábbi -10 körüli értékekhez képest; a kis pályán már „megtanult alapvetően” szinten van. |
-| **Stage 2** (20×20) | Ugyanazon parancs második fázisa: betöltött modell, 20×20, 15 000 epizód, Double DQN, lr=5e-4 | **21.07** | A 100 epizódos átlag reward +21 körül: ez már a „jól / nagyon jól” tartomány alsó része (pozitív mean100, sok étel és hosszú túlélés). A legjobb checkpoint a `models/dqn_snake.pt` fájlban van. |
+| **Stage 2** (20×20) | Ugyanazon parancs második fázisa: betöltött modell, 20×20, 15 000 epizód, Double DQN, lr=5e-4 | **23.55** (logolt) / **47.95** (futás végi `Best mean100`) | A logban ep 14000-nél „saved … best mean100 23.55”, a futás végén pedig `Done. Best mean100 reward: 47.95` jelent meg. Ez azt jelenti, hogy a tanítás során volt egy még jobb szakasz is; a „saved” üzenet nem minden javulásnál jelenik meg (csak bizonyos epizódokon ír ki extra sort). |
 
 ---
 
@@ -242,3 +244,16 @@ Alapértelmezett rács 20×20, 25 000 epizód. Opcionális: `--rows 20 --cols 20
 ---
 
 *Utolsó frissítés: curriculum (--curriculum) futtatás kiértékelése (Stage 1: best mean100 -4.54, Stage 2: best mean100 21.07), Double DQN + erősebb reward; célok (nagyon jól / kivételesen jól / tökéletes); megvalósíthatóság; kevesebb epizóddal való tanítás (curriculum, imitation, PPO); javaslatok.*
+
+## 9. Mit jelentenek a `reward` és a `mean100` értékek?
+
+- **`reward` (epizód reward):** az adott epizódban (egy teljes játék reset→halál) összegzett jutalom. Nálunk ez tartalmazza:
+  - **étel**: +1 (és ehhez még hozzáadódik a túlélési bónusz lépésenként),
+  - **túlélés**: lépésenként +0.02,
+  - **étel felé/tőle**: +0.03 / -0.03,
+  - **halál**: -10.
+  Emiatt a reward **nem azonos** a pontszámmal (score), hanem egy „tanítási jel”.
+
+- **`mean100`:** az **utolsó 100 epizód rewardjának átlaga**. Ez simítja az ingadozást, és jobban mutatja a trendet. Ha a mean100 tartósan nő és pozitív, a tanulás általában működik.
+
+Tipp: a script most már tud **külön eval** futtatást is (`--eval-episodes`), ahol determinisztikusan kiírja az átlag **score**-t és **lépésszámot** is, nem csak rewardot.
