@@ -12,7 +12,7 @@ from .lookahead_n import LookAheadNStrategy
 from .hamilton_short_cycles import HamiltonShortCyclesStrategy
 from .dqn import DQNStrategy
 from .ppo import PPOStrategy
-from .rl_stubs import NeuroevolutionStrategy
+from .neat_strategy import NEATStrategy
 
 __all__ = [
     "Strategy",
@@ -29,7 +29,7 @@ __all__ = [
     "HamiltonShortCyclesStrategy",
     "DQNStrategy",
     "PPOStrategy",
-    "NeuroevolutionStrategy",
+    "NEATStrategy",
 ]
 
 STRATEGIES = {
@@ -47,5 +47,5 @@ STRATEGIES = {
     "hamilton_short_cycles": HamiltonShortCyclesStrategy,
     "dqn": DQNStrategy,
     "ppo": PPOStrategy,
-    "neuroevolution": NeuroevolutionStrategy,
+    "neuroevolution": NEATStrategy,
 }

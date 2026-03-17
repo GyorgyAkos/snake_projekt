@@ -7,4 +7,5 @@ numpy>=1.24.0
 # PPO (Stable-Baselines3) tanítás
 stable-baselines3>=2.0.0
 gym>=0.26.0
-# Később: neat-python (NEAT)
+# Neuroevolution (NEAT)
+neat-python>=0.92
