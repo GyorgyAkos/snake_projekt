@@ -65,11 +65,11 @@ Konstans: **`OBSERVATION_DIM = 12`**. A DQN háló bemenete és a konfig fájl `
 |---------|---------------------------|
 | Ételt evett | +1.0 |
 | Halál (fal vagy önütközés) | -10.0 |
-| Lépés közelebb az ételhez (Manhattan) | +0.01 |
-| Lépés távolabb az ételtől | -0.01 |
+| Lépés közelebb az ételhez (Manhattan) | +0.03 (alapértelmezés a `SnakeEnv` konstruktorban) |
+| Lépés távolabb az ételtől | -0.03 |
 | Egyéb lépés | 0.0 |
 
-A konstruktorban opcionálisan átadható: `reward_food`, `reward_death`, `reward_step_toward`, `reward_step_away`.
+A konstruktorban opcionálisan átadható: `reward_food`, `reward_death`, `reward_step_toward`, `reward_step_away`, továbbá `reward_survival`, `reward_starvation`, `max_steps_per_episode` (lásd `ai_service/src/env/snake_env.py` – a dokumentált szakdolgozati összefoglaló: `docs/szakdolgozat_dokumentacio_bovitett.md` §8.1).
 
 ### 1.5 Ételfeldolgozás
 

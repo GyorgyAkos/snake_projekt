@@ -81,9 +81,9 @@ Ezek is szabályalapúak; a „tanulás” itt csak annyi, hogy a programozó á
 
 ---
 
-### 3.3 Tanuló stratégiák (placeholder)
+### 3.3 Tanuló stratégiák (modell + Greedy fallback)
 
-A következő stratégiák a **tanulás** alapján döntenének; jelenleg **nincs betanított modell**, ezért **placeholder**: a rendszer egy egyszerű biztonságos stratégiát (pl. Greedy) futtat helyettük.
+A következő stratégiák **tanítás után** neurális / evolvált döntést hoznak; az AI szolgáltatásban **valódi inferencia** fut, ha a megfelelő fájlok a `ai_service/models/` könyvtárban vannak (`dqn_snake.pt` + config, `ppo_snake.zip` / `ppo_snake_best.zip`, `neat_snake_best.pkl`). **Ha nincs modell** vagy hiányzik a könyvtár (PyTorch / SB3 / neat-python), a kód **Greedy** (max. flood-fill szabadság) stratégiára esik vissza – ezt érdemes szem előtt tartani benchmark-összehasonlításkor. Részletes szakmai leírás: `docs/szakdolgozat_dokumentacio_bovitett.md` §7.7 és §8.
 
 - **DQN (Deep Q-Network)**  
   Egy **neurális háló** tanulja meg: adott állapothoz melyik irány mennyire „jó” (Q érték). A legjobb irányt választja. A tanítás **erősítéses tanulással** történik (lásd később).
