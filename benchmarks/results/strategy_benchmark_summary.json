@@ -1,0 +1,54 @@
+{
+  "dqn": {
+    "strategy": "dqn",
+    "runs": 200,
+    "rows": 20,
+    "cols": 20,
+    "max_steps": 5000,
+    "seed_base": 42,
+    "score_mean": 0.17,
+    "score_median": 0,
+    "steps_mean": 403.355,
+    "steps_median": 400,
+    "death_counts": {
+      "starvation": 200
+    },
+    "reached_first_food": 12.5
+  },
+  "ppo": {
+    "strategy": "ppo",
+    "runs": 200,
+    "rows": 20,
+    "cols": 20,
+    "max_steps": 5000,
+    "seed_base": 42,
+    "score_mean": 2.08,
+    "score_median": 2,
+    "steps_mean": 384.665,
+    "steps_median": 412,
+    "death_counts": {
+      "starvation": 174,
+      "self": 25,
+      "wall": 1
+    },
+    "reached_first_food": 66.0
+  },
+  "neuroevolution": {
+    "strategy": "neuroevolution",
+    "runs": 200,
+    "rows": 20,
+    "cols": 20,
+    "max_steps": 5000,
+    "seed_base": 42,
+    "score_mean": 7.38,
+    "score_median": 5,
+    "steps_mean": 1027.16,
+    "steps_median": 714,
+    "death_counts": {
+      "starvation": 148,
+      "wall": 19,
+      "self": 33
+    },
+    "reached_first_food": 90.5
+  }
+}

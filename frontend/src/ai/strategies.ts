@@ -62,25 +62,33 @@ export const AI_STRATEGIES = [
   },
   {
     id: 'dqn',
-    name: 'DQN (placeholder)',
-    description: 'Q-learning / Deep Q-Network: tanulás után a neurális háló a Q értékek alapján döntene. Jelenleg Greedy fallback (biztonság első).',
+    name: 'DQN',
+    description:
+      'Deep Q-Network: a neurális háló közelíti a Q(s,a) értékeket; tanítás közben célváltozó és tapasztalat-visszajátszás. A benchmark a betanított súlyokkal dönt, nem heurisztikus fallback.',
   },
   {
     id: 'ppo',
-    name: 'PPO / A2C (placeholder)',
-    description: 'Policy gradient (pl. Stable-Baselines3): tanulás után a policy háló közvetlenül adna akciót. Jelenleg Greedy fallback.',
+    name: 'PPO',
+    description:
+      'Proximal Policy Optimization: a policy (irányeloszlás) tanul jutalom alapján. A benchmark a mentett policy hálóval lép.',
   },
   {
     id: 'neuroevolution',
-    name: 'Neuroevolution / NEAT (placeholder)',
-    description: 'Evolúció a súlyokra (pl. NEAT): tanulás után az evolvált háló döntene. Jelenleg Greedy fallback.',
+    name: 'NEAT',
+    description:
+      'NEAT: evolúcióval tanított neurális háló (súlyok, opcionálisan topológia). A benchmark a legjobb egyed hálóját használja.',
   },
 ] as const
 
 export type AIStrategyId = (typeof AI_STRATEGIES)[number]['id']
 
+export function getStrategyById(id: string | null | undefined) {
+  if (!id) return undefined
+  return AI_STRATEGIES.find((x) => x.id === id)
+}
+
 export function getStrategyName(id: string | null | undefined): string {
   if (!id) return 'MI'
-  const s = AI_STRATEGIES.find((x) => x.id === id)
+  const s = getStrategyById(id)
   return s ? s.name : id
 }

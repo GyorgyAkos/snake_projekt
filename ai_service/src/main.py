@@ -3,10 +3,13 @@ Snake AI szolgáltatás – FastAPI, WebSocket (spec: AI modul Python + FastAPI,
 """
 import json
 import os
+import re
 from contextlib import asynccontextmanager
+from pathlib import Path
 
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 
 from .state import parse_state, GameState
 from .strategies import STRATEGIES, AStarStrategy
@@ -39,6 +42,55 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Benchmark eredmények: repo gyökeréhez képest benchmarks/results (fejlesztői gépen)
+_SERVICE_ROOT = Path(__file__).resolve().parent
+_PROJECT_ROOT = _SERVICE_ROOT.parents[1]
+_BENCHMARK_RESULTS = _PROJECT_ROOT / "benchmarks" / "results"
+_BENCHMARK_PLOTS = _BENCHMARK_RESULTS / "plots"
+_STRATEGY_JSON_RE = re.compile(r"^strategy_benchmark_(?!summary$)([a-z0-9_]+)\.json$")
+_SAFE_PLOT_NAME = re.compile(r"^[a-zA-Z0-9_-]+\.png$")
+
+
+def _load_strategy_summary(path: Path) -> dict:
+    with path.open(encoding="utf-8") as f:
+        data = json.load(f)
+    if isinstance(data, dict) and "summary" in data and isinstance(data["summary"], dict):
+        return data["summary"]
+    if isinstance(data, dict) and "strategy" in data:
+        return data
+    raise ValueError("unexpected benchmark json shape")
+
+
+@app.get("/benchmark/summaries")
+def benchmark_summaries():
+    """
+    Összes strategy_benchmark_*.json fájl összefoglalója (kivéve strategy_benchmark_summary.json).
+    A frontend statisztika oldal ezt használja táblázathoz / összehasonlításhoz.
+    """
+    if not _BENCHMARK_RESULTS.is_dir():
+        return {"summaries": [], "benchmark_dir": str(_BENCHMARK_RESULTS), "error": "benchmark directory not found"}
+    out: list[dict] = []
+    for p in sorted(_BENCHMARK_RESULTS.glob("strategy_benchmark_*.json")):
+        m = _STRATEGY_JSON_RE.match(p.name)
+        if not m:
+            continue
+        try:
+            out.append(_load_strategy_summary(p))
+        except (OSError, ValueError, json.JSONDecodeError):
+            continue
+    out.sort(key=lambda s: (-float(s.get("score_mean") or 0), str(s.get("strategy") or "")))
+    return {"summaries": out, "benchmark_dir": str(_BENCHMARK_RESULTS)}
+
+
+@app.get("/benchmark/plots/{filename}")
+def benchmark_plot(filename: str):
+    if not _SAFE_PLOT_NAME.match(filename):
+        raise HTTPException(status_code=400, detail="invalid plot name")
+    path = _BENCHMARK_PLOTS / filename
+    if not path.is_file():
+        raise HTTPException(status_code=404, detail="plot not found")
+    return FileResponse(path, media_type="image/png")
 
 
 @app.get("/health")

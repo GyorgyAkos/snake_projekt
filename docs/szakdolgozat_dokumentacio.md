@@ -20,7 +20,8 @@ Ez a fájl a szakdolgozat írása és a projektdokumentáció készítése sorá
    - 4.8. [Backend és auth](#48-backend-és-auth)
    - 4.9. [Későbbi bővítések (terv)](#49-későbbi-bővítések-terv)
    - 4.10. [Új AI stratégiák (docs/ai_docs alapján)](#410-új-ai-stratégiák-docsai_docs-alapján)
-5. [Jegyzetek és döntések](#jegyzetek-és-döntések)
+5. [Funkcionalitások (alkalmazás)](#funkcionalitások-alkalmazás)
+6. [Jegyzetek és döntések](#jegyzetek-és-döntések)
 
 ---
 
@@ -49,6 +50,112 @@ Ez a fájl a szakdolgozat írása és a projektdokumentáció készítése sorá
 4. **Megvalósítás** – technológiai stack, játéklogika, MI réteg, frontend/backend.
 5. **Mérés és értékelés** – benchmark módszer, eredmények, összehasonlítás.
 6. **Összegzés és továbbfejlesztési lehetőségek.**
+
+---
+
+## Funkcionalitások (alkalmazás)
+
+Ez a fejezet a **webes frontend** szempontjából foglalja össze, mit tud a felhasználó az alkalmazásban: mely képernyők érhetők el, milyen adatokkal dolgoznak, és hogyan kapcsolódnak a **backend** (Node, auth, pontszámok) és az **ai_service** (WebSocket, stratégiák, benchmark kiszolgálás) komponensekhez. A megvalósítás részletei (fájlok, napló) a [Megvalósítási napló](#megvalósítási-napló) szakaszban találhatók.
+
+### Áttekintés és navigáció
+
+Az alkalmazás egyoldalas (SPA) felület: a [`App.tsx`](../frontend/src/App.tsx) egy `screen` állapot szerint vált a képernyők között. **Közös elem** a [`Header`](../frontend/src/ui/Header.tsx): minden ilyen nézetben megjelenik az alkalmazás címe („Snake – MI”), a **bejelentkezési állapottól függő auth gombok**, valamint a **téma váltó** (világos / sötét). A főmenüből érhető el a játék indítása (játékos vagy MI módban), a beállítások, az eredmények és a statisztika; a fejlécből a bejelentkezés / regisztráció / profil / kijelentkezés és a téma.
+
+### Főmenü
+
+A [`MainMenu`](../frontend/src/ui/MainMenu.tsx) a belépési pont:
+
+- **Játék mód választó:** rádiógombokkal **Játékos** vagy **MI**. Ez csak azt határozza meg, hogy a „Játék indítása” melyik módot indítja el a **jelenleg betöltött** `GameConfig` alapján (a részletes rács / tick / seed / stratégia a Beállításokban állítható).
+- **Játék indítása:** meghívja az `onStartGame(config, mode)`-ot: elmenti a konfigurációt, létrehoz egy új játékállapotot (seed a configból vagy aktuális idő), és átvált a **játék** képernyőre.
+- **Beállítások:** a beállítások képernyő.
+- **Eredmények:** ha van JWT token, a backendről lekéri a pontlistát (`fetchScores`), majd megjeleníti az eredményeket; ha nincs bejelentkezve, a **böngészőben lokálisan** tárolt eredményeket tölti be.
+- **Statisztika:** a benchmark összefoglaló oldal (lásd lentebb).
+- **Profil:** csak **bejelentkezett** felhasználónak jelenik meg; a fejlécből is elérhető.
+
+### Bejelentkezés és regisztráció
+
+- **Bejelentkezés** ([`LoginForm`](../frontend/src/ui/LoginForm.tsx)): felhasználónév vagy email + jelszó. Sikeres válasz esetén a [`AuthContext`](../frontend/src/AuthContext.tsx) `setAuth(token, user)` menti a JWT-t és a felhasználói objektumot a **localStorage**-ba (`snake_token`, `snake_user`), majd a menüre navigál.
+- **Regisztráció** ([`RegisterForm`](../frontend/src/ui/RegisterForm.tsx)): email, felhasználónév, jelszó, jelszó megerősítése; validáció és duplikáció kezelése a backend válasza szerint. Siker után szintén token + user kerül tárolásra, és menüre lépés.
+
+Mindkét űrlapon van **Vissza** a főmenüre. A tényleges HTTP hívások a [`api.ts`](../frontend/src/api.ts)-ben vannak (`login`, `register`), alap URL: `VITE_API_URL` vagy `http://localhost:3000`.
+
+### Kijelentkezés
+
+A fejléc **Kijelentkezés** gombja az `AuthContext.logout()`-ot hívja: törli a token és user kulcsokat a localStorage-ból, és nullázza az állapotot. Ez nem törli a lokális játék-konfigurációt; a következő játék végi pontszám már nem kerül automatikusan a szerverre, amíg újra be nem jelentkezik.
+
+### Light / dark mód
+
+A [`ThemeContext`](../frontend/src/ThemeContext.tsx) és a [`theme.css`](../frontend/src/theme.css) `[data-theme="dark"]` / `[data-theme="light"]` változói határozzák meg a színeket. A fejléc gombja **váltogatja** a témát; a választás perzisztálva van (localStorage, pl. `snake_theme`). A **Canvas** rajzolás a [`GameCanvas`](../frontend/src/view/GameCanvas.tsx)-ben téma szerinti fix színpalettát használ, mert a 2D Canvas nem örökli automatikusan a CSS változókat.
+
+### Beállítások ablak
+
+A [`Settings`](../frontend/src/ui/Settings.tsx) két fület kínál:
+
+1. **Játékos** ([`PlayerSettings`](../frontend/src/ui/PlayerSettings.tsx)): pálya **sor / oszlop** (10–40), **tick időköz** ms-ban (50–500, a kígyó sebessége), opcionális **seed** (üres = véletlen). **Játék indítása** menti a konfigot (`saveConfig` → localStorage) és játékos módban indít.
+2. **MI** ([`AISettings`](../frontend/src/ui/AISettings.tsx)): ugyanazok a pálya / tick / seed mezők, plusz **MI stratégia** legördülő: az [`AI_STRATEGIES`](../frontend/src/ai/strategies.ts) lista minden bejegyzése (név + rövid leírás a választás alatt). A kiválasztott stratégia azonosítója a `config.ai.strategy` mezőbe kerül; mentéskor ez is a localStorage konfig része.
+
+A lap alján **Vissza a főmenübe** zárja a beállításokat. A konfiguráció betöltése az alkalmazás indulásakor [`loadConfig`](../frontend/src/io/config.ts)-gal történik.
+
+### Játék képernyő – játékos mód
+
+- **HUD** ([`HUD`](../frontend/src/view/HUD.tsx)): élő **pont**, **kígyó hossz**, **lépésszám**, **tick/s**, **státusz** (Készül / Fut / Szünet / Vége).
+- **Canvas:** a pálya, kígyó és étel megjelenítése.
+- **Billentyűzet:** **nyilak** és **WASD** állítja az irányt (futó vagy INIT fázisban); **P** szünet / folytatás; **R** új játék **ugyanabban** a módban; **Enter** INIT állapotból indítja a játékot.
+- **Játékciklus:** [`useGameLoop`](../frontend/src/hooks/useGameLoop.ts) – fix intervallumos `tick` hívások.
+
+### Játék képernyő – MI mód
+
+Ugyan a HUD és a Canvas, de:
+
+- **MI vezérlés:** [`useAIGameLoop`](../frontend/src/hooks/useAIGameLoop.ts) minden tick után **WebSocketen** (`VITE_AI_WS_URL` vagy alapértelmezett `ws://localhost:8000/ws`) elküldi a játék pillanatképét az **ai_service**-nek, és a válasz **irány** (`action`) alapján lépteti a kígyót. Ha nincs kapcsolat, **helyi fallback** stratégia fut ([`placeholderStrategy`](../frontend/src/ai/Strategy.ts) – egyszerű étel felé logika).
+- A HUD **„MI: backend (&lt;stratégia neve&gt;)”** vagy **„MI: helyi”** szöveget mutatja, jelezve a WebSocket állapotát. A szervernek küldött üzenet tartalmazza a választott **strategy** azonosítót, hogy a megfelelő Python stratégia fusson.
+
+### Játék vége és pontszám mentés
+
+`GAME_OVER` esetén a rendszer:
+
+1. **Lokálisan** ment egy bejegyzést ([`saveScore`](../frontend/src/io/storage.ts)): pont, tick, hossz, időbélyeg, mód (játékos / MI), MI esetén az **aiStrategy** azonosító.
+2. Ha van **JWT**, meghívja a [`submitScore`](../frontend/src/api.ts)-t (POST `/api/scores`), hogy a pont a **felhasználóhoz kötött** listába kerüljön.
+
+*Megjegyzés:* az aktuális [`App.tsx`](../frontend/src/App.tsx) egy `useEffect`-ben **ürítheti** a lokális eredménylistát induláskor (`clearScores`) – fejlesztői / teszt viselkedés; éles használatnál érdemes ezt szándék szerint állítani, különben a vendég mód eredményei nem maradnak meg oldalfrissítésig.
+
+### Eredmények oldal
+
+A [`Results`](../frontend/src/ui/Results.tsx) a főmenü **Eredmények** gombjáról nyílik:
+
+- Bejelentkezve: a **backendről** frissített lista (max. megjelenített sorok száma a komponensben korlátozva), minden sorban pont, lépés, hossz, **Játékos** vagy **MI (stratégia megjelenített neve)** és időpont.
+- Névtelenül: **localStorage** alapú lista (ha nincs törölve).
+- **Felhasználónév** megjelenik, ha van auth kontextus.
+
+### Statisztika oldal
+
+A [`Statistics`](../frontend/src/ui/Statistics.tsx) a **benchmark** eredmények böngészős megjelenítése:
+
+- Adat: `GET` az AI szolgáltatás **`/benchmark/summaries`** végpontról (`VITE_AI_HTTP_URL`); képek: **`/benchmark/plots/...`**.
+- Szöveges magyarázatok (metodika, heurisztika vs. tanult ügynökök), **táblázat** (szűrhető: Mind / Egyik sem / Csak heurisztikák / Csak neurális hálók), **oszlop szerinti rendezés**, **sorra kattintva részletes** leírás ([`strategyBenchmarkDetail.ts`](../frontend/src/ai/strategyBenchmarkDetail.ts) + aktuális sor metrikái), **beágyazott PNG grafikonok**.
+
+Részletes leírás a naplóban: [4.4 – Statisztika oldal](#statisztika-oldal-benchmark-a-böngészőben).
+
+### Profil oldal
+
+A [`Profile`](../frontend/src/ui/Profile.tsx) csak bejelentkezett felhasználónak érhető el:
+
+- **Felhasználónév módosítása:** űrlap → [`updateUsername`](../frontend/src/api.ts) → `loadUser()` a friss adatokért.
+- **Jelszó módosítás:** jelenlegi + új + megerősítés; minimum hossz és egyezés ellenőrzése kliensen; [`updatePassword`](../frontend/src/api.ts).
+- **Saját eredmények listája:** `fetchScores()` – ugyanaz a típus, mint az eredményeknél, de a profil kontextusában.
+
+**Vissza** a főmenüre.
+
+### Összefoglaló: adat és szolgáltatások
+
+| Funkció | Elsődleges tárolás / forrás |
+|--------|------------------------------|
+| Téma | localStorage (`ThemeContext`) |
+| Játék konfig | localStorage ([`io/config.ts`](../frontend/src/io/config.ts)) |
+| Eredmények (vendég) | localStorage ([`io/storage.ts`](../frontend/src/io/storage.ts)) |
+| Auth | JWT + user JSON localStorage; API: backend :3000 |
+| MI lépés játék közben | WebSocket → ai_service :8000 |
+| Statisztika táblázat / grafikon | HTTP → ai_service benchmark végpontok; fájlok: `benchmarks/results/` |
 
 ---
 
@@ -98,7 +205,7 @@ frontend/
     ├── main.tsx              # React belépés, ThemeProvider, AuthProvider
     ├── App.tsx               # Képernyőváltás, játékciklus, auth/profil/eredmény
     ├── theme.css             # Globális és téma CSS változók
-    ├── api.ts                # REST hívások (auth, profil, scores), token
+    ├── api.ts                # REST hívások (auth, profil, scores), token; benchmark: fetchBenchmarkSummaries, benchmarkPlotUrl (AI szolgáltatás)
     ├── ThemeContext.tsx      # Light/dark téma
     ├── AuthContext.tsx       # Bejelentkezés állapot (token, user, setAuth, logout)
     ├── core/                 # Játéklogika (spec 7.5.1–7.5.3)
@@ -113,7 +220,8 @@ frontend/
     │   └── index.ts
     ├── ai/
     │   ├── Strategy.ts       # Helyi placeholder stratégia (étel felé)
-    │   └── strategies.ts    # AI_STRATEGIES lista (id, name, description), getStrategyName()
+    │   ├── strategies.ts     # AI_STRATEGIES lista (id, name, description), getStrategyName(), getStrategyById()
+    │   └── strategyBenchmarkDetail.ts  # Statisztika oldal: részletes működés + tipikus benchmark-magyarázat stratégiánként
     ├── io/
     │   ├── config.ts         # localStorage config (loadConfig, saveConfig)
     │   └── storage.ts        # Eredmények listája (StoredScore, loadScores, saveScore)
@@ -126,9 +234,10 @@ frontend/
     │   └── HUD.tsx           # Pont, hossz, lépés, sebesség, státusz, MI (backend/helyi + stratégia)
     └── ui/
         ├── Header.tsx        # Cím, Bejelentkezés/Regisztráció vagy Profil/Kijelentkezés, téma
-        ├── MainMenu.tsx      # Játékos/MI, Beállítások, Eredmények, Profil (ha bejelentkezve)
+        ├── MainMenu.tsx      # Játékos/MI, Beállítások, Eredmények, Statisztika, Profil (ha bejelentkezve)
         ├── Settings.tsx      # Rácsméret, tick_ms, seed, MI stratégia (A* / Hamilton)
         ├── Results.tsx       # Eredmények lista (Játékos / MI (A*) / MI (Hamilton))
+        ├── Statistics.tsx    # Benchmark összefoglaló táblázat, szűrés, rendezés, stratégia részletek, generált grafikonok
         ├── LoginForm.tsx     # usernameOrEmail + jelszó
         ├── RegisterForm.tsx  # email, username, jelszó, jelszó ismétlés
         └── Profile.tsx       # Felhasználónév/jelszó módosítás, saját eredmények (backendről)
@@ -177,8 +286,19 @@ export function setDirection(state: GameState, newDir: Direction): GameState {
 
 - **GameCanvas:** HTML5 Canvas; a rács, a kígyó (fej kiemelve) és az étel téma szerinti színekkel (sötét/világos háttér, grid line, snake/snakeHead, food). A canvas mérete a `rows`/`cols` és a cellaméret alapján számolt.
 - **HUD:** Pont, hossz, lépésszám, sebesség (tick/s), státusz (Készül, Fut, Szünet, Vége), MI módban „MI: backend (&lt;stratégia neve&gt;)” vagy „MI: helyi”.
-- **MainMenu, Settings, Results:** Kártya stílus (theme.css `.card`), gombok (`.btn`, `.btn-secondary`). **Beállítások:** külön „MI stratégia (backend)” szekció: 14 stratégia választható (A*, Hamilton spirál, BFS, Greedy, Farok-követés, Hamilton zigzag, Előretekintés 1/3/5 lépés, Minimax, Hamilton rövid ciklusok, Maximal safety, DQN/PPO/Neuroevolution placeholder), mindegyiknél rövid leírás. Eredményeknél minden sorban látszik, hogy **Játékos** vagy **MI (&lt;stratégia neve&gt;)** (modeLabel a `StoredScore.mode` és `aiStrategy` alapján; `getStrategyName()` a frontend `ai/strategies.ts`-ből).
-- **App.tsx:** Képernyők: menu, settings, results, game, login, register, profile. Billentyűzet: nyilak/WASD, P = szünet, R = új játék. Játék vége: lokális mentés (mode + aiStrategy); ha van token, backendre is küldés (submitScoreApi).
+- **MainMenu, Settings, Results:** Kártya stílus (theme.css `.card`), gombok (`.btn`, `.btn-secondary`). **Beállítások:** külön „MI stratégia (backend)” szekció: több stratégia választható (heurisztikák és DQN / PPO / NEAT), mindegyiknél rövid leírás. Eredményeknél minden sorban látszik, hogy **Játékos** vagy **MI (&lt;stratégia neve&gt;)** (modeLabel a `StoredScore.mode` és `aiStrategy` alapján; `getStrategyName()` a frontend `ai/strategies.ts`-ből).
+- **App.tsx:** Képernyők: menu, settings, results, **statistics**, game, login, register, profile. Billentyűzet: nyilak/WASD, P = szünet, R = új játék. Játék vége: lokális mentés (mode + aiStrategy); ha van token, backendre is küldés (submitScoreApi).
+
+#### Statisztika oldal (benchmark a böngészőben)
+
+- **Elérés:** Főmenü → **Statisztika**.
+- **Adatforrás:** Az `ai_service` FastAPI végpontjai olvassák a repó `benchmarks/results/strategy_benchmark_*.json` fájlok összefoglalóit (`GET /benchmark/summaries`), és kiszolgálják a `benchmarks/results/plots/*.png` képeket (`GET /benchmark/plots/{filename}`). A frontend alapértelmezett bázis URL-je: `VITE_AI_HTTP_URL` vagy `http://localhost:8000` (lásd `api.ts`: `fetchBenchmarkSummaries`, `benchmarkPlotUrl`).
+- **Tartalom:** Bevezető szövegek (metodika, heurisztika vs. tanult ügynökök); **összefoglaló táblázat** (futások, átlag/medián pont, lépés, első étel %, halál okok %-ban). A halál oszlopokban a hiányzó JSON kulcs **0%**-nak számít (nincs ilyen lezárás).
+- **Szűrés:** Lenyíló blokk „Stratégiák szűrése”: jelölőnégyzetek stratégiánként, gyors gombok **Mind**, **Egyik sem**, **Csak heurisztikák** (minden stratégia kivéve `dqn`, `ppo`, `neuroevolution`), **Csak neurális hálók** (csak ezek a három azonosító, ha szerepelnek a betöltött eredményekben).
+- **Rendezés:** Oszlopfejlécek gombok: első kattintás új oszlopnál (számoknál alapból csökkenő, stratégia névnél növekvő), ismételt kattintás vált növekvő ↔ csökkenő.
+- **Részletek:** Táblázatsorra kattintva (vagy fókusz + Enter/Space) megnyílik egy panel: rövid leírás a `strategies.ts`-ből, részletes „működési logika” és „tipikus eredmény” a `strategyBenchmarkDetail.ts`-ből, valamint az adott sor JSON-ból származó számok (pálya, mag, halál okok darabszámban). Újra ugyanarra a sorra kattintva bezárul; „Részletek bezárása” gomb.
+- **Grafikonok:** A `benchmarks/generate_benchmark_plots.py` által generált PNG-k beágyazva (cím: „Grafikonok generált PNG-k”).
+- **Stílus:** A `theme.css` `.stats-*` osztályai (szűrő, táblázat, kattintható sor, részletek panel, grafikon rács).
 
 ---
 
@@ -235,7 +355,7 @@ ai_service/
 ├── __init__.py
 └── src/
     ├── __init__.py
-    ├── main.py         # FastAPI app, CORS, /health, /strategies, /ws, POST /next
+    ├── main.py         # FastAPI app, CORS, /health, /strategies, /ws, POST /next; benchmark: GET /benchmark/summaries, GET /benchmark/plots/{filename}
     ├── state.py        # GameState, parse_state, DELTA, OPPOSITE, DIRECTIONS
     └── strategies/
         ├── __init__.py   # STRATEGIES: astar, hamilton, bfs, greedy, follow_tail, hamilton_zigzag, lookahead, minimax, max_safety, lookahead_3, lookahead_5, hamilton_short_cycles, dqn, ppo, neuroevolution
@@ -303,13 +423,15 @@ def _build_spiral_cycle(rows: int, cols: int) -> list[tuple[int, int]]:
 
 **Futtatás:** `python -m uvicorn src.main:app --reload --host 0.0.0.0 --port 8000` (ai_service mappából).
 
+**Benchmark adat a frontend statisztika oldalhoz:** A `main.py` a repó gyökeréhez képest a `benchmarks/results/` mappából összegyűjti a `strategy_benchmark_*.json` fájlok összefoglalóit (kivéve a `strategy_benchmark_summary.json` nevűt, ha az más szerkezetű), és PNG-eket szolgál ki a `benchmarks/results/plots/` alól. Ehhez az AI szolgáltatásnak ugyanarról a gépről / klónozott repóból kell futnia, ahol a benchmark már lefutott.
+
 ---
 
 ### 4.7. Stratégiaválasztó és benchmark
 
 - **Beállítások (frontend):** „MI stratégia (backend)” szekció: 14 stratégia választható (A*, Hamilton spirál, BFS, Greedy, Farok-követés, Hamilton zigzag, Előretekintés 1 lépés, Minimax rövid horizont, Hamilton rövid ciklusok, Maximal safety, Előretekintés 3/5 lépés, DQN/PPO/Neuroevolution placeholder), mindegyiknél rövid, átlagfelhasználónak értelmezhető leírás. Az érték a `config.ai.strategy`-ben (localStorage) tárolódik; MI módban a WebSocket payload tartalmazza a `strategy` mezőt.
 - **HUD:** MI módban: „MI: backend (&lt;stratégia neve&gt;)” vagy „MI: helyi” ha nincs kapcsolat.
-- **Benchmark:** `benchmarks/run_benchmark.py` – fix seed-del N futás (alap 100), A* és/vagy Hamilton. Egyszerű játékszimulátor (step: irány, ütközés, étel, növekedés); metrikák: score_mean/median, steps_mean/median, death_counts, reached_first_food (%). Kimenet: `benchmarks/results/benchmark_astar.json`, `benchmark_hamilton.json`, `benchmark_summary.json`. Futtatás: `python benchmarks/run_benchmark.py --runs 100 --strategy both`. A script az `ai_service` csomagot importálja (state, strategies).
+- **Benchmark:** `benchmarks/run_strategy_benchmark.py` (és kapcsolódóan `generate_benchmark_plots.py`) – stratégiánként JSON a `benchmarks/results/strategy_benchmark_<id>.json` alá, összefoglaló metrikák: score_mean/median, steps_mean/median, death_counts, reached_first_food (%). A frontend **Statisztika** oldal ezeket az `ai_service` `/benchmark/summaries` végpontján keresztül tölti be. Régebbi, egyszerűbb script: `benchmarks/run_benchmark.py` (A* / Hamilton) – a dokumentációban említett fájlnevek ettől eltérhetnek; a szakdolgozatban az aktuális futtató a `run_strategy_benchmark.py`.
 
 ---
 
@@ -403,7 +525,7 @@ A docs/ai_docs-ban felsorolt, korábban még nem megvalósított stratégiák be
 - **Hamilton rövid ciklusok:** 2×2 blokkok, minden blokkban 4 cellás kör; étel felé A* levágás, különben blokk ciklus (`hamilton_short_cycles.py`).
 - **Maximal safety:** Csak olyan lépés, ami után van út fej–farok között; köztük max flood fill (`max_safety.py`).
 - **Look-ahead N lépés (N=3, 5):** N lépés szimulálása greedy aláírányokkal, legjobb kezdő irány (`lookahead_n.py`, `lookahead_3`, `lookahead_5`).
-- **DQN, PPO, Neuroevolution (placeholder):** RL/NEAT placeholderek; jelenleg Greedy fallback, leírás szerint tanulás után a modell döntene (`rl_stubs.py`).
+- **DQN, PPO, NEAT:** A projektben külön tanító szkriptek és stratégia osztályok (`dqn.py`, `ppo.py`, `neat_strategy.py` stb.) illeszkednek a `STRATEGIES` regiszterbe; a frontend listában a nevek **DQN**, **PPO**, **NEAT** (nem placeholder). A `rl_stubs.py` továbbra is a repóban lehet korábbi fallbackhez; a benchmark a betanított / mentett modellel fut, ha elérhető.
 
 A backend STRATEGIES map és a frontend AI_STRATEGIES lista bővítve; a tárolt eredményeknél továbbra minden stratégiával elérhető az ai_strategy mező.
 

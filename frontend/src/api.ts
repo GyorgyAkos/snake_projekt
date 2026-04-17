@@ -1,5 +1,8 @@
 const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:3000'
 
+/** Snake AI HTTP (benchmark, health) — alapértelmezés egyezzen a WebSocket hosttal */
+const AI_HTTP_BASE = import.meta.env.VITE_AI_HTTP_URL ?? 'http://localhost:8000'
+
 function getToken(): string | null {
   return localStorage.getItem('snake_token')
 }
@@ -94,4 +97,30 @@ export async function submitScore(score: number, tick: number, length: number, m
   })
   const data = await res.json().catch(() => ({}))
   if (!res.ok) throw new Error(data.error || res.statusText)
+}
+
+export interface BenchmarkSummary {
+  strategy: string
+  runs: number
+  rows: number
+  cols: number
+  max_steps: number
+  seed_base: number
+  score_mean: number
+  score_median: number
+  steps_mean: number
+  steps_median: number
+  death_counts: Record<string, number>
+  reached_first_food: number
+}
+
+export async function fetchBenchmarkSummaries(): Promise<{ summaries: BenchmarkSummary[]; benchmark_dir?: string; error?: string }> {
+  const res = await fetch(`${AI_HTTP_BASE}/benchmark/summaries`)
+  const data = await res.json().catch(() => ({}))
+  if (!res.ok) throw new Error((data as { detail?: string }).detail || res.statusText)
+  return data as { summaries: BenchmarkSummary[]; benchmark_dir?: string; error?: string }
+}
+
+export function benchmarkPlotUrl(filename: string): string {
+  return `${AI_HTTP_BASE}/benchmark/plots/${encodeURIComponent(filename)}`
 }

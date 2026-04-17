@@ -1,0 +1,3021 @@
+{
+  "summary": {
+    "strategy": "lookahead_5",
+    "runs": 500,
+    "rows": 20,
+    "cols": 20,
+    "max_steps": 5000,
+    "seed_base": 42,
+    "score_mean": 0.304,
+    "score_median": 0,
+    "steps_mean": 403.728,
+    "steps_median": 400,
+    "death_counts": {
+      "starvation": 498,
+      "self": 2
+    },
+    "reached_first_food": 15.2
+  },
+  "runs": [
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 42
+    },
+    {
+      "score": 1,
+      "steps": 419,
+      "death": "starvation",
+      "seed": 43
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 44
+    },
+    {
+      "score": 1,
+      "steps": 419,
+      "death": "starvation",
+      "seed": 45
+    },
+    {
+      "score": 1,
+      "steps": 420,
+      "death": "starvation",
+      "seed": 46
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 47
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 48
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 49
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 50
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 51
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 52
+    },
+    {
+      "score": 1,
+      "steps": 421,
+      "death": "starvation",
+      "seed": 53
+    },
+    {
+      "score": 1,
+      "steps": 407,
+      "death": "starvation",
+      "seed": 54
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 55
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 56
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 57
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 58
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 59
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 60
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 61
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 62
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 63
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 64
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 65
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 66
+    },
+    {
+      "score": 2,
+      "steps": 430,
+      "death": "starvation",
+      "seed": 67
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 68
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 69
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 70
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 71
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 72
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 73
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 74
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 75
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 76
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 77
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 78
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 79
+    },
+    {
+      "score": 1,
+      "steps": 419,
+      "death": "starvation",
+      "seed": 80
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 81
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 82
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 83
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 84
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 85
+    },
+    {
+      "score": 2,
+      "steps": 419,
+      "death": "starvation",
+      "seed": 86
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 87
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 88
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 89
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 90
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 91
+    },
+    {
+      "score": 1,
+      "steps": 422,
+      "death": "starvation",
+      "seed": 92
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 93
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 94
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 95
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 96
+    },
+    {
+      "score": 1,
+      "steps": 421,
+      "death": "starvation",
+      "seed": 97
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 98
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 99
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 100
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 101
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 102
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 103
+    },
+    {
+      "score": 2,
+      "steps": 411,
+      "death": "starvation",
+      "seed": 104
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 105
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 106
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 107
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 108
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 109
+    },
+    {
+      "score": 2,
+      "steps": 430,
+      "death": "starvation",
+      "seed": 110
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 111
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 112
+    },
+    {
+      "score": 3,
+      "steps": 435,
+      "death": "starvation",
+      "seed": 113
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 114
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 115
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 116
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 117
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 118
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 119
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 120
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 121
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 122
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 123
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 124
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 125
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 126
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 127
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 128
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 129
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 130
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 131
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 132
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 133
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 134
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 135
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 136
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 137
+    },
+    {
+      "score": 1,
+      "steps": 421,
+      "death": "starvation",
+      "seed": 138
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 139
+    },
+    {
+      "score": 1,
+      "steps": 419,
+      "death": "starvation",
+      "seed": 140
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 141
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 142
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 143
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 144
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 145
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 146
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 147
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 148
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 149
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 150
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 151
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 152
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 153
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 154
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 155
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 156
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 157
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 158
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 159
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 160
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 161
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 162
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 163
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 164
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 165
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 166
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 167
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 168
+    },
+    {
+      "score": 1,
+      "steps": 404,
+      "death": "starvation",
+      "seed": 169
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 170
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 171
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 172
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 173
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 174
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 175
+    },
+    {
+      "score": 29,
+      "steps": 715,
+      "death": "self",
+      "seed": 176
+    },
+    {
+      "score": 1,
+      "steps": 405,
+      "death": "starvation",
+      "seed": 177
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 178
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 179
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 180
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 181
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 182
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 183
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 184
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 185
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 186
+    },
+    {
+      "score": 1,
+      "steps": 417,
+      "death": "starvation",
+      "seed": 187
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 188
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 189
+    },
+    {
+      "score": 2,
+      "steps": 430,
+      "death": "starvation",
+      "seed": 190
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 191
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 192
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 193
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 194
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 195
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 196
+    },
+    {
+      "score": 1,
+      "steps": 412,
+      "death": "starvation",
+      "seed": 197
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 198
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 199
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 200
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 201
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 202
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 203
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 204
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 205
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 206
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 207
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 208
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 209
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 210
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 211
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 212
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 213
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 214
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 215
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 216
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 217
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 218
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 219
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 220
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 221
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 222
+    },
+    {
+      "score": 1,
+      "steps": 402,
+      "death": "starvation",
+      "seed": 223
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 224
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 225
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 226
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 227
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 228
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 229
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 230
+    },
+    {
+      "score": 2,
+      "steps": 413,
+      "death": "starvation",
+      "seed": 231
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 232
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 233
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 234
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 235
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 236
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 237
+    },
+    {
+      "score": 1,
+      "steps": 401,
+      "death": "starvation",
+      "seed": 238
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 239
+    },
+    {
+      "score": 1,
+      "steps": 421,
+      "death": "starvation",
+      "seed": 240
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 241
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 242
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 243
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 244
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 245
+    },
+    {
+      "score": 1,
+      "steps": 409,
+      "death": "starvation",
+      "seed": 246
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 247
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 248
+    },
+    {
+      "score": 2,
+      "steps": 433,
+      "death": "starvation",
+      "seed": 249
+    },
+    {
+      "score": 2,
+      "steps": 430,
+      "death": "starvation",
+      "seed": 250
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 251
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 252
+    },
+    {
+      "score": 1,
+      "steps": 419,
+      "death": "starvation",
+      "seed": 253
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 254
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 255
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 256
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 257
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 258
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 259
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 260
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 261
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 262
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 263
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 264
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 265
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 266
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 267
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 268
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 269
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 270
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 271
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 272
+    },
+    {
+      "score": 2,
+      "steps": 435,
+      "death": "starvation",
+      "seed": 273
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 274
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 275
+    },
+    {
+      "score": 1,
+      "steps": 401,
+      "death": "starvation",
+      "seed": 276
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 277
+    },
+    {
+      "score": 1,
+      "steps": 403,
+      "death": "starvation",
+      "seed": 278
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 279
+    },
+    {
+      "score": 2,
+      "steps": 432,
+      "death": "starvation",
+      "seed": 280
+    },
+    {
+      "score": 2,
+      "steps": 411,
+      "death": "starvation",
+      "seed": 281
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 282
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 283
+    },
+    {
+      "score": 1,
+      "steps": 416,
+      "death": "starvation",
+      "seed": 284
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 285
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 286
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 287
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 288
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 289
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 290
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 291
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 292
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 293
+    },
+    {
+      "score": 1,
+      "steps": 406,
+      "death": "starvation",
+      "seed": 294
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 295
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 296
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 297
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 298
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 299
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 300
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 301
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 302
+    },
+    {
+      "score": 1,
+      "steps": 416,
+      "death": "starvation",
+      "seed": 303
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 304
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 305
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 306
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 307
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 308
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 309
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 310
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 311
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 312
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 313
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 314
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 315
+    },
+    {
+      "score": 2,
+      "steps": 417,
+      "death": "starvation",
+      "seed": 316
+    },
+    {
+      "score": 1,
+      "steps": 414,
+      "death": "starvation",
+      "seed": 317
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 318
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 319
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 320
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 321
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 322
+    },
+    {
+      "score": 1,
+      "steps": 420,
+      "death": "starvation",
+      "seed": 323
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 324
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 325
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 326
+    },
+    {
+      "score": 1,
+      "steps": 409,
+      "death": "starvation",
+      "seed": 327
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 328
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 329
+    },
+    {
+      "score": 1,
+      "steps": 414,
+      "death": "starvation",
+      "seed": 330
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 331
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 332
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 333
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 334
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 335
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 336
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 337
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 338
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 339
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 340
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 341
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 342
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 343
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 344
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 345
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 346
+    },
+    {
+      "score": 1,
+      "steps": 417,
+      "death": "starvation",
+      "seed": 347
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 348
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 349
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 350
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 351
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 352
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 353
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 354
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 355
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 356
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 357
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 358
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 359
+    },
+    {
+      "score": 2,
+      "steps": 434,
+      "death": "starvation",
+      "seed": 360
+    },
+    {
+      "score": 1,
+      "steps": 421,
+      "death": "starvation",
+      "seed": 361
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 362
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 363
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 364
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 365
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 366
+    },
+    {
+      "score": 1,
+      "steps": 417,
+      "death": "starvation",
+      "seed": 367
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 368
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 369
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 370
+    },
+    {
+      "score": 1,
+      "steps": 418,
+      "death": "starvation",
+      "seed": 371
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 372
+    },
+    {
+      "score": 1,
+      "steps": 417,
+      "death": "starvation",
+      "seed": 373
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 374
+    },
+    {
+      "score": 1,
+      "steps": 420,
+      "death": "starvation",
+      "seed": 375
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 376
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 377
+    },
+    {
+      "score": 2,
+      "steps": 413,
+      "death": "starvation",
+      "seed": 378
+    },
+    {
+      "score": 2,
+      "steps": 419,
+      "death": "starvation",
+      "seed": 379
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 380
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 381
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 382
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 383
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 384
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 385
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 386
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 387
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 388
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 389
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 390
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 391
+    },
+    {
+      "score": 1,
+      "steps": 421,
+      "death": "starvation",
+      "seed": 392
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 393
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 394
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 395
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 396
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 397
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 398
+    },
+    {
+      "score": 1,
+      "steps": 418,
+      "death": "starvation",
+      "seed": 399
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 400
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 401
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 402
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 403
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 404
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 405
+    },
+    {
+      "score": 1,
+      "steps": 422,
+      "death": "starvation",
+      "seed": 406
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 407
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 408
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 409
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 410
+    },
+    {
+      "score": 1,
+      "steps": 405,
+      "death": "starvation",
+      "seed": 411
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 412
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 413
+    },
+    {
+      "score": 1,
+      "steps": 415,
+      "death": "starvation",
+      "seed": 414
+    },
+    {
+      "score": 1,
+      "steps": 418,
+      "death": "starvation",
+      "seed": 415
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 416
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 417
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 418
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 419
+    },
+    {
+      "score": 2,
+      "steps": 417,
+      "death": "starvation",
+      "seed": 420
+    },
+    {
+      "score": 1,
+      "steps": 422,
+      "death": "starvation",
+      "seed": 421
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 422
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 423
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 424
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 425
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 426
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 427
+    },
+    {
+      "score": 1,
+      "steps": 404,
+      "death": "starvation",
+      "seed": 428
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 429
+    },
+    {
+      "score": 1,
+      "steps": 419,
+      "death": "starvation",
+      "seed": 430
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 431
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 432
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 433
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 434
+    },
+    {
+      "score": 2,
+      "steps": 435,
+      "death": "starvation",
+      "seed": 435
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 436
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 437
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 438
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 439
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 440
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 441
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 442
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 443
+    },
+    {
+      "score": 2,
+      "steps": 432,
+      "death": "starvation",
+      "seed": 444
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 445
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 446
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 447
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 448
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 449
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 450
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 451
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 452
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 453
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 454
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 455
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 456
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 457
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 458
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 459
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 460
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 461
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 462
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 463
+    },
+    {
+      "score": 1,
+      "steps": 419,
+      "death": "starvation",
+      "seed": 464
+    },
+    {
+      "score": 25,
+      "steps": 592,
+      "death": "self",
+      "seed": 465
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 466
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 467
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 468
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 469
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 470
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 471
+    },
+    {
+      "score": 1,
+      "steps": 422,
+      "death": "starvation",
+      "seed": 472
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 473
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 474
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 475
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 476
+    },
+    {
+      "score": 1,
+      "steps": 421,
+      "death": "starvation",
+      "seed": 477
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 478
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 479
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 480
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 481
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 482
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 483
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 484
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 485
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 486
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 487
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 488
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 489
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 490
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 491
+    },
+    {
+      "score": 1,
+      "steps": 421,
+      "death": "starvation",
+      "seed": 492
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 493
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 494
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 495
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 496
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 497
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 498
+    },
+    {
+      "score": 2,
+      "steps": 433,
+      "death": "starvation",
+      "seed": 499
+    },
+    {
+      "score": 1,
+      "steps": 414,
+      "death": "starvation",
+      "seed": 500
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 501
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 502
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 503
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 504
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 505
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 506
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 507
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 508
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 509
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 510
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 511
+    },
+    {
+      "score": 2,
+      "steps": 415,
+      "death": "starvation",
+      "seed": 512
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 513
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 514
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 515
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 516
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 517
+    },
+    {
+      "score": 1,
+      "steps": 401,
+      "death": "starvation",
+      "seed": 518
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 519
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 520
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 521
+    },
+    {
+      "score": 1,
+      "steps": 420,
+      "death": "starvation",
+      "seed": 522
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 523
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 524
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 525
+    },
+    {
+      "score": 2,
+      "steps": 436,
+      "death": "starvation",
+      "seed": 526
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 527
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 528
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 529
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 530
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 531
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 532
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 533
+    },
+    {
+      "score": 1,
+      "steps": 415,
+      "death": "starvation",
+      "seed": 534
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 535
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 536
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 537
+    },
+    {
+      "score": 2,
+      "steps": 433,
+      "death": "starvation",
+      "seed": 538
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 539
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 540
+    },
+    {
+      "score": 0,
+      "steps": 400,
+      "death": "starvation",
+      "seed": 541
+    }
+  ]
+}

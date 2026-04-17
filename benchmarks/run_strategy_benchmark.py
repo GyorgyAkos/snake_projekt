@@ -126,12 +126,26 @@ def run_one_game(
     state = create_initial_state(rows, cols, seed)
     steps = 0
     death = ""
+    last_score = state.score
+    steps_since_food = 0
+    # 20x20 pályán 400 lépés érdemi „éhezési” limitnek elég
+    starvation_limit = 400
     while steps < max_steps:
         direction = strategy.next_move(state)
         if direction == OPPOSITE.get(state.direction):
             direction = state.direction
         state, game_over, death = step(state, direction, rng)
         steps += 1
+        # Starvation detektálása: ha sok lépésen át nem nő a score,
+        # befejezzük a futást, hogy a "körbe-körbe" stratégiák ne tartsák fel a benchmarkot.
+        if state.score > last_score:
+            last_score = state.score
+            steps_since_food = 0
+        else:
+            steps_since_food += 1
+        if steps_since_food >= starvation_limit:
+            death = "starvation"
+            game_over = True
         if game_over:
             break
     return {

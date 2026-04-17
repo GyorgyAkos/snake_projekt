@@ -23,11 +23,12 @@ import { Header } from './ui/Header'
 import { MainMenu } from './ui/MainMenu'
 import { Settings } from './ui/Settings'
 import { Results } from './ui/Results'
+import { Statistics } from './ui/Statistics'
 import { LoginForm } from './ui/LoginForm'
 import { RegisterForm } from './ui/RegisterForm'
 import { Profile } from './ui/Profile'
 
-type Screen = 'menu' | 'settings' | 'results' | 'game' | 'login' | 'register' | 'profile'
+type Screen = 'menu' | 'settings' | 'results' | 'statistics' | 'game' | 'login' | 'register' | 'profile'
 
 function App() {
   const { theme } = useTheme()
@@ -199,6 +200,7 @@ function App() {
               setScreen('results')
             }
           }}
+          onStatistics={() => setScreen('statistics')}
           onProfile={() => setScreen('profile')}
           isLoggedIn={!!token}
         />
@@ -226,6 +228,15 @@ function App() {
       <div className="app-shell">
         <Header {...headerProps} />
         <Results scores={scores} onBack={() => setScreen('menu')} />
+      </div>
+    )
+  }
+
+  if (screen === 'statistics') {
+    return (
+      <div className="app-shell">
+        <Header {...headerProps} />
+        <Statistics onBack={() => setScreen('menu')} />
       </div>
     )
   }

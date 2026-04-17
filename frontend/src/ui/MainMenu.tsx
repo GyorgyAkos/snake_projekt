@@ -6,6 +6,7 @@ interface MainMenuProps {
   onStartGame: (config: GameConfig, mode: 'player' | 'ai') => void
   onOpenSettings: () => void
   onResults: () => void
+  onStatistics: () => void
   onProfile?: () => void
   isLoggedIn?: boolean
 }
@@ -15,6 +16,7 @@ export function MainMenu({
   onStartGame,
   onOpenSettings,
   onResults,
+  onStatistics,
   onProfile,
   isLoggedIn,
 }: MainMenuProps) {
@@ -63,7 +65,12 @@ export function MainMenu({
         </li>
         <li>
           <button type="button" className="btn btn-block btn-secondary" onClick={onResults}>
-            Eredmények
+            Felhasználói Eredmények
+          </button>
+        </li>
+        <li>
+          <button type="button" className="btn btn-block btn-secondary" onClick={onStatistics}>
+            Statisztika
           </button>
         </li>
         {isLoggedIn && onProfile && (

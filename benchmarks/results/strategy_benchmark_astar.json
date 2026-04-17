@@ -1,0 +1,3021 @@
+{
+  "summary": {
+    "strategy": "astar",
+    "runs": 500,
+    "rows": 20,
+    "cols": 20,
+    "max_steps": 5000,
+    "seed_base": 42,
+    "score_mean": 77.2,
+    "score_median": 77,
+    "steps_mean": 1297.468,
+    "steps_median": 1272,
+    "death_counts": {
+      "self": 388,
+      "wall": 112
+    },
+    "reached_first_food": 100.0
+  },
+  "runs": [
+    {
+      "score": 61,
+      "steps": 989,
+      "death": "self",
+      "seed": 42
+    },
+    {
+      "score": 73,
+      "steps": 1146,
+      "death": "self",
+      "seed": 43
+    },
+    {
+      "score": 78,
+      "steps": 1223,
+      "death": "wall",
+      "seed": 44
+    },
+    {
+      "score": 93,
+      "steps": 1643,
+      "death": "self",
+      "seed": 45
+    },
+    {
+      "score": 104,
+      "steps": 1831,
+      "death": "self",
+      "seed": 46
+    },
+    {
+      "score": 54,
+      "steps": 804,
+      "death": "self",
+      "seed": 47
+    },
+    {
+      "score": 104,
+      "steps": 2019,
+      "death": "self",
+      "seed": 48
+    },
+    {
+      "score": 74,
+      "steps": 1263,
+      "death": "self",
+      "seed": 49
+    },
+    {
+      "score": 63,
+      "steps": 956,
+      "death": "wall",
+      "seed": 50
+    },
+    {
+      "score": 57,
+      "steps": 833,
+      "death": "wall",
+      "seed": 51
+    },
+    {
+      "score": 111,
+      "steps": 2109,
+      "death": "wall",
+      "seed": 52
+    },
+    {
+      "score": 73,
+      "steps": 1074,
+      "death": "self",
+      "seed": 53
+    },
+    {
+      "score": 65,
+      "steps": 930,
+      "death": "wall",
+      "seed": 54
+    },
+    {
+      "score": 72,
+      "steps": 1156,
+      "death": "self",
+      "seed": 55
+    },
+    {
+      "score": 77,
+      "steps": 1442,
+      "death": "self",
+      "seed": 56
+    },
+    {
+      "score": 75,
+      "steps": 1215,
+      "death": "self",
+      "seed": 57
+    },
+    {
+      "score": 102,
+      "steps": 1768,
+      "death": "wall",
+      "seed": 58
+    },
+    {
+      "score": 46,
+      "steps": 724,
+      "death": "self",
+      "seed": 59
+    },
+    {
+      "score": 69,
+      "steps": 1069,
+      "death": "self",
+      "seed": 60
+    },
+    {
+      "score": 71,
+      "steps": 1067,
+      "death": "self",
+      "seed": 61
+    },
+    {
+      "score": 62,
+      "steps": 902,
+      "death": "self",
+      "seed": 62
+    },
+    {
+      "score": 58,
+      "steps": 1054,
+      "death": "self",
+      "seed": 63
+    },
+    {
+      "score": 101,
+      "steps": 1930,
+      "death": "wall",
+      "seed": 64
+    },
+    {
+      "score": 37,
+      "steps": 452,
+      "death": "self",
+      "seed": 65
+    },
+    {
+      "score": 82,
+      "steps": 1409,
+      "death": "self",
+      "seed": 66
+    },
+    {
+      "score": 93,
+      "steps": 1781,
+      "death": "self",
+      "seed": 67
+    },
+    {
+      "score": 101,
+      "steps": 1761,
+      "death": "self",
+      "seed": 68
+    },
+    {
+      "score": 73,
+      "steps": 1005,
+      "death": "wall",
+      "seed": 69
+    },
+    {
+      "score": 70,
+      "steps": 1002,
+      "death": "wall",
+      "seed": 70
+    },
+    {
+      "score": 77,
+      "steps": 1254,
+      "death": "wall",
+      "seed": 71
+    },
+    {
+      "score": 78,
+      "steps": 1273,
+      "death": "self",
+      "seed": 72
+    },
+    {
+      "score": 39,
+      "steps": 557,
+      "death": "self",
+      "seed": 73
+    },
+    {
+      "score": 48,
+      "steps": 681,
+      "death": "wall",
+      "seed": 74
+    },
+    {
+      "score": 118,
+      "steps": 2321,
+      "death": "self",
+      "seed": 75
+    },
+    {
+      "score": 71,
+      "steps": 1066,
+      "death": "self",
+      "seed": 76
+    },
+    {
+      "score": 36,
+      "steps": 450,
+      "death": "self",
+      "seed": 77
+    },
+    {
+      "score": 79,
+      "steps": 1327,
+      "death": "self",
+      "seed": 78
+    },
+    {
+      "score": 55,
+      "steps": 822,
+      "death": "self",
+      "seed": 79
+    },
+    {
+      "score": 74,
+      "steps": 1110,
+      "death": "self",
+      "seed": 80
+    },
+    {
+      "score": 100,
+      "steps": 1592,
+      "death": "wall",
+      "seed": 81
+    },
+    {
+      "score": 91,
+      "steps": 1419,
+      "death": "self",
+      "seed": 82
+    },
+    {
+      "score": 60,
+      "steps": 951,
+      "death": "wall",
+      "seed": 83
+    },
+    {
+      "score": 114,
+      "steps": 2308,
+      "death": "self",
+      "seed": 84
+    },
+    {
+      "score": 75,
+      "steps": 1087,
+      "death": "self",
+      "seed": 85
+    },
+    {
+      "score": 38,
+      "steps": 585,
+      "death": "self",
+      "seed": 86
+    },
+    {
+      "score": 70,
+      "steps": 1295,
+      "death": "self",
+      "seed": 87
+    },
+    {
+      "score": 56,
+      "steps": 868,
+      "death": "self",
+      "seed": 88
+    },
+    {
+      "score": 91,
+      "steps": 1450,
+      "death": "self",
+      "seed": 89
+    },
+    {
+      "score": 84,
+      "steps": 1384,
+      "death": "self",
+      "seed": 90
+    },
+    {
+      "score": 44,
+      "steps": 574,
+      "death": "self",
+      "seed": 91
+    },
+    {
+      "score": 64,
+      "steps": 1111,
+      "death": "self",
+      "seed": 92
+    },
+    {
+      "score": 105,
+      "steps": 2253,
+      "death": "self",
+      "seed": 93
+    },
+    {
+      "score": 69,
+      "steps": 1106,
+      "death": "self",
+      "seed": 94
+    },
+    {
+      "score": 92,
+      "steps": 1612,
+      "death": "self",
+      "seed": 95
+    },
+    {
+      "score": 39,
+      "steps": 543,
+      "death": "self",
+      "seed": 96
+    },
+    {
+      "score": 76,
+      "steps": 1231,
+      "death": "self",
+      "seed": 97
+    },
+    {
+      "score": 89,
+      "steps": 1562,
+      "death": "self",
+      "seed": 98
+    },
+    {
+      "score": 70,
+      "steps": 1118,
+      "death": "self",
+      "seed": 99
+    },
+    {
+      "score": 90,
+      "steps": 1544,
+      "death": "self",
+      "seed": 100
+    },
+    {
+      "score": 43,
+      "steps": 573,
+      "death": "self",
+      "seed": 101
+    },
+    {
+      "score": 73,
+      "steps": 1258,
+      "death": "self",
+      "seed": 102
+    },
+    {
+      "score": 101,
+      "steps": 1893,
+      "death": "self",
+      "seed": 103
+    },
+    {
+      "score": 99,
+      "steps": 1830,
+      "death": "self",
+      "seed": 104
+    },
+    {
+      "score": 103,
+      "steps": 1702,
+      "death": "self",
+      "seed": 105
+    },
+    {
+      "score": 78,
+      "steps": 1037,
+      "death": "self",
+      "seed": 106
+    },
+    {
+      "score": 85,
+      "steps": 1579,
+      "death": "self",
+      "seed": 107
+    },
+    {
+      "score": 33,
+      "steps": 428,
+      "death": "wall",
+      "seed": 108
+    },
+    {
+      "score": 55,
+      "steps": 821,
+      "death": "self",
+      "seed": 109
+    },
+    {
+      "score": 110,
+      "steps": 1971,
+      "death": "self",
+      "seed": 110
+    },
+    {
+      "score": 83,
+      "steps": 1314,
+      "death": "self",
+      "seed": 111
+    },
+    {
+      "score": 72,
+      "steps": 1274,
+      "death": "self",
+      "seed": 112
+    },
+    {
+      "score": 49,
+      "steps": 744,
+      "death": "self",
+      "seed": 113
+    },
+    {
+      "score": 50,
+      "steps": 673,
+      "death": "self",
+      "seed": 114
+    },
+    {
+      "score": 76,
+      "steps": 1379,
+      "death": "wall",
+      "seed": 115
+    },
+    {
+      "score": 90,
+      "steps": 1540,
+      "death": "self",
+      "seed": 116
+    },
+    {
+      "score": 71,
+      "steps": 1097,
+      "death": "wall",
+      "seed": 117
+    },
+    {
+      "score": 37,
+      "steps": 500,
+      "death": "self",
+      "seed": 118
+    },
+    {
+      "score": 42,
+      "steps": 619,
+      "death": "self",
+      "seed": 119
+    },
+    {
+      "score": 43,
+      "steps": 547,
+      "death": "self",
+      "seed": 120
+    },
+    {
+      "score": 55,
+      "steps": 765,
+      "death": "self",
+      "seed": 121
+    },
+    {
+      "score": 69,
+      "steps": 1046,
+      "death": "self",
+      "seed": 122
+    },
+    {
+      "score": 50,
+      "steps": 642,
+      "death": "self",
+      "seed": 123
+    },
+    {
+      "score": 114,
+      "steps": 2233,
+      "death": "wall",
+      "seed": 124
+    },
+    {
+      "score": 87,
+      "steps": 1481,
+      "death": "self",
+      "seed": 125
+    },
+    {
+      "score": 60,
+      "steps": 1019,
+      "death": "wall",
+      "seed": 126
+    },
+    {
+      "score": 105,
+      "steps": 2061,
+      "death": "wall",
+      "seed": 127
+    },
+    {
+      "score": 81,
+      "steps": 1383,
+      "death": "self",
+      "seed": 128
+    },
+    {
+      "score": 54,
+      "steps": 811,
+      "death": "self",
+      "seed": 129
+    },
+    {
+      "score": 52,
+      "steps": 789,
+      "death": "self",
+      "seed": 130
+    },
+    {
+      "score": 59,
+      "steps": 933,
+      "death": "self",
+      "seed": 131
+    },
+    {
+      "score": 42,
+      "steps": 566,
+      "death": "wall",
+      "seed": 132
+    },
+    {
+      "score": 84,
+      "steps": 1461,
+      "death": "wall",
+      "seed": 133
+    },
+    {
+      "score": 84,
+      "steps": 1487,
+      "death": "self",
+      "seed": 134
+    },
+    {
+      "score": 92,
+      "steps": 1701,
+      "death": "self",
+      "seed": 135
+    },
+    {
+      "score": 81,
+      "steps": 1285,
+      "death": "self",
+      "seed": 136
+    },
+    {
+      "score": 40,
+      "steps": 600,
+      "death": "self",
+      "seed": 137
+    },
+    {
+      "score": 68,
+      "steps": 1162,
+      "death": "self",
+      "seed": 138
+    },
+    {
+      "score": 99,
+      "steps": 1795,
+      "death": "wall",
+      "seed": 139
+    },
+    {
+      "score": 83,
+      "steps": 1278,
+      "death": "self",
+      "seed": 140
+    },
+    {
+      "score": 74,
+      "steps": 1180,
+      "death": "wall",
+      "seed": 141
+    },
+    {
+      "score": 62,
+      "steps": 924,
+      "death": "self",
+      "seed": 142
+    },
+    {
+      "score": 60,
+      "steps": 956,
+      "death": "self",
+      "seed": 143
+    },
+    {
+      "score": 55,
+      "steps": 856,
+      "death": "self",
+      "seed": 144
+    },
+    {
+      "score": 55,
+      "steps": 828,
+      "death": "wall",
+      "seed": 145
+    },
+    {
+      "score": 94,
+      "steps": 1891,
+      "death": "wall",
+      "seed": 146
+    },
+    {
+      "score": 37,
+      "steps": 433,
+      "death": "self",
+      "seed": 147
+    },
+    {
+      "score": 61,
+      "steps": 885,
+      "death": "self",
+      "seed": 148
+    },
+    {
+      "score": 94,
+      "steps": 1640,
+      "death": "wall",
+      "seed": 149
+    },
+    {
+      "score": 38,
+      "steps": 495,
+      "death": "self",
+      "seed": 150
+    },
+    {
+      "score": 33,
+      "steps": 429,
+      "death": "self",
+      "seed": 151
+    },
+    {
+      "score": 85,
+      "steps": 1532,
+      "death": "wall",
+      "seed": 152
+    },
+    {
+      "score": 79,
+      "steps": 1313,
+      "death": "wall",
+      "seed": 153
+    },
+    {
+      "score": 96,
+      "steps": 1649,
+      "death": "wall",
+      "seed": 154
+    },
+    {
+      "score": 116,
+      "steps": 2187,
+      "death": "wall",
+      "seed": 155
+    },
+    {
+      "score": 81,
+      "steps": 1295,
+      "death": "wall",
+      "seed": 156
+    },
+    {
+      "score": 98,
+      "steps": 1681,
+      "death": "wall",
+      "seed": 157
+    },
+    {
+      "score": 98,
+      "steps": 1705,
+      "death": "self",
+      "seed": 158
+    },
+    {
+      "score": 94,
+      "steps": 1805,
+      "death": "self",
+      "seed": 159
+    },
+    {
+      "score": 59,
+      "steps": 875,
+      "death": "self",
+      "seed": 160
+    },
+    {
+      "score": 86,
+      "steps": 1446,
+      "death": "self",
+      "seed": 161
+    },
+    {
+      "score": 80,
+      "steps": 1350,
+      "death": "self",
+      "seed": 162
+    },
+    {
+      "score": 64,
+      "steps": 1092,
+      "death": "self",
+      "seed": 163
+    },
+    {
+      "score": 96,
+      "steps": 1869,
+      "death": "wall",
+      "seed": 164
+    },
+    {
+      "score": 80,
+      "steps": 1345,
+      "death": "self",
+      "seed": 165
+    },
+    {
+      "score": 66,
+      "steps": 1039,
+      "death": "self",
+      "seed": 166
+    },
+    {
+      "score": 88,
+      "steps": 1620,
+      "death": "wall",
+      "seed": 167
+    },
+    {
+      "score": 63,
+      "steps": 1073,
+      "death": "self",
+      "seed": 168
+    },
+    {
+      "score": 92,
+      "steps": 1455,
+      "death": "self",
+      "seed": 169
+    },
+    {
+      "score": 58,
+      "steps": 900,
+      "death": "self",
+      "seed": 170
+    },
+    {
+      "score": 91,
+      "steps": 1525,
+      "death": "self",
+      "seed": 171
+    },
+    {
+      "score": 89,
+      "steps": 1488,
+      "death": "self",
+      "seed": 172
+    },
+    {
+      "score": 79,
+      "steps": 1322,
+      "death": "wall",
+      "seed": 173
+    },
+    {
+      "score": 74,
+      "steps": 1277,
+      "death": "self",
+      "seed": 174
+    },
+    {
+      "score": 72,
+      "steps": 1161,
+      "death": "self",
+      "seed": 175
+    },
+    {
+      "score": 108,
+      "steps": 1911,
+      "death": "wall",
+      "seed": 176
+    },
+    {
+      "score": 81,
+      "steps": 1352,
+      "death": "self",
+      "seed": 177
+    },
+    {
+      "score": 108,
+      "steps": 1957,
+      "death": "self",
+      "seed": 178
+    },
+    {
+      "score": 29,
+      "steps": 344,
+      "death": "self",
+      "seed": 179
+    },
+    {
+      "score": 74,
+      "steps": 1131,
+      "death": "wall",
+      "seed": 180
+    },
+    {
+      "score": 109,
+      "steps": 1984,
+      "death": "wall",
+      "seed": 181
+    },
+    {
+      "score": 101,
+      "steps": 1750,
+      "death": "self",
+      "seed": 182
+    },
+    {
+      "score": 55,
+      "steps": 834,
+      "death": "wall",
+      "seed": 183
+    },
+    {
+      "score": 74,
+      "steps": 1137,
+      "death": "wall",
+      "seed": 184
+    },
+    {
+      "score": 41,
+      "steps": 587,
+      "death": "self",
+      "seed": 185
+    },
+    {
+      "score": 99,
+      "steps": 1786,
+      "death": "self",
+      "seed": 186
+    },
+    {
+      "score": 80,
+      "steps": 1241,
+      "death": "self",
+      "seed": 187
+    },
+    {
+      "score": 123,
+      "steps": 2170,
+      "death": "self",
+      "seed": 188
+    },
+    {
+      "score": 54,
+      "steps": 859,
+      "death": "self",
+      "seed": 189
+    },
+    {
+      "score": 69,
+      "steps": 1086,
+      "death": "self",
+      "seed": 190
+    },
+    {
+      "score": 92,
+      "steps": 1331,
+      "death": "self",
+      "seed": 191
+    },
+    {
+      "score": 98,
+      "steps": 1877,
+      "death": "self",
+      "seed": 192
+    },
+    {
+      "score": 64,
+      "steps": 1059,
+      "death": "self",
+      "seed": 193
+    },
+    {
+      "score": 91,
+      "steps": 1558,
+      "death": "self",
+      "seed": 194
+    },
+    {
+      "score": 64,
+      "steps": 1064,
+      "death": "self",
+      "seed": 195
+    },
+    {
+      "score": 58,
+      "steps": 904,
+      "death": "self",
+      "seed": 196
+    },
+    {
+      "score": 75,
+      "steps": 1245,
+      "death": "wall",
+      "seed": 197
+    },
+    {
+      "score": 91,
+      "steps": 1585,
+      "death": "self",
+      "seed": 198
+    },
+    {
+      "score": 83,
+      "steps": 1260,
+      "death": "self",
+      "seed": 199
+    },
+    {
+      "score": 88,
+      "steps": 1621,
+      "death": "wall",
+      "seed": 200
+    },
+    {
+      "score": 48,
+      "steps": 671,
+      "death": "self",
+      "seed": 201
+    },
+    {
+      "score": 88,
+      "steps": 1818,
+      "death": "self",
+      "seed": 202
+    },
+    {
+      "score": 59,
+      "steps": 888,
+      "death": "self",
+      "seed": 203
+    },
+    {
+      "score": 96,
+      "steps": 1544,
+      "death": "self",
+      "seed": 204
+    },
+    {
+      "score": 106,
+      "steps": 1886,
+      "death": "self",
+      "seed": 205
+    },
+    {
+      "score": 53,
+      "steps": 703,
+      "death": "self",
+      "seed": 206
+    },
+    {
+      "score": 131,
+      "steps": 2568,
+      "death": "wall",
+      "seed": 207
+    },
+    {
+      "score": 89,
+      "steps": 1708,
+      "death": "self",
+      "seed": 208
+    },
+    {
+      "score": 134,
+      "steps": 2887,
+      "death": "wall",
+      "seed": 209
+    },
+    {
+      "score": 122,
+      "steps": 2495,
+      "death": "self",
+      "seed": 210
+    },
+    {
+      "score": 84,
+      "steps": 1340,
+      "death": "wall",
+      "seed": 211
+    },
+    {
+      "score": 121,
+      "steps": 2309,
+      "death": "self",
+      "seed": 212
+    },
+    {
+      "score": 42,
+      "steps": 569,
+      "death": "self",
+      "seed": 213
+    },
+    {
+      "score": 88,
+      "steps": 1517,
+      "death": "self",
+      "seed": 214
+    },
+    {
+      "score": 85,
+      "steps": 1433,
+      "death": "self",
+      "seed": 215
+    },
+    {
+      "score": 49,
+      "steps": 811,
+      "death": "self",
+      "seed": 216
+    },
+    {
+      "score": 85,
+      "steps": 1289,
+      "death": "self",
+      "seed": 217
+    },
+    {
+      "score": 104,
+      "steps": 1819,
+      "death": "wall",
+      "seed": 218
+    },
+    {
+      "score": 40,
+      "steps": 599,
+      "death": "self",
+      "seed": 219
+    },
+    {
+      "score": 37,
+      "steps": 597,
+      "death": "self",
+      "seed": 220
+    },
+    {
+      "score": 41,
+      "steps": 644,
+      "death": "self",
+      "seed": 221
+    },
+    {
+      "score": 74,
+      "steps": 1300,
+      "death": "self",
+      "seed": 222
+    },
+    {
+      "score": 68,
+      "steps": 1061,
+      "death": "wall",
+      "seed": 223
+    },
+    {
+      "score": 64,
+      "steps": 933,
+      "death": "self",
+      "seed": 224
+    },
+    {
+      "score": 68,
+      "steps": 981,
+      "death": "self",
+      "seed": 225
+    },
+    {
+      "score": 50,
+      "steps": 668,
+      "death": "self",
+      "seed": 226
+    },
+    {
+      "score": 88,
+      "steps": 1538,
+      "death": "self",
+      "seed": 227
+    },
+    {
+      "score": 47,
+      "steps": 606,
+      "death": "self",
+      "seed": 228
+    },
+    {
+      "score": 129,
+      "steps": 2427,
+      "death": "self",
+      "seed": 229
+    },
+    {
+      "score": 72,
+      "steps": 1224,
+      "death": "wall",
+      "seed": 230
+    },
+    {
+      "score": 66,
+      "steps": 1111,
+      "death": "self",
+      "seed": 231
+    },
+    {
+      "score": 101,
+      "steps": 1811,
+      "death": "self",
+      "seed": 232
+    },
+    {
+      "score": 79,
+      "steps": 1330,
+      "death": "self",
+      "seed": 233
+    },
+    {
+      "score": 90,
+      "steps": 1388,
+      "death": "wall",
+      "seed": 234
+    },
+    {
+      "score": 70,
+      "steps": 970,
+      "death": "self",
+      "seed": 235
+    },
+    {
+      "score": 65,
+      "steps": 1009,
+      "death": "self",
+      "seed": 236
+    },
+    {
+      "score": 74,
+      "steps": 1309,
+      "death": "self",
+      "seed": 237
+    },
+    {
+      "score": 68,
+      "steps": 929,
+      "death": "self",
+      "seed": 238
+    },
+    {
+      "score": 49,
+      "steps": 727,
+      "death": "wall",
+      "seed": 239
+    },
+    {
+      "score": 62,
+      "steps": 987,
+      "death": "self",
+      "seed": 240
+    },
+    {
+      "score": 93,
+      "steps": 1539,
+      "death": "self",
+      "seed": 241
+    },
+    {
+      "score": 78,
+      "steps": 1267,
+      "death": "self",
+      "seed": 242
+    },
+    {
+      "score": 118,
+      "steps": 2429,
+      "death": "self",
+      "seed": 243
+    },
+    {
+      "score": 65,
+      "steps": 1022,
+      "death": "self",
+      "seed": 244
+    },
+    {
+      "score": 45,
+      "steps": 694,
+      "death": "self",
+      "seed": 245
+    },
+    {
+      "score": 86,
+      "steps": 1341,
+      "death": "self",
+      "seed": 246
+    },
+    {
+      "score": 73,
+      "steps": 1203,
+      "death": "self",
+      "seed": 247
+    },
+    {
+      "score": 82,
+      "steps": 1420,
+      "death": "self",
+      "seed": 248
+    },
+    {
+      "score": 50,
+      "steps": 718,
+      "death": "wall",
+      "seed": 249
+    },
+    {
+      "score": 105,
+      "steps": 2171,
+      "death": "self",
+      "seed": 250
+    },
+    {
+      "score": 50,
+      "steps": 832,
+      "death": "self",
+      "seed": 251
+    },
+    {
+      "score": 92,
+      "steps": 1743,
+      "death": "self",
+      "seed": 252
+    },
+    {
+      "score": 42,
+      "steps": 590,
+      "death": "self",
+      "seed": 253
+    },
+    {
+      "score": 112,
+      "steps": 1937,
+      "death": "self",
+      "seed": 254
+    },
+    {
+      "score": 94,
+      "steps": 1705,
+      "death": "self",
+      "seed": 255
+    },
+    {
+      "score": 84,
+      "steps": 1478,
+      "death": "self",
+      "seed": 256
+    },
+    {
+      "score": 59,
+      "steps": 818,
+      "death": "wall",
+      "seed": 257
+    },
+    {
+      "score": 105,
+      "steps": 1860,
+      "death": "self",
+      "seed": 258
+    },
+    {
+      "score": 106,
+      "steps": 1786,
+      "death": "self",
+      "seed": 259
+    },
+    {
+      "score": 72,
+      "steps": 1143,
+      "death": "wall",
+      "seed": 260
+    },
+    {
+      "score": 100,
+      "steps": 1880,
+      "death": "self",
+      "seed": 261
+    },
+    {
+      "score": 59,
+      "steps": 928,
+      "death": "self",
+      "seed": 262
+    },
+    {
+      "score": 39,
+      "steps": 510,
+      "death": "self",
+      "seed": 263
+    },
+    {
+      "score": 101,
+      "steps": 1699,
+      "death": "self",
+      "seed": 264
+    },
+    {
+      "score": 92,
+      "steps": 1531,
+      "death": "self",
+      "seed": 265
+    },
+    {
+      "score": 79,
+      "steps": 1304,
+      "death": "wall",
+      "seed": 266
+    },
+    {
+      "score": 49,
+      "steps": 768,
+      "death": "self",
+      "seed": 267
+    },
+    {
+      "score": 86,
+      "steps": 1365,
+      "death": "wall",
+      "seed": 268
+    },
+    {
+      "score": 95,
+      "steps": 1760,
+      "death": "wall",
+      "seed": 269
+    },
+    {
+      "score": 76,
+      "steps": 1208,
+      "death": "wall",
+      "seed": 270
+    },
+    {
+      "score": 83,
+      "steps": 1341,
+      "death": "self",
+      "seed": 271
+    },
+    {
+      "score": 77,
+      "steps": 1161,
+      "death": "self",
+      "seed": 272
+    },
+    {
+      "score": 129,
+      "steps": 2611,
+      "death": "self",
+      "seed": 273
+    },
+    {
+      "score": 81,
+      "steps": 1250,
+      "death": "self",
+      "seed": 274
+    },
+    {
+      "score": 95,
+      "steps": 1507,
+      "death": "self",
+      "seed": 275
+    },
+    {
+      "score": 90,
+      "steps": 1565,
+      "death": "self",
+      "seed": 276
+    },
+    {
+      "score": 72,
+      "steps": 1051,
+      "death": "self",
+      "seed": 277
+    },
+    {
+      "score": 87,
+      "steps": 1560,
+      "death": "self",
+      "seed": 278
+    },
+    {
+      "score": 72,
+      "steps": 1175,
+      "death": "self",
+      "seed": 279
+    },
+    {
+      "score": 83,
+      "steps": 1494,
+      "death": "wall",
+      "seed": 280
+    },
+    {
+      "score": 69,
+      "steps": 1062,
+      "death": "self",
+      "seed": 281
+    },
+    {
+      "score": 44,
+      "steps": 611,
+      "death": "self",
+      "seed": 282
+    },
+    {
+      "score": 50,
+      "steps": 696,
+      "death": "wall",
+      "seed": 283
+    },
+    {
+      "score": 98,
+      "steps": 1779,
+      "death": "wall",
+      "seed": 284
+    },
+    {
+      "score": 71,
+      "steps": 998,
+      "death": "self",
+      "seed": 285
+    },
+    {
+      "score": 83,
+      "steps": 1391,
+      "death": "wall",
+      "seed": 286
+    },
+    {
+      "score": 95,
+      "steps": 1486,
+      "death": "self",
+      "seed": 287
+    },
+    {
+      "score": 78,
+      "steps": 1317,
+      "death": "wall",
+      "seed": 288
+    },
+    {
+      "score": 80,
+      "steps": 1377,
+      "death": "self",
+      "seed": 289
+    },
+    {
+      "score": 94,
+      "steps": 1756,
+      "death": "self",
+      "seed": 290
+    },
+    {
+      "score": 77,
+      "steps": 1244,
+      "death": "self",
+      "seed": 291
+    },
+    {
+      "score": 66,
+      "steps": 1041,
+      "death": "self",
+      "seed": 292
+    },
+    {
+      "score": 59,
+      "steps": 922,
+      "death": "self",
+      "seed": 293
+    },
+    {
+      "score": 107,
+      "steps": 1866,
+      "death": "self",
+      "seed": 294
+    },
+    {
+      "score": 82,
+      "steps": 1427,
+      "death": "wall",
+      "seed": 295
+    },
+    {
+      "score": 74,
+      "steps": 1152,
+      "death": "self",
+      "seed": 296
+    },
+    {
+      "score": 99,
+      "steps": 1567,
+      "death": "self",
+      "seed": 297
+    },
+    {
+      "score": 74,
+      "steps": 1188,
+      "death": "self",
+      "seed": 298
+    },
+    {
+      "score": 69,
+      "steps": 1241,
+      "death": "self",
+      "seed": 299
+    },
+    {
+      "score": 74,
+      "steps": 1236,
+      "death": "self",
+      "seed": 300
+    },
+    {
+      "score": 116,
+      "steps": 2115,
+      "death": "wall",
+      "seed": 301
+    },
+    {
+      "score": 48,
+      "steps": 687,
+      "death": "self",
+      "seed": 302
+    },
+    {
+      "score": 107,
+      "steps": 2207,
+      "death": "wall",
+      "seed": 303
+    },
+    {
+      "score": 88,
+      "steps": 1314,
+      "death": "self",
+      "seed": 304
+    },
+    {
+      "score": 34,
+      "steps": 496,
+      "death": "self",
+      "seed": 305
+    },
+    {
+      "score": 112,
+      "steps": 2124,
+      "death": "self",
+      "seed": 306
+    },
+    {
+      "score": 80,
+      "steps": 1314,
+      "death": "self",
+      "seed": 307
+    },
+    {
+      "score": 28,
+      "steps": 338,
+      "death": "self",
+      "seed": 308
+    },
+    {
+      "score": 73,
+      "steps": 1140,
+      "death": "self",
+      "seed": 309
+    },
+    {
+      "score": 80,
+      "steps": 1306,
+      "death": "wall",
+      "seed": 310
+    },
+    {
+      "score": 52,
+      "steps": 755,
+      "death": "self",
+      "seed": 311
+    },
+    {
+      "score": 75,
+      "steps": 1359,
+      "death": "self",
+      "seed": 312
+    },
+    {
+      "score": 125,
+      "steps": 2435,
+      "death": "self",
+      "seed": 313
+    },
+    {
+      "score": 81,
+      "steps": 1205,
+      "death": "self",
+      "seed": 314
+    },
+    {
+      "score": 90,
+      "steps": 1677,
+      "death": "self",
+      "seed": 315
+    },
+    {
+      "score": 47,
+      "steps": 632,
+      "death": "wall",
+      "seed": 316
+    },
+    {
+      "score": 102,
+      "steps": 2015,
+      "death": "self",
+      "seed": 317
+    },
+    {
+      "score": 107,
+      "steps": 2038,
+      "death": "wall",
+      "seed": 318
+    },
+    {
+      "score": 63,
+      "steps": 970,
+      "death": "self",
+      "seed": 319
+    },
+    {
+      "score": 61,
+      "steps": 900,
+      "death": "self",
+      "seed": 320
+    },
+    {
+      "score": 88,
+      "steps": 1544,
+      "death": "wall",
+      "seed": 321
+    },
+    {
+      "score": 43,
+      "steps": 616,
+      "death": "self",
+      "seed": 322
+    },
+    {
+      "score": 98,
+      "steps": 1685,
+      "death": "self",
+      "seed": 323
+    },
+    {
+      "score": 115,
+      "steps": 2045,
+      "death": "wall",
+      "seed": 324
+    },
+    {
+      "score": 44,
+      "steps": 609,
+      "death": "self",
+      "seed": 325
+    },
+    {
+      "score": 70,
+      "steps": 1198,
+      "death": "self",
+      "seed": 326
+    },
+    {
+      "score": 82,
+      "steps": 1256,
+      "death": "wall",
+      "seed": 327
+    },
+    {
+      "score": 108,
+      "steps": 1863,
+      "death": "self",
+      "seed": 328
+    },
+    {
+      "score": 103,
+      "steps": 1806,
+      "death": "wall",
+      "seed": 329
+    },
+    {
+      "score": 109,
+      "steps": 2096,
+      "death": "self",
+      "seed": 330
+    },
+    {
+      "score": 113,
+      "steps": 2026,
+      "death": "self",
+      "seed": 331
+    },
+    {
+      "score": 58,
+      "steps": 849,
+      "death": "self",
+      "seed": 332
+    },
+    {
+      "score": 46,
+      "steps": 708,
+      "death": "wall",
+      "seed": 333
+    },
+    {
+      "score": 87,
+      "steps": 1426,
+      "death": "self",
+      "seed": 334
+    },
+    {
+      "score": 81,
+      "steps": 1214,
+      "death": "self",
+      "seed": 335
+    },
+    {
+      "score": 76,
+      "steps": 1275,
+      "death": "self",
+      "seed": 336
+    },
+    {
+      "score": 72,
+      "steps": 1192,
+      "death": "self",
+      "seed": 337
+    },
+    {
+      "score": 87,
+      "steps": 1612,
+      "death": "self",
+      "seed": 338
+    },
+    {
+      "score": 71,
+      "steps": 1148,
+      "death": "self",
+      "seed": 339
+    },
+    {
+      "score": 52,
+      "steps": 754,
+      "death": "self",
+      "seed": 340
+    },
+    {
+      "score": 54,
+      "steps": 771,
+      "death": "self",
+      "seed": 341
+    },
+    {
+      "score": 81,
+      "steps": 1433,
+      "death": "self",
+      "seed": 342
+    },
+    {
+      "score": 74,
+      "steps": 1173,
+      "death": "self",
+      "seed": 343
+    },
+    {
+      "score": 49,
+      "steps": 653,
+      "death": "self",
+      "seed": 344
+    },
+    {
+      "score": 98,
+      "steps": 1610,
+      "death": "self",
+      "seed": 345
+    },
+    {
+      "score": 66,
+      "steps": 1182,
+      "death": "self",
+      "seed": 346
+    },
+    {
+      "score": 86,
+      "steps": 1532,
+      "death": "self",
+      "seed": 347
+    },
+    {
+      "score": 79,
+      "steps": 1329,
+      "death": "wall",
+      "seed": 348
+    },
+    {
+      "score": 96,
+      "steps": 1778,
+      "death": "self",
+      "seed": 349
+    },
+    {
+      "score": 95,
+      "steps": 1506,
+      "death": "self",
+      "seed": 350
+    },
+    {
+      "score": 68,
+      "steps": 1141,
+      "death": "self",
+      "seed": 351
+    },
+    {
+      "score": 43,
+      "steps": 644,
+      "death": "self",
+      "seed": 352
+    },
+    {
+      "score": 88,
+      "steps": 1559,
+      "death": "self",
+      "seed": 353
+    },
+    {
+      "score": 91,
+      "steps": 1649,
+      "death": "wall",
+      "seed": 354
+    },
+    {
+      "score": 72,
+      "steps": 1078,
+      "death": "self",
+      "seed": 355
+    },
+    {
+      "score": 124,
+      "steps": 2493,
+      "death": "wall",
+      "seed": 356
+    },
+    {
+      "score": 50,
+      "steps": 786,
+      "death": "self",
+      "seed": 357
+    },
+    {
+      "score": 49,
+      "steps": 615,
+      "death": "wall",
+      "seed": 358
+    },
+    {
+      "score": 118,
+      "steps": 2184,
+      "death": "self",
+      "seed": 359
+    },
+    {
+      "score": 80,
+      "steps": 1544,
+      "death": "self",
+      "seed": 360
+    },
+    {
+      "score": 80,
+      "steps": 1349,
+      "death": "wall",
+      "seed": 361
+    },
+    {
+      "score": 55,
+      "steps": 800,
+      "death": "self",
+      "seed": 362
+    },
+    {
+      "score": 62,
+      "steps": 954,
+      "death": "self",
+      "seed": 363
+    },
+    {
+      "score": 42,
+      "steps": 548,
+      "death": "self",
+      "seed": 364
+    },
+    {
+      "score": 118,
+      "steps": 2072,
+      "death": "self",
+      "seed": 365
+    },
+    {
+      "score": 90,
+      "steps": 1633,
+      "death": "self",
+      "seed": 366
+    },
+    {
+      "score": 82,
+      "steps": 1264,
+      "death": "self",
+      "seed": 367
+    },
+    {
+      "score": 46,
+      "steps": 565,
+      "death": "self",
+      "seed": 368
+    },
+    {
+      "score": 64,
+      "steps": 1015,
+      "death": "self",
+      "seed": 369
+    },
+    {
+      "score": 50,
+      "steps": 809,
+      "death": "self",
+      "seed": 370
+    },
+    {
+      "score": 104,
+      "steps": 1784,
+      "death": "self",
+      "seed": 371
+    },
+    {
+      "score": 99,
+      "steps": 1784,
+      "death": "self",
+      "seed": 372
+    },
+    {
+      "score": 89,
+      "steps": 1653,
+      "death": "self",
+      "seed": 373
+    },
+    {
+      "score": 97,
+      "steps": 1701,
+      "death": "self",
+      "seed": 374
+    },
+    {
+      "score": 117,
+      "steps": 1943,
+      "death": "self",
+      "seed": 375
+    },
+    {
+      "score": 76,
+      "steps": 1284,
+      "death": "wall",
+      "seed": 376
+    },
+    {
+      "score": 49,
+      "steps": 740,
+      "death": "wall",
+      "seed": 377
+    },
+    {
+      "score": 77,
+      "steps": 1212,
+      "death": "self",
+      "seed": 378
+    },
+    {
+      "score": 114,
+      "steps": 2152,
+      "death": "wall",
+      "seed": 379
+    },
+    {
+      "score": 79,
+      "steps": 1229,
+      "death": "self",
+      "seed": 380
+    },
+    {
+      "score": 54,
+      "steps": 783,
+      "death": "self",
+      "seed": 381
+    },
+    {
+      "score": 75,
+      "steps": 1309,
+      "death": "self",
+      "seed": 382
+    },
+    {
+      "score": 45,
+      "steps": 649,
+      "death": "self",
+      "seed": 383
+    },
+    {
+      "score": 70,
+      "steps": 1084,
+      "death": "self",
+      "seed": 384
+    },
+    {
+      "score": 35,
+      "steps": 533,
+      "death": "wall",
+      "seed": 385
+    },
+    {
+      "score": 93,
+      "steps": 1731,
+      "death": "self",
+      "seed": 386
+    },
+    {
+      "score": 76,
+      "steps": 1119,
+      "death": "self",
+      "seed": 387
+    },
+    {
+      "score": 101,
+      "steps": 1783,
+      "death": "self",
+      "seed": 388
+    },
+    {
+      "score": 69,
+      "steps": 1165,
+      "death": "wall",
+      "seed": 389
+    },
+    {
+      "score": 77,
+      "steps": 1160,
+      "death": "self",
+      "seed": 390
+    },
+    {
+      "score": 91,
+      "steps": 1541,
+      "death": "self",
+      "seed": 391
+    },
+    {
+      "score": 78,
+      "steps": 1343,
+      "death": "self",
+      "seed": 392
+    },
+    {
+      "score": 138,
+      "steps": 2869,
+      "death": "self",
+      "seed": 393
+    },
+    {
+      "score": 109,
+      "steps": 1813,
+      "death": "self",
+      "seed": 394
+    },
+    {
+      "score": 88,
+      "steps": 1569,
+      "death": "self",
+      "seed": 395
+    },
+    {
+      "score": 107,
+      "steps": 2010,
+      "death": "wall",
+      "seed": 396
+    },
+    {
+      "score": 68,
+      "steps": 956,
+      "death": "self",
+      "seed": 397
+    },
+    {
+      "score": 98,
+      "steps": 1772,
+      "death": "wall",
+      "seed": 398
+    },
+    {
+      "score": 66,
+      "steps": 1219,
+      "death": "self",
+      "seed": 399
+    },
+    {
+      "score": 67,
+      "steps": 1065,
+      "death": "self",
+      "seed": 400
+    },
+    {
+      "score": 98,
+      "steps": 1818,
+      "death": "self",
+      "seed": 401
+    },
+    {
+      "score": 87,
+      "steps": 1570,
+      "death": "self",
+      "seed": 402
+    },
+    {
+      "score": 53,
+      "steps": 705,
+      "death": "wall",
+      "seed": 403
+    },
+    {
+      "score": 84,
+      "steps": 1492,
+      "death": "self",
+      "seed": 404
+    },
+    {
+      "score": 27,
+      "steps": 384,
+      "death": "self",
+      "seed": 405
+    },
+    {
+      "score": 114,
+      "steps": 1880,
+      "death": "self",
+      "seed": 406
+    },
+    {
+      "score": 91,
+      "steps": 1335,
+      "death": "wall",
+      "seed": 407
+    },
+    {
+      "score": 43,
+      "steps": 603,
+      "death": "self",
+      "seed": 408
+    },
+    {
+      "score": 62,
+      "steps": 927,
+      "death": "self",
+      "seed": 409
+    },
+    {
+      "score": 83,
+      "steps": 1272,
+      "death": "self",
+      "seed": 410
+    },
+    {
+      "score": 81,
+      "steps": 1296,
+      "death": "self",
+      "seed": 411
+    },
+    {
+      "score": 81,
+      "steps": 1621,
+      "death": "wall",
+      "seed": 412
+    },
+    {
+      "score": 81,
+      "steps": 1403,
+      "death": "self",
+      "seed": 413
+    },
+    {
+      "score": 65,
+      "steps": 965,
+      "death": "self",
+      "seed": 414
+    },
+    {
+      "score": 65,
+      "steps": 937,
+      "death": "self",
+      "seed": 415
+    },
+    {
+      "score": 89,
+      "steps": 1615,
+      "death": "self",
+      "seed": 416
+    },
+    {
+      "score": 25,
+      "steps": 381,
+      "death": "self",
+      "seed": 417
+    },
+    {
+      "score": 57,
+      "steps": 877,
+      "death": "self",
+      "seed": 418
+    },
+    {
+      "score": 39,
+      "steps": 527,
+      "death": "self",
+      "seed": 419
+    },
+    {
+      "score": 62,
+      "steps": 1071,
+      "death": "self",
+      "seed": 420
+    },
+    {
+      "score": 97,
+      "steps": 1766,
+      "death": "self",
+      "seed": 421
+    },
+    {
+      "score": 89,
+      "steps": 1651,
+      "death": "wall",
+      "seed": 422
+    },
+    {
+      "score": 85,
+      "steps": 1332,
+      "death": "self",
+      "seed": 423
+    },
+    {
+      "score": 96,
+      "steps": 1595,
+      "death": "self",
+      "seed": 424
+    },
+    {
+      "score": 75,
+      "steps": 1209,
+      "death": "self",
+      "seed": 425
+    },
+    {
+      "score": 95,
+      "steps": 1644,
+      "death": "wall",
+      "seed": 426
+    },
+    {
+      "score": 113,
+      "steps": 2128,
+      "death": "self",
+      "seed": 427
+    },
+    {
+      "score": 88,
+      "steps": 1490,
+      "death": "self",
+      "seed": 428
+    },
+    {
+      "score": 89,
+      "steps": 1482,
+      "death": "self",
+      "seed": 429
+    },
+    {
+      "score": 53,
+      "steps": 830,
+      "death": "wall",
+      "seed": 430
+    },
+    {
+      "score": 60,
+      "steps": 977,
+      "death": "wall",
+      "seed": 431
+    },
+    {
+      "score": 66,
+      "steps": 962,
+      "death": "self",
+      "seed": 432
+    },
+    {
+      "score": 127,
+      "steps": 2521,
+      "death": "self",
+      "seed": 433
+    },
+    {
+      "score": 40,
+      "steps": 566,
+      "death": "wall",
+      "seed": 434
+    },
+    {
+      "score": 76,
+      "steps": 1193,
+      "death": "self",
+      "seed": 435
+    },
+    {
+      "score": 53,
+      "steps": 846,
+      "death": "self",
+      "seed": 436
+    },
+    {
+      "score": 97,
+      "steps": 1569,
+      "death": "self",
+      "seed": 437
+    },
+    {
+      "score": 87,
+      "steps": 1432,
+      "death": "self",
+      "seed": 438
+    },
+    {
+      "score": 54,
+      "steps": 848,
+      "death": "self",
+      "seed": 439
+    },
+    {
+      "score": 56,
+      "steps": 733,
+      "death": "self",
+      "seed": 440
+    },
+    {
+      "score": 78,
+      "steps": 1463,
+      "death": "self",
+      "seed": 441
+    },
+    {
+      "score": 113,
+      "steps": 2028,
+      "death": "self",
+      "seed": 442
+    },
+    {
+      "score": 108,
+      "steps": 2202,
+      "death": "self",
+      "seed": 443
+    },
+    {
+      "score": 71,
+      "steps": 1056,
+      "death": "self",
+      "seed": 444
+    },
+    {
+      "score": 94,
+      "steps": 1907,
+      "death": "self",
+      "seed": 445
+    },
+    {
+      "score": 115,
+      "steps": 2236,
+      "death": "wall",
+      "seed": 446
+    },
+    {
+      "score": 48,
+      "steps": 814,
+      "death": "self",
+      "seed": 447
+    },
+    {
+      "score": 70,
+      "steps": 1021,
+      "death": "self",
+      "seed": 448
+    },
+    {
+      "score": 59,
+      "steps": 1010,
+      "death": "self",
+      "seed": 449
+    },
+    {
+      "score": 102,
+      "steps": 1909,
+      "death": "wall",
+      "seed": 450
+    },
+    {
+      "score": 90,
+      "steps": 1434,
+      "death": "self",
+      "seed": 451
+    },
+    {
+      "score": 120,
+      "steps": 2142,
+      "death": "self",
+      "seed": 452
+    },
+    {
+      "score": 96,
+      "steps": 1689,
+      "death": "self",
+      "seed": 453
+    },
+    {
+      "score": 84,
+      "steps": 1542,
+      "death": "self",
+      "seed": 454
+    },
+    {
+      "score": 80,
+      "steps": 1373,
+      "death": "wall",
+      "seed": 455
+    },
+    {
+      "score": 71,
+      "steps": 1181,
+      "death": "self",
+      "seed": 456
+    },
+    {
+      "score": 96,
+      "steps": 1717,
+      "death": "self",
+      "seed": 457
+    },
+    {
+      "score": 83,
+      "steps": 1375,
+      "death": "self",
+      "seed": 458
+    },
+    {
+      "score": 84,
+      "steps": 1488,
+      "death": "wall",
+      "seed": 459
+    },
+    {
+      "score": 111,
+      "steps": 1962,
+      "death": "wall",
+      "seed": 460
+    },
+    {
+      "score": 32,
+      "steps": 381,
+      "death": "self",
+      "seed": 461
+    },
+    {
+      "score": 77,
+      "steps": 1255,
+      "death": "self",
+      "seed": 462
+    },
+    {
+      "score": 65,
+      "steps": 1128,
+      "death": "self",
+      "seed": 463
+    },
+    {
+      "score": 90,
+      "steps": 1431,
+      "death": "self",
+      "seed": 464
+    },
+    {
+      "score": 68,
+      "steps": 1135,
+      "death": "wall",
+      "seed": 465
+    },
+    {
+      "score": 88,
+      "steps": 1454,
+      "death": "self",
+      "seed": 466
+    },
+    {
+      "score": 69,
+      "steps": 915,
+      "death": "self",
+      "seed": 467
+    },
+    {
+      "score": 89,
+      "steps": 1609,
+      "death": "wall",
+      "seed": 468
+    },
+    {
+      "score": 85,
+      "steps": 1377,
+      "death": "self",
+      "seed": 469
+    },
+    {
+      "score": 60,
+      "steps": 990,
+      "death": "self",
+      "seed": 470
+    },
+    {
+      "score": 116,
+      "steps": 2165,
+      "death": "self",
+      "seed": 471
+    },
+    {
+      "score": 53,
+      "steps": 783,
+      "death": "self",
+      "seed": 472
+    },
+    {
+      "score": 52,
+      "steps": 824,
+      "death": "self",
+      "seed": 473
+    },
+    {
+      "score": 82,
+      "steps": 1338,
+      "death": "self",
+      "seed": 474
+    },
+    {
+      "score": 77,
+      "steps": 1186,
+      "death": "self",
+      "seed": 475
+    },
+    {
+      "score": 61,
+      "steps": 967,
+      "death": "self",
+      "seed": 476
+    },
+    {
+      "score": 88,
+      "steps": 1288,
+      "death": "self",
+      "seed": 477
+    },
+    {
+      "score": 54,
+      "steps": 799,
+      "death": "self",
+      "seed": 478
+    },
+    {
+      "score": 75,
+      "steps": 1310,
+      "death": "wall",
+      "seed": 479
+    },
+    {
+      "score": 47,
+      "steps": 678,
+      "death": "self",
+      "seed": 480
+    },
+    {
+      "score": 104,
+      "steps": 2007,
+      "death": "self",
+      "seed": 481
+    },
+    {
+      "score": 90,
+      "steps": 1395,
+      "death": "self",
+      "seed": 482
+    },
+    {
+      "score": 115,
+      "steps": 2017,
+      "death": "self",
+      "seed": 483
+    },
+    {
+      "score": 73,
+      "steps": 1164,
+      "death": "self",
+      "seed": 484
+    },
+    {
+      "score": 76,
+      "steps": 1122,
+      "death": "self",
+      "seed": 485
+    },
+    {
+      "score": 116,
+      "steps": 2145,
+      "death": "wall",
+      "seed": 486
+    },
+    {
+      "score": 61,
+      "steps": 890,
+      "death": "self",
+      "seed": 487
+    },
+    {
+      "score": 77,
+      "steps": 1186,
+      "death": "self",
+      "seed": 488
+    },
+    {
+      "score": 91,
+      "steps": 1632,
+      "death": "self",
+      "seed": 489
+    },
+    {
+      "score": 45,
+      "steps": 609,
+      "death": "self",
+      "seed": 490
+    },
+    {
+      "score": 79,
+      "steps": 1139,
+      "death": "self",
+      "seed": 491
+    },
+    {
+      "score": 78,
+      "steps": 1216,
+      "death": "self",
+      "seed": 492
+    },
+    {
+      "score": 95,
+      "steps": 1725,
+      "death": "self",
+      "seed": 493
+    },
+    {
+      "score": 56,
+      "steps": 836,
+      "death": "wall",
+      "seed": 494
+    },
+    {
+      "score": 70,
+      "steps": 1188,
+      "death": "self",
+      "seed": 495
+    },
+    {
+      "score": 92,
+      "steps": 1570,
+      "death": "self",
+      "seed": 496
+    },
+    {
+      "score": 52,
+      "steps": 804,
+      "death": "self",
+      "seed": 497
+    },
+    {
+      "score": 102,
+      "steps": 1734,
+      "death": "self",
+      "seed": 498
+    },
+    {
+      "score": 45,
+      "steps": 617,
+      "death": "self",
+      "seed": 499
+    },
+    {
+      "score": 52,
+      "steps": 767,
+      "death": "wall",
+      "seed": 500
+    },
+    {
+      "score": 70,
+      "steps": 1188,
+      "death": "self",
+      "seed": 501
+    },
+    {
+      "score": 110,
+      "steps": 2059,
+      "death": "self",
+      "seed": 502
+    },
+    {
+      "score": 103,
+      "steps": 1699,
+      "death": "self",
+      "seed": 503
+    },
+    {
+      "score": 17,
+      "steps": 213,
+      "death": "self",
+      "seed": 504
+    },
+    {
+      "score": 75,
+      "steps": 1181,
+      "death": "self",
+      "seed": 505
+    },
+    {
+      "score": 119,
+      "steps": 2609,
+      "death": "self",
+      "seed": 506
+    },
+    {
+      "score": 58,
+      "steps": 975,
+      "death": "self",
+      "seed": 507
+    },
+    {
+      "score": 76,
+      "steps": 1351,
+      "death": "wall",
+      "seed": 508
+    },
+    {
+      "score": 84,
+      "steps": 1448,
+      "death": "self",
+      "seed": 509
+    },
+    {
+      "score": 27,
+      "steps": 372,
+      "death": "self",
+      "seed": 510
+    },
+    {
+      "score": 60,
+      "steps": 939,
+      "death": "wall",
+      "seed": 511
+    },
+    {
+      "score": 76,
+      "steps": 1304,
+      "death": "wall",
+      "seed": 512
+    },
+    {
+      "score": 95,
+      "steps": 1672,
+      "death": "self",
+      "seed": 513
+    },
+    {
+      "score": 97,
+      "steps": 1782,
+      "death": "self",
+      "seed": 514
+    },
+    {
+      "score": 64,
+      "steps": 978,
+      "death": "self",
+      "seed": 515
+    },
+    {
+      "score": 50,
+      "steps": 722,
+      "death": "self",
+      "seed": 516
+    },
+    {
+      "score": 68,
+      "steps": 1104,
+      "death": "self",
+      "seed": 517
+    },
+    {
+      "score": 108,
+      "steps": 1924,
+      "death": "self",
+      "seed": 518
+    },
+    {
+      "score": 94,
+      "steps": 1720,
+      "death": "wall",
+      "seed": 519
+    },
+    {
+      "score": 70,
+      "steps": 1030,
+      "death": "self",
+      "seed": 520
+    },
+    {
+      "score": 117,
+      "steps": 2182,
+      "death": "wall",
+      "seed": 521
+    },
+    {
+      "score": 79,
+      "steps": 1253,
+      "death": "self",
+      "seed": 522
+    },
+    {
+      "score": 21,
+      "steps": 237,
+      "death": "self",
+      "seed": 523
+    },
+    {
+      "score": 57,
+      "steps": 924,
+      "death": "self",
+      "seed": 524
+    },
+    {
+      "score": 87,
+      "steps": 1599,
+      "death": "wall",
+      "seed": 525
+    },
+    {
+      "score": 50,
+      "steps": 766,
+      "death": "self",
+      "seed": 526
+    },
+    {
+      "score": 126,
+      "steps": 2178,
+      "death": "self",
+      "seed": 527
+    },
+    {
+      "score": 77,
+      "steps": 1126,
+      "death": "self",
+      "seed": 528
+    },
+    {
+      "score": 118,
+      "steps": 2139,
+      "death": "self",
+      "seed": 529
+    },
+    {
+      "score": 97,
+      "steps": 1584,
+      "death": "self",
+      "seed": 530
+    },
+    {
+      "score": 95,
+      "steps": 1645,
+      "death": "self",
+      "seed": 531
+    },
+    {
+      "score": 35,
+      "steps": 509,
+      "death": "wall",
+      "seed": 532
+    },
+    {
+      "score": 78,
+      "steps": 1317,
+      "death": "wall",
+      "seed": 533
+    },
+    {
+      "score": 95,
+      "steps": 1532,
+      "death": "self",
+      "seed": 534
+    },
+    {
+      "score": 77,
+      "steps": 1365,
+      "death": "self",
+      "seed": 535
+    },
+    {
+      "score": 56,
+      "steps": 854,
+      "death": "self",
+      "seed": 536
+    },
+    {
+      "score": 66,
+      "steps": 1107,
+      "death": "self",
+      "seed": 537
+    },
+    {
+      "score": 54,
+      "steps": 772,
+      "death": "self",
+      "seed": 538
+    },
+    {
+      "score": 64,
+      "steps": 913,
+      "death": "self",
+      "seed": 539
+    },
+    {
+      "score": 74,
+      "steps": 1043,
+      "death": "self",
+      "seed": 540
+    },
+    {
+      "score": 91,
+      "steps": 1501,
+      "death": "self",
+      "seed": 541
+    }
+  ]
+}

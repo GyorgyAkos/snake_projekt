@@ -232,6 +232,48 @@ Mindhárom ugyanazt a **Snake környezetet** (állapot, akció, jutalom) haszná
 
 ---
 
+## 9.1 Benchmark eredmények – heurisztikák vs. tanuló stratégiák
+
+A `benchmarks/run_strategy_benchmark.py` script segítségével minden fontos stratégia azonos körülmények között lett mérve (20×20 pálya, max 5000 lépés, 400 lépés starvation limit, fix seed-sorozat). Az alábbi számok átlagosan **500 futásból** (heurisztikák) illetve **200 futásból** (tanuló stratégiák) származnak.
+
+### 9.1.1 Heurisztikus stratégiák (500 futás/stratégia, 20×20)
+
+| Stratégia       | Átlag score | Medián score | Átlag lépésszám | Első étel elérése (%) |
+|-----------------|------------:|-------------:|----------------:|-----------------------:|
+| Greedy          | 0.20        | 0            | 404.6           | 15.0                   |
+| MaxSafety       | 0.20        | 0            | 404.6           | 15.0                   |
+| Hamilton        | 57.01       | 57           | 851.1           | 100.0                  |
+| A*              | 77.20       | 77           | 1297.5          | 100.0                  |
+| BFS             | 74.40       | 76           | 1245.7          | 100.0                  |
+| FollowTail      | 77.20       | 77           | 1297.5          | 100.0                  |
+| LookAhead       | 92.75       | 92           | 2460.7          | 100.0                  |
+| LookAhead_3     | 10.93       | 10           | 180.7           | 100.0                  |
+| LookAhead_5     | 0.30        | 0            | 403.7           | 15.2                   |
+| Minimax (d=2)   | 4.41        | 3            | 446.6           | 80.6                   |
+
+Rövid értelmezés:
+
+- **Greedy / MaxSafety / LookAhead_5**: sokszor csak „kóvályognak”, kevés pont (0–0.3), alacsony first_food%.
+- **Hamilton, A*, BFS, FollowTail**: stabilan jó játék, 57–77 közötti átlag score, 100% first_food.
+- **LookAhead**: kiemelkedő heurisztika (~93 pont), de nagy lépésszám, erősen számításigényes stratégia.
+- **Minimax (d=2)**: közepes teljesítmény (~4.4 pont), de jó first_food arány (~81%).
+
+### 9.1.2 Tanuló stratégiák (200 futás/stratégia, 20×20)
+
+| Stratégia        | Átlag score | Medián score | Átlag lépésszám | Első étel elérése (%) |
+|------------------|------------:|-------------:|----------------:|-----------------------:|
+| DQN              | 0.17        | 0            | 403.4           | 12.5                   |
+| PPO              | 2.08        | 2            | 384.7           | 66.0                   |
+| NEAT (NEuroevol) | 7.38        | 5            | 1027.2          | 90.5                   |
+
+Megjegyzés: a fenti DQN/PPO/NEAT számok a jelenlegi, kísérleti konfigurációkra vonatkoznak (nem maximálisan kifinomult hyperparaméter-keresés eredményei). A **relatív sorrend** azonban jól látszik:
+
+- A tanuló stratégiák **nem érték el** a legjobb heurisztikák (pl. LookAhead, A*, Hamilton) szintjét.
+- A **NEAT** valamivel jobb (~7.4 pont), mint a PPO (~2.1), és lényegesen jobb, mint a mostani DQN konfiguráció (~0.17), de még mindig **messze elmarad** a heurisztikák csúcsától.
+- A benchmark eredmények jól illusztrálják, hogy a Snake esetén a kézzel tervezett heurisztikák (különösen a LookAhead / Hamilton alapúak) jelenleg **lényegesen jobb, stabilabb teljesítményt adnak**, mint a viszonylag rövid ideig és korlátozottan hangolt RL / NEAT modellek.
+
+---
+
 ## 10. Fájlstruktúra és lépéssorrend (gyors referencia)
 
 A tanítások és az inference a projektben így illeszkednek be (részletek a `rl_es_neuroevolution_tanitas_terv.md`-ben):
