@@ -1,0 +1,236 @@
+@page {
+    size: A4;
+    margin: 25mm 23.5mm 25mm 20mm;
+}
+
+body {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 12pt;
+    /* line-height: 1.15; */
+    /* line-height: 1.2; */
+    line-height: 1.25;
+    /* PDF olvashatosag: enyhe tracking es kerning */
+    /* letter-spacing: 0.01em; */
+    letter-spacing: 0.015em;
+    font-kerning: normal;
+    text-rendering: optimizeLegibility;
+    color: black;
+}
+
+/* ========== Előlapok (1–5. oldal) – nem fejezetcímek, saját méretezés ========== */
+.front-matter {
+    text-align: center;
+}
+
+.front-matter p {
+    text-align: center;
+    margin: 0.35em 0;
+}
+
+.front-matter .tp-20 { font-size: 20pt; }
+.front-matter .tp-18 { font-size: 18pt; }
+.front-matter .tp-14 { font-size: 14pt; }
+.front-matter .tp-24 { font-size: 24pt; margin: 1.2em 0; }
+
+/* 1. oldal: román címoldal – koordinátor és absolvent egy sorban, szélen */
+.title-page-ro {
+    min-height: 240mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title-page-ro .tp-spacer {
+    flex: 1;
+}
+
+.title-page-ro .tp-footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    text-align: left;
+    width: 100%;
+    margin-top: 2em;
+    font-size: 18pt;
+}
+
+.title-page-ro .tp-footer-col {
+    width: 48%;
+}
+
+.title-page-ro .tp-footer-col p {
+    text-align: left;
+    margin: 0.2em 0;
+}
+
+/* 3. oldal: magyar címoldal */
+.title-page-hu {
+    min-height: 240mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title-page-hu .tp-footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    text-align: left;
+    width: 100%;
+    margin-top: 2.5em;
+    font-size: 18pt;
+}
+
+.title-page-hu .tp-footer-col {
+    width: 48%;
+}
+
+.title-page-hu .tp-footer-col p {
+    text-align: left;
+    margin: 0.2em 0;
+}
+
+/* 2., 4., 5. oldal: kivonatok – 1,5 sorköz */
+.abstract-page {
+    text-align: left;
+}
+
+.abstract-page .abstract-title {
+    font-size: 20pt;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 0 1em 0;
+}
+
+.abstract-page .abstract-heading {
+    font-size: 20pt;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 0 1em 0;
+}
+
+.abstract-page p {
+    text-align: justify;
+    line-height: 1.5;
+    font-size: 12pt;
+}
+
+/* Tartalomjegyzék oldal */
+.toc-page h2 {
+    font-size: 20pt;
+    text-align: center;
+    margin-top: 0;
+}
+
+/* ========== Törzsszöveg ========== */
+
+/* Bekezdések */
+p {
+    text-align: justify;
+    text-justify: inter-word;
+    margin-top: 0;
+    margin-bottom: 0.8em;
+}
+
+/* Címsorok */
+h1, h2, h3, h4, h5 {
+    font-weight: bold;
+    margin-top: 1.5em;
+    margin-bottom: 0.6em;
+    page-break-after: avoid;
+}
+
+h1 {
+    font-size: 20pt;
+    counter-reset: h2counter;
+}
+
+h2 {
+    font-size: 16pt;
+}
+
+h3 {
+    font-size: 14pt;
+}
+
+h4 {
+    font-size: 12pt;
+}
+
+/* 3.4.6.3 jellegu alcimek (#####) ne legyenek kisebbek a torzsszovegnel */
+h5 {
+    /* browser default altalaban kisebb, ezt felulirjuk */
+    font-size: 13pt;
+}
+
+/* ne nyúljon bele a címek szövegébe */
+h1::before,
+h2::before,
+h3::before,
+h4::before,
+h5::before {
+    content: none;
+}
+
+/* Képek */
+img {
+    display: block;
+    margin: 1.2em auto;
+    max-width: 100%;
+    page-break-inside: avoid;
+}
+
+/* Képaláírás */
+figcaption {
+    text-align: center;
+    font-size: 10pt;
+    margin-top: 0.4em;
+    font-style: italic;
+}
+
+/* Kódrészletek */
+pre {
+    background: #f4f4f4;
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow-x: auto;
+    font-size: 10pt;
+    line-height: 1.2;
+    page-break-inside: avoid;
+}
+
+code {
+    /* font-family: Consolas, monospace; */
+    font-family: Consolas, "Courier New", monospace;
+    /* Inline kod optikailag ne legyen nagyobb a torzsszovegnel */
+    font-size: 0.9em;
+    line-height: 1;
+}
+
+/* A blokkos kod merete maradjon a pre beallitas szerint */
+pre code {
+    font-size: 1em;
+    line-height: inherit;
+}
+
+/* Táblázatok */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em 0;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 6px;
+    text-align: left;
+}
+
+/* Oldaltörés – a Markdownban: <div class="page-break"></div> */
+.page-break {
+    page-break-before: always;
+    break-before: page;
+}

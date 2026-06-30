@@ -1,0 +1,38 @@
+{
+  "markdown-pdf.type": "pdf",
+
+  "markdown-pdf.format": "A4",
+
+  "markdown-pdf.orientation": "portrait",
+
+"markdown-pdf.margin.top": "25mm",
+"markdown-pdf.margin.bottom": "25mm",
+"markdown-pdf.margin.left": "20mm",
+"markdown-pdf.margin.right": "23.5mm",
+
+  "markdown-pdf.displayHeaderFooter": true,
+
+  "markdown-pdf.headerTemplate": "<div></div>",
+
+ "markdown-pdf.footerTemplate": "<div style='width:100%; font-size:10px; padding:0 20mm; color:#666; text-align:center; font-family:\"Times New Roman\";'><span class='pageNumber'></span></div>",
+
+  "markdown-pdf.printBackground": true,
+
+  "markdown-pdf.includeDefaultStyles": false,
+
+"markdown-pdf.styles": [
+  "docs/style.css"
+],
+
+  "markdown-pdf.toc": false,
+
+  "markdown-pdf.tocLevel": 4,
+
+  "markdown-pdf.emoji": true,
+
+  "markdown-pdf.breaks": true,
+
+  "markdown-pdf.highlight": true,
+
+  "markdown-pdf.showProgress": true
+}
