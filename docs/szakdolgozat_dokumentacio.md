@@ -205,21 +205,21 @@
 2. `score_distribution_boxplot.png` – ponteloszlás (boxplot) ([5.3.7](#h-5-3-7))  
 3. `death_distribution_stacked.png` – halálok megoszlása ([5.3.7](#h-5-3-7))  
 4. `score_vs_steps_scatter.png` – pont és lépésszám kapcsolata ([5.3.7](#h-5-3-7))
-5. `images/blokkdiagram.png` – rendszer blokkdiagram (monorepo komponensek) ([3.1](#h-3-1))  
-6. `images/osztalydiagram_frontend.png` – frontend osztálydiagram ([3.2](#h-3-2))  
-7. `images/osztalydiagram_backend.png` – backend osztálydiagram ([3.3](#h-3-3))  
-8. `images/osztalydiagram_ai_strategiak.png` – AI stratégia osztálydiagram ([3.4](#h-3-4))  
-9. `images/szekvenciadiagram_tick_mi_modban.png` – szekvencia: egy tick MI módban ([3.4.4](#h-3-4-4))  
-10. `images/usecase_diagram.png` – használati esetek diagram ([6](#h-6))  
-11. `images/headbar.png` – fejléc (Header): cím, auth és téma kapcsoló ([6.2](#h-6-2))  
-12. `images/mainpage.png` – főmenü: módválasztó és navigáció ([6.3](#h-6-3))  
-13. `images/registration.png` – regisztrációs űrlap ([6.4](#h-6-4))  
-14. `images/lightmode.png` – világos téma megjelenítés ([6.5](#h-6-5))  
-15. `images/settings.png` – beállítások képernyő ([6.6](#h-6-6))  
-16. `images/game.png` – játék képernyő (HUD + pálya + vezérlők) ([6.7](#h-6-7))  
-17. `images/szekvenciadiagramm_bejelemtkezes_pontszammentes.png` – szekvencia: bejelentkezés és pontszám mentés ([6.9](#h-6-9))  
-18. `images/userresultsexample.png` – eredmények oldal példa ([6.10](#h-6-10))  
-19. `images/profilpage.png` – profil oldal ([6.12](#h-6-12))  
+5. `blokkdiagram.png` – rendszer blokkdiagram (monorepo komponensek) ([3.1](#h-3-1))  
+6. `osztalydiagram_frontend.png` – frontend osztálydiagram ([3.2](#h-3-2))  
+7. `osztalydiagram_backend.png` – backend osztálydiagram ([3.3](#h-3-3))  
+8. `osztalydiagram_ai_strategiak.png` – AI stratégia osztálydiagram ([3.4](#h-3-4))  
+9. `szekvenciadiagram_tick_mi_modban.png` – szekvencia: egy tick MI módban ([3.4.4](#h-3-4-4))  
+10. `usecase_diagram.png` – használati esetek diagram ([6](#h-6))  
+11. `headbar.png` – fejléc (Header): cím, auth és téma kapcsoló ([6.2](#h-6-2))  
+12. `mainpage.png` – főmenü: módválasztó és navigáció ([6.3](#h-6-3))  
+13. `registration.png` – regisztrációs űrlap ([6.4](#h-6-4))  
+14. `lightmode.png` – világos téma megjelenítés ([6.5](#h-6-5))  
+15. `settings.png` – beállítások képernyő ([6.6](#h-6-6))  
+16. `game.png` – játék képernyő (HUD + pálya + vezérlők) ([6.7](#h-6-7))  
+17. `szekvenciadiagramm_bejelemtkezes_pontszammentes.png` – szekvencia: bejelentkezés és pontszám mentés ([6.9](#h-6-9))  
+18. `userresultsexample.png` – eredmények oldal példa ([6.10](#h-6-10))  
+19. `profilpage.png` – profil oldal ([6.12](#h-6-12))  
 
 <a id="h-9-2"></a>
 ### Táblázatok jegyzéke
@@ -2009,8 +2009,6 @@ A profil oldal több szekcióra tagolja a műveleteket: fent az azonosító mód
 ![Profil oldal: űrlapok és eredménylista](images/profilpage.png)
 
 *6.8. ábra – Profil (`Profile`): név- és jelszó módosítás, valamint a felhasználó eredményeinek összefoglalója.*
-
-Alul Vissza a főmenübe gomb található.
 
 <div class="page-break"></div>
 
